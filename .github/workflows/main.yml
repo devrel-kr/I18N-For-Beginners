@@ -35,7 +35,7 @@ jobs:
             
       # checkout
       - name : git checkout
-        run : git checkout upstream/main
+        run : git checkout -b upstream/main
                       
       # fetch
       - name : fetch upstream
