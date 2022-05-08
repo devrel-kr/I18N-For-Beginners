@@ -47,7 +47,7 @@ def main(b1, b2):
 	files = get_files(b1, b2)
 	result = ""
 	for f in files:
-		if is_exist(b1, f[1]):
+		if is_exist(b2, f[1]):
 			diff = get_diff(b1, b2, f)
 			result += f'~ File: {diff["name"]}\n'
 			if diff['state'] == 'M':
@@ -62,8 +62,6 @@ def main(b1, b2):
 				result += f'\t{diff["state"]}\n'
 
 			result += f"\tAdded words: {diff['diff'][0]}, Deleted words: {diff['diff'][1]}\n"
-
-			
 	with open("contact/index.md", "w") as f:
 		f.write(result)
 
