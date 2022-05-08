@@ -1,0 +1,70 @@
+# This is a basic workflow to help you get started with Actions
+
+name: diff
+
+# Controls when the workflow will run
+on:
+  # Triggers the workflow on push or pull request events but only for the main branch
+  push:
+    branches: [ docsify ]
+    
+
+  # Allows you to run this workflow manually from the Actions tab
+  workflow_dispatch:
+ 
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    # Steps represent a sequence of tasks that will be executed as part of the job
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Set up Python ${{ matrix.python-version }}
+        uses: actions/setup-python@v2
+        with:
+         python-version: ${{ matrix.python-version }}
+    
+       # remote
+      - name: remote upstream
+        run : |
+              git remote add korean https://github.com/Azure/azure-sdk-korean.git
+              git remote add english https://github.com/Azure/azure-sdk.git
+              git remote -v
+                      
+      # fetch
+      - name : fetch upstream
+        run : |
+              git fetch korean
+              git fetch english
+              
+      # main의 최신 id               
+      - name : main id
+        id : main
+        run : echo ::set-output name=korean_id::$(git rev-parse korean/main)
+
+      # upstream/main의 최신 id
+      - name : upstream id
+        id : vars
+        run : echo ::set-output name=english_id::$(git rev-parse english/main)
+      
+      # id 출력
+      - name : output 
+        run : |
+              echo ${{steps.vars.outputs.english_id}}
+              echo ${{steps.main.outputs.korean_id}}
+      # git diff
+      - name: Run diff.py
+        run: python diff.py ${{steps.main.outputs.korean_id}} ${{steps.vars.outputs.english_id}} 
+
+      
+      - name : git 
+        run : |
+                git config --global user.email "gaga2353@gmail.com"
+                git config --global user.name "bmlsj"
+        
+      - name : commit
+        run : |
+              git add contact/index.md
+              git commit -m "commit index.md"
+              git push
