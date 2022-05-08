@@ -32,6 +32,10 @@ jobs:
              git remote add upstream https://github.com/Azure/azure-sdk-korean.git
             # git remote add english https://github.com/Azure/azure-sdk.git
             # git remote -v
+            
+      # checkout
+      - name : git checkout
+        run : git checkout upstream/main
                       
       # fetch
       - name : fetch upstream
