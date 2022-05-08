@@ -50,7 +50,7 @@ jobs:
       - name : upstream id
         id : vars
         run : |
-              git branch --set-upstream-to=refs/remotes/origin/main
+              git update-ref -d refs/origin/main
 
               echo ::set-output name=upstream_id::$(git rev-parse upstream/main^)
       
