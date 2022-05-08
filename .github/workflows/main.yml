@@ -41,12 +41,12 @@ jobs:
       # main의 최신 id               
       - name : main id
         id : main
-        run : echo ::set-output name=main_id::$(git rev-parse main)
+        run : echo ::set-output name=main_id::$(git rev-parse origin/main)
 
       # upstream/main의 최신 id
       - name : upstream id
         id : vars
-        run : echo ::set-output name=english_id::$(git rev-parse main^)
+        run : echo ::set-output name=english_id::$(git rev-parse origin/main^)
       
       # id 출력
       - name : output 
