@@ -30,8 +30,7 @@ jobs:
       - name: remote upstream
         run : |
              git remote add upstream https://github.com/Azure/azure-sdk-korean.git
-            # git remote add english https://github.com/Azure/azure-sdk.git
-            # git remote -v
+             git remote -v
             
       # checkout
       - name : git checkout
@@ -45,12 +44,12 @@ jobs:
       # 최신 id               
       - name : main id
         id : main
-        run : echo ::set-output name=main_id::$(git rev-parse upstream/main)
+        run : echo ::set-output name=main_id::$(git rev-parse main)
 
       # 이전 id
       - name : upstream id
         id : vars
-        run : echo ::set-output name=upstream_id::$(git rev-parse upstream/main^)
+        run : echo ::set-output name=upstream_id::$(git rev-parse main^)
       
       # id 출력
       - name : output 
