@@ -51,12 +51,12 @@ jobs:
       # id 출력
       - name : output 
         run : |
-              echo ${{steps.vars.outputs.main_id}}
-            # echo ${{steps.main.outputs.korean_id}}
+              echo ${{steps.main.outputs.main_id}}
+              echo ${{steps.vars.outputs.english_id}}
 
       # git diff
       - name: Run diff.py
-        run: python diff.py ${{steps.main.outputs.main_id}} ${{steps.vars.outputs.main_id}} 
+        run: python diff.py${{steps.main.outputs.main_id}} ${{steps.vars.outputs.english_id}}
 
       
       - name : git 
