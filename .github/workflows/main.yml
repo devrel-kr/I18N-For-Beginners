@@ -44,9 +44,9 @@ jobs:
         run : echo ::set-output name=main_id::$(git rev-parse main)
 
       # upstream/main의 최신 id
-      #- name : upstream id
-      #  id : vars
-      #  run : echo ::set-output name=english_id::$(git rev-parse english/main)
+      - name : upstream id
+        id : vars
+        run : echo ::set-output name=english_id::$(git rev-parse main^)
       
       # id 출력
       - name : output 
@@ -56,7 +56,7 @@ jobs:
 
       # git diff
       - name: Run diff.py
-        run: python diff.py ${{steps.main.outputs.main_id}} ${{steps.vars.outputs.main_id^}} 
+        run: python diff.py ${{steps.main.outputs.main_id}} ${{steps.vars.outputs.main_id}} 
 
       
       - name : git 
