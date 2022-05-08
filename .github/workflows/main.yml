@@ -27,36 +27,36 @@ jobs:
     
        # remote
 
-      #- name: remote upstream
-      #  run : |
-            #  git remote add upstream https://github.com/Azure/azure-sdk-korean.git
+      - name: remote upstream
+        run : |
+             git remote add upstream https://github.com/Azure/azure-sdk-korean.git
             # git remote add english https://github.com/Azure/azure-sdk.git
             # git remote -v
                       
       # fetch
-      #- name : fetch upstream
-      #  run : git fetch upstream
+      - name : fetch upstream
+        run : git fetch upstream
 
               
-      # main의 최신 id               
+      # 최신 id               
       - name : main id
         id : main
-        run : echo ::set-output name=main_id::$(git rev-parse origin/main)
+        run : echo ::set-output name=main_id::$(git rev-parse upstream/main)
 
-      # upstream/main의 최신 id
+      # 이전 id
       - name : upstream id
         id : vars
-        run : echo ::set-output name=english_id::$(git rev-parse origin/main^)
+        run : echo ::set-output name=upstream_id::$(git rev-parse upstream/main^)
       
       # id 출력
       - name : output 
         run : |
               echo ${{steps.main.outputs.main_id}}
-              echo ${{steps.vars.outputs.english_id}}
+              echo ${{steps.vars.outputs.upstream_id}}
 
       # git diff
       - name: Run diff.py
-        run: python diff.py ${{steps.main.outputs.main_id}} ${{steps.vars.outputs.english_id}}
+        run: python diff.py ${{steps.main.outputs.main_id}} ${{steps.vars.outputs.upstream_id}}
 
       
       - name : git 
