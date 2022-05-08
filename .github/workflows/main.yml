@@ -68,10 +68,12 @@ jobs:
         run : |
                 git config --global user.email "gaga2353@gmail.com"
                 git config --global user.name "bmlsj"
-        
+       # git pull upstream main
+              
       - name : commit
         run : |
-              git pull upstream main
+              git config --global pull.ff only
+
               git add .
               git commit -m "commit index.md"
               git push --set-upstream origin upstream/main
