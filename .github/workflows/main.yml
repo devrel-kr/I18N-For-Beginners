@@ -56,7 +56,7 @@ jobs:
 
       # git diff
       - name: Run diff.py
-        run: python diff.py${{steps.main.outputs.main_id}} ${{steps.vars.outputs.english_id}}
+        run: python diff.py ${{steps.main.outputs.main_id}} ${{steps.vars.outputs.english_id}}
 
       
       - name : git 
