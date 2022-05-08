@@ -71,4 +71,4 @@ jobs:
         run : |
               git add .
               git commit -m "commit index.md"
-              git push
+              git push --set-upstream origin upstream/main
