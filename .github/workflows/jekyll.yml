@@ -20,8 +20,9 @@ jobs:
           restore-keys: |
             ${{ runner.os }}-gems-
       # Use GitHub Deploy Action to build and deploy to Github
-      - uses: peaceiris/actions-gh-pages@v3
-        with:
-          # GITHUB_TOKEN secret is set up automatically
-          github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: ./_site
+      - name: Deploy Jekyll Site
+        uses: sujaykundu777/jekyll-deploy-action@1.0.3
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GITHUB_REPOSITORY: ${{ secrets.GITHUB_REPOSITORY }}
+          GITHUB_ACTOR: ${{ secrets.GITHUB_ACTOR }}
