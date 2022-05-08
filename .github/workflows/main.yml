@@ -49,7 +49,7 @@ jobs:
       # 이전 id
       - name : upstream id
         id : vars
-        run : echo ::set-output name=upstream_id::$(git rev-parse upstream/main^)
+        run : echo ::set-output name=upstream_id::$(git rev-parse upstream/main)
       
       # id 출력
       - name : output 
