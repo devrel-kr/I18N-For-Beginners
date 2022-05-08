@@ -48,7 +48,7 @@ def main(b1, b2):
 	result = ""
 	
 	for f in files:
-		if is_exist(b1, f[1]) is_exist(b2, f[1]):
+		if is_exist(b1, f[1]) and is_exist(b2, f[1]):
 			diff = get_diff(b1, b2, f)
 			result += f'~ File: {diff["name"]}\n'
 			if diff['state'] == 'M':
