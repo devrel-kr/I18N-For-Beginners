@@ -69,6 +69,6 @@ jobs:
         
       - name : commit
         run : |
-              git add contact/index.md
+              git add .
               git commit -m "commit index.md"
               git push
