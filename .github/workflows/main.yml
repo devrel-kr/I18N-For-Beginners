@@ -72,8 +72,9 @@ jobs:
 
       - name : commit
         run : |
-              git rebase --skip
+              
               git config pull.rebase true
+              git rebase --skip
               git pull upstream main
               git add .
               git commit -m "commit index.md"
