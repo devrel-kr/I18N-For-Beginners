@@ -72,9 +72,8 @@ jobs:
 
       - name : commit
         run : |
-              git rebase --continue 
 
-              git pull origin main --rebase              
+              git pull origin main --rebase  
               git add .
               git commit -m "commit index.md"
               git push --set-upstream origin upstream/main
