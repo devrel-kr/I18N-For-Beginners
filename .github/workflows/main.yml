@@ -73,8 +73,8 @@ jobs:
       - name : commit
         run : |
               
-              git checkout main
-              git pull upstream main
+              
+              git pull origin upstream/main
               git add .
               git commit -m "commit index.md"
               git push --set-upstream origin upstream/main
