@@ -41,7 +41,7 @@ jobs:
         run : git fetch upstream
 
               
-      # 최신 id               
+          # 최신 id               
       - name : main id
         id : main
         run : echo ::set-output name=main_id::$(git rev-parse upstream/main)
@@ -49,20 +49,17 @@ jobs:
       # 이전 id
       - name : upstream id
         id : vars
-        run : |
-
-              echo ::set-output name=upstream_id::$(git rev-parse refs/remotes/upstream/main^)
+        run : echo ::set-output name=before_id::$(git rev-parse refs/remotes/upstream/main^)
       
       # id 출력
       - name : output 
         run : |
               echo ${{steps.main.outputs.main_id}}
-              echo ${{steps.vars.outputs.upstream_id}}
+              echo ${{steps.vars.outputs.before_id}}
 
       # git diff
       - name: Run diff.py
-        run: python diff.py ${{steps.vars.outputs.upstream_id}} ${{steps.main.outputs.main_id}}
-
+        run: python diff.py ${{steps.vars.outputs.before_id}} ${{steps.main.outputs.main_id}}
       
 #      - name : git 
 #        run : |
@@ -84,4 +81,4 @@ jobs:
             author_email: gaga2353@gmail.com
             message: 'Your commit message'
             add: 'contact/index.md'
-            push: upstream/main --set-upstream
+            push: upstream/main
