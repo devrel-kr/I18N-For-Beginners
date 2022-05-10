@@ -49,17 +49,17 @@ jobs:
       # 이전 id
       - name : upstream id
         id : vars
-        run : echo ::set-output name=upstream_id::$(git rev-parse upstream/main)
+        run : echo ::set-output name=before_id::$(git rev-parse refs/remotes/upstream/main^)
       
       # id 출력
       - name : output 
         run : |
               echo ${{steps.main.outputs.main_id}}
-              echo ${{steps.vars.outputs.upstream_id}}
+              echo ${{steps.vars.outputs.before_id}}
 
       # git diff
       - name: Run diff.py
-        run: python diff.py ${{steps.vars.outputs.upstream_id}} ${{steps.main.outputs.main_id}}
+        run: python diff.py ${{steps.vars.outputs.before_id}} ${{steps.main.outputs.main_id}}
 
       
       - name : git 
