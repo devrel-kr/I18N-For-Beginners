@@ -80,8 +80,11 @@ jobs:
       - name: Commit changes
         uses: EndBug/add-and-commit@v9
         with:
-            tag_push: '--set-upstream'
             author_name: bmlsj
             author_email: gaga2353@gmail.com
             message: 'Your commit message'
             add: 'contact/index.md'
+            push: false
+            
+      - name : git push
+        run : git push --set-upstream origin upstream/main
