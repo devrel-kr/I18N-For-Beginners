@@ -84,5 +84,5 @@ jobs:
             author_email: gaga2353@gmail.com
             message: 'Your commit message'
             add: 'contact/index.md'
-            pull: '--rebase --autostash ...'
+            pull: '--rebase --autostash upstream/main'
 
