@@ -1,0 +1,28 @@
+name: auto-push
+
+# Controls when the workflow will run
+on:
+  # Triggers the workflow on push or pull request events but only for the main branch
+  push:
+    branches: [ docsify ]
+    paths:
+        - "contact/."
+    
+
+  # Allows you to run this workflow manually from the Actions tab
+  workflow_dispatch:
+ 
+jobs:
+  auto:
+    runs-on: ubuntu-latest
+
+    # Steps represent a sequence of tasks that will be executed as part of the job
+    steps:
+      - uses: actions/checkout@v3 
+      - name: Commit changes
+        uses: EndBug/add-and-commit@v9
+        with:
+            author_name: bmlsj
+            author_email: gaga2353@gmail.com
+            message: 'Your commit message'
+            add: 'contact/index.md'
