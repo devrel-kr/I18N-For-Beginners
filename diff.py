@@ -50,20 +50,21 @@ def main(b1, b2):
 	for f in files:
 		if is_exist(b1, f[1]) and is_exist(b2, f[1]):
 			diff = get_diff(b1, b2, f)
-			result += f'~ File: {diff["name"]}\n'
+			result += f'~ File: {diff["name"]}\n\n'
 			if diff['state'] == 'M':
-				result += '\tFile Modified\n'
+				result += '\tFile Modified\n\n'
 			elif diff['state'] == 'A':
-				result += '\tFile Added\n'
+				result += '\tFile Added\n\n'
 			elif diff['state'] == 'R':
-				result += '\tFile Renamed\n'
+				result += '\tFile Renamed\n\n'
 			elif diff['state'] == 'D':
-				result += '\tFile Deleted\n'
+				result += '\tFile Deleted\n\n'
 			else:
-				result += f'\t{diff["state"]}\n'
+				result += f'\t{diff["state"]}\n\n'
 
-			result += f"\tAdded words: {diff['diff'][0]}, Deleted words: {diff['diff'][1]}\n"
-	with open("report.txt", "w") as f:
+			result += f"\tAdded words: {diff['diff'][0]}, Deleted words: {diff['diff'][1]}\n\n"
+			
+	with open("contact/index.md", "w") as f:
 		f.write(result)
 
 
