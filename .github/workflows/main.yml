@@ -77,12 +77,5 @@ jobs:
 #              git commit -m "commit index.md"
 #              git push --set-upstream origin upstream/main
 
-      - name: Commit changes
-        uses: EndBug/add-and-commit@v9
-        with:
-            author_name: bmlsj
-            author_email: gaga2353@gmail.com
-            message: 'Your commit message'
-            add: 'contact/index.md'
-            pull: '--rebase --autostash upstream/main'
+
 
