@@ -80,6 +80,7 @@ jobs:
       - name: Commit changes
         uses: EndBug/add-and-commit@v9
         with:
+            push_options: '--set-upstream'
             author_name: bmlsj
             author_email: gaga2353@gmail.com
             message: 'Your commit message'
