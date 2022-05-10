@@ -64,16 +64,23 @@ jobs:
         run: python diff.py ${{steps.vars.outputs.upstream_id}} ${{steps.main.outputs.main_id}}
 
       
-      - name : git 
-        run : |
-                git config --global user.email "gaga2353@gmail.com"
-                git config --global user.name "bmlsj"
+#      - name : git 
+#        run : |
+#                git config --global user.email "gaga2353@gmail.com"
+#                git config --global user.name "bmlsj"
        
 
-      - name : commit
-        run : |
+#      - name : commit
+#        run : |
+#              git pull origin main --rebase  
+#              git add .
+#              git commit -m "commit index.md"
+#              git push --set-upstream origin upstream/main
 
-              git pull origin main --rebase  
-              git add .
-              git commit -m "commit index.md"
-              git push --set-upstream origin upstream/main
+      - name: Commit changes
+        uses: EndBug/add-and-commit@v9
+        with:
+            author_name: bmlsj
+            author_email: gaga2353@gmail.com
+            message: 'Your commit message'
+            add: 'contact/index.md'
