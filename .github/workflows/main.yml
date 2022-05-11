@@ -7,7 +7,9 @@ on:
   # Triggers the workflow on push or pull request events but only for the main branch
   push:
     branches: [ docsify ]
-    
+
+#  schedule:
+#    - cron: '0 0 * * 0'
 
   # Allows you to run this workflow manually from the Actions tab
   workflow_dispatch:
@@ -61,14 +63,3 @@ jobs:
       - name: Run diff.py
         run: python diff.py ${{steps.vars.outputs.before_id}} ${{steps.main.outputs.main_id}}
 
-      
-      - name : git 
-        run : |
-                git config --global user.email "gaga2353@gmail.com"
-                git config --global user.name "bmlsj"
-        
-      - name : commit
-        run : |
-              git add .
-              git commit -m "commit index.md"
-              git push --set-upstream origin upstream/main

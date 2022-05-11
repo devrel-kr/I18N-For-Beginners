@@ -64,7 +64,7 @@ def main(b1, b2):
 
 			result += f"\tAdded words: {diff['diff'][0]}, Deleted words: {diff['diff'][1]}\n\n"
 			
-	with open("contact/index.md", "w") as f:
+	with open("README.md", "w") as f:
 		f.write(result)
 
 
