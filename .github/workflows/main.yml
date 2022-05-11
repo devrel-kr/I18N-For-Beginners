@@ -44,10 +44,10 @@ jobs:
           # 최신 id               
       - name : main id
         id : main
-        run : echo ::set-output name=main_id::$(git rev-parse upstream/main)
+        run : echo ::set-output name=main_id::$(git rev-parse refs/remotes/upstream/main)
 
       # 이전 id
-      - name : upstream id
+      - name : before id
         id : vars
         run : echo ::set-output name=before_id::$(git rev-parse refs/remotes/upstream/main^)
       
