@@ -10,6 +10,17 @@ def get_leaf(t, where):
 		t = t[i]
 	return t
 
+def get_remote():
+	remotes = subprocess.check_output(['git', 'remote', '-v'], encoding='utf-8').splitlines()
+	remote_url = []
+	for c in remotes:
+		rem= c.split()
+		rem_name = rem[0]
+		url = rem[1]
+		if (url, rem_name) not in remote_url:
+			remote_url.append((url, rem_name))
+	return remote_url
+
 def get_files(commit1, commit2):
 	out = subprocess.check_output(['git', 'diff', '--name-status', commit1, commit2], encoding='utf-8').splitlines()
 	files = []
@@ -62,7 +73,16 @@ def get_diff(commit1, commit2, file_name):
 	added_rate = (added / word_count) if word_count != 0 else 1
 	erased_rate = (erased / word_count) if word_count != 0 else 0
 
-	return {'name': file_name[1],
+	if state == 'A':
+		state = 'File Added'
+	elif state == 'M':
+		state = 'File Modified'
+	elif state == 'R':
+		state = 'File Renamed'
+	elif state == 'D':
+		state = 'File Deleted'
+
+	return {'name': file_name[1].split('/')[-1],
 		'state': state,
 		'diff': (added, erased),
 		'diff_rate': (added_rate, erased_rate)}
@@ -70,34 +90,41 @@ def get_diff(commit1, commit2, file_name):
 def ptr(t, file, depth = 0):
 	for k, v in t.items():
 		if k != '/data/':
-			file.write("%s %2d %s\n" % ("".join(depth * ["    "]), depth, k))
+			file.write("%s └ %s\n" % ("".join(depth * ["    "]), k))
 			depth += 1
 			ptr(t[k], file, depth)
 			depth -= 1
 		else:
 			file.write("%s -- %s\n" % ("".join(depth * ["    "]), v))
+	file.write('\n')
 
-def main(b1, b2):
-	files = get_files(b1, b2)
+def get_commit_str(commit):
+	out = subprocess.check_output(['git', 'rev-list', commit, '-n', '1'], encoding='utf-8')
+	return out
+
+def print_report_by_tree(tree, c1, c2):
+	result_tree = open('report_tree.txt', 'w')
+	for i in get_remote():
+		result_tree.write(f'remote:  \t{i[0]}\t{i[1]}\n')
+	result_tree.write('\n')
+	result_tree.write(f'recent commit:  \t{get_commit_str(c1)}')
+	result_tree.write(f'outdated commit: \t{get_commit_str(c2)}')
+	result_tree.write('\n')
+	ptr(tree, result_tree)
+	result_tree.close()
+
+def main(commit1, commit2):
+	files = get_files(commit1, commit2)
 	tree = dtree()
 	result = ""
 	for f in files:
-		if is_exist(b2, f[1]) and is_textfile(b2, f[1]):
+		if is_exist(commit2, f[1]) and is_textfile(commit2, f[1]):
 			f_dir = f[1].split('/')
-			diff = get_diff(b1, b2, f)
+			diff = get_diff(commit1, commit2, f)
 			leaf = get_leaf(tree, f_dir)
 			leaf['/data/'] = diff
 			result += f'~ File: {diff["name"]}\n'
-			if diff['state'] == 'M':
-				result += '\tFile Modified\n'
-			elif diff['state'] == 'A':
-				result += '\tFile Added\n'
-			elif diff['state'] == 'R':
-				result += '\tFile Renamed\n'
-			elif diff['state'] == 'D':
-				result += '\tFile Deleted\n'
-			else:
-				result += f'\t{diff["state"]}\n'
+			result += f'\t{diff["state"]}\n'
 
 			result += f"\tAdded words: {diff['diff'][0]}, Deleted words: {diff['diff'][1]}\n"
 			
@@ -108,9 +135,7 @@ def main(b1, b2):
 	with open("json.txt", "w") as f:
 		f.write(json.dumps(tree))
 
-	result_tree = open('report_tree.txt', 'w')
-	ptr(tree, result_tree)
-	result_tree.close()
+	print_report_by_tree(tree, commit1, commit2)
 
 
 if __name__ == '__main__':
