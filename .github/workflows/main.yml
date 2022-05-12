@@ -59,26 +59,27 @@ jobs:
 
       # git diff
       - name: Run diff.py
-        run: python diff.py ${{steps.vars.outputs.before_id}} -- ${{steps.main.outputs.main_id}}
+        run: python diff.py ${{steps.vars.outputs.before_id}} ${{steps.main.outputs.main_id}}
       
-      - name : git 
-        run : |
-                git config --global user.email "gaga2353@gmail.com"
-                git config --global user.name "bmlsj"
+#      - name : git 
+#        run : |
+#                git config --global user.email "gaga2353@gmail.com"
+#                git config --global user.name "bmlsj"
        
 
-      - name : commit
-        run : |
-              git checkout main
-              git add .
-              git commit -m "commit index.md"
-              git push origin main
+#      - name : commit
+#        run : |
+#              git checkout main
+#              git add .
+#              git commit -m "commit index.md"
+#              git push origin main
 
-#      - name: Commit changes
- #       uses: EndBug/add-and-commit@v9
-  #      with:
-   #         author_name: bmlsj
-    #        author_email: gaga2353@gmail.com
-     #       message: 'Your commit message'
-      #      add: 'contact/index.md'
-       #     push: '--set-upstream origin origin/upstream/main'
+      - name: Commit changes
+        uses: EndBug/add-and-commit@v9
+        with:
+            author_name: bmlsj
+            author_email: gaga2353@gmail.com
+            message: 'Your commit message'
+            add: 'contact/index.md'
+#           push: '--set-upstream origin origin/upstream/main'
+            push: 'origin main'
