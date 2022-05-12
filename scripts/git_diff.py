@@ -105,7 +105,7 @@ def get_commit_str(commit):
 def print_report_by_tree(tree, c1, c2):
 	result_tree = open('report_tree.txt', 'w')
 	for i in get_remote():
-		result_tree.write(f'remote:  \t{i[0]}\t{i[1]}\n')
+		result_tree.write(f'{i[0]}\t{i[1]}\n')
 	result_tree.write('\n')
 	result_tree.write(f'recent commit:  \t{get_commit_str(c1)}')
 	result_tree.write(f'outdated commit: \t{get_commit_str(c2)}')
