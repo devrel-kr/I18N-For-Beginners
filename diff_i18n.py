@@ -70,12 +70,12 @@ def get_diff(commit1, commit2, file_name):
 def ptr(t, file, depth = 0):
 	for k, v in t.items():
 		if k != '/data/':
-			file.write("%s %2d %s\n" % ("".join(depth * ["    "]), depth, k))
+			file.write("%s %2d %s\n\n" % ("".join(depth * ["    "]), depth, k))
 			depth += 1
 			ptr(t[k], file, depth)
 			depth -= 1
 		else:
-			file.write("%s -- %s\n" % ("".join(depth * ["    "]), v))
+			file.write("%s -- %s\n\n" % ("".join(depth * ["    "]), v))
 
 def main(b1, b2):
 	files = get_files(b1, b2)
@@ -99,16 +99,16 @@ def main(b1, b2):
 			else:
 				result += f'\t{diff["state"]}\n\n'
 
-			result += f"\tAdded words: {diff['diff'][0]}, Deleted words: {diff['diff'][1]}\n"
+			result += f"\tAdded words: {diff['diff'][0]}, Deleted words: {diff['diff'][1]}\n\n"
 			
-	with open("contact/index.md", "w") as f:
+	with open("result.txt", "w") as f:
 		f.write(result)
 	
 	import json
 	with open("json.txt", "w") as f:
 		f.write(json.dumps(tree))
 
-	result_tree = open('report_tree.txt', 'w')
+	result_tree = open("report_tree.md", 'w')
 	ptr(tree, result_tree)
 	result_tree.close()
 
