@@ -74,4 +74,4 @@ jobs:
             author_email: gaga2353@gmail.com
             message: 'Your commit message'
             add: 'contact/index.md'
-            push: '--set-upstream origin origin/upstream/main'
+            # push: '--set-upstream origin origin/upstream/main'
