@@ -72,5 +72,5 @@ jobs:
           git commit -m "Add report"
           
       - name: Push to report
-        run: git push origin result
+        run: git push origin `git subtree split --prefix result main`:result
 
