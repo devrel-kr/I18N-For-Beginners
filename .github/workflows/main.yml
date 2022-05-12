@@ -25,54 +25,47 @@ jobs:
         with:
          python-version: ${{ matrix.python-version }}
     
-       # remote
-
       - name: remote upstream
         run : |
-             git remote add upstream https://github.com/Azure/azure-sdk-korean.git
-             git remote -v
-            
+             git remote add devrel https://github.com/devrel-kr/Web-Dev-For-Beginners.git
+             git remote add micro https://github.com/microsoft/Web-Dev-For-Beginners.git
+
       # checkout
       - name : git checkout
-        run : git checkout -b upstream/main
+        run : git checkout -b devrel
                       
       # fetch
-      - name : fetch upstream
-        run : git fetch upstream
+      - name : fetch devrel
+        run : git fetch devrel
 
               
-          # 최신 id               
-      - name : main id
+        # devrel id               
+      - name : devrel id
         id : main
-        run : echo ::set-output name=main_id::$(git rev-parse refs/remotes/upstream/main)
+        run : echo ::set-output name=devrel_id::$(git rev-parse refs/remotes/devrel/main)
+
+      # checkout
+      - name : git checkout
+        run : git checkout -b micro
+                      
+      # fetch
+      - name : fetch micro
+        run : git fetch micro
 
       # 이전 id
-      - name : before id
+      - name : micro id
         id : vars
-        run : echo ::set-output name=before_id::$(git rev-parse refs/remotes/upstream/main^)
-      
+        run : echo ::set-output name=micro_id::$(git rev-parse refs/remotes/micro/main)
+
       # id 출력
       - name : output 
         run : |
-              echo ${{steps.main.outputs.main_id}}
-              echo ${{steps.vars.outputs.before_id}}
+              echo ${{steps.main.outputs.devrel_id}}
+              echo ${{steps.vars.outputs.micro_id}}
 
       # git diff
       - name: Run diff.py
-        run: python diff.py ${{steps.vars.outputs.before_id}} -- ${{steps.main.outputs.main_id}}
-      
-#      - name : git 
-#        run : |
-#                git config --global user.email "gaga2353@gmail.com"
-#                git config --global user.name "bmlsj"
-       
-
-#      - name : commit
-#        run : |
-#              git checkout main
-#              git add .
-#              git commit -m "commit index.md"
-#              git push origin main
+        run: python diff.py ${{steps.main.outputs.devrel_id}} -- ${{steps.vars.outputs.micro_id}}
 
       - name: Commit changes
         uses: EndBug/add-and-commit@v9
@@ -81,5 +74,4 @@ jobs:
             author_email: gaga2353@gmail.com
             message: 'Your commit message'
             add: 'contact/index.md'
-#           push: '--set-upstream origin origin/upstream/main'
-            push: 'origin main'
+            push: '--set-upstream origin origin/upstream/main'
