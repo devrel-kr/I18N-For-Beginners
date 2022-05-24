@@ -1,7 +1,7 @@
 <!-- docs/_sidebar.md -->
 
 
-* [HOME](./)
+* [HOMe](./)
 * [Report](./report/report_tree.md)
 * [Post](./Post)
 * - [first](./Post/a.md)
