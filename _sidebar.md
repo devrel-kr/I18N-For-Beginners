@@ -3,6 +3,6 @@
 
 * [HOME](./)
 * [Report](./report/report_tree.md)
-* [Test]
+* [Test](./)
 * - [first](first.md)
 
