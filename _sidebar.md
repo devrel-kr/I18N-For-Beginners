@@ -3,6 +3,5 @@
 
 * [HOMe](./)
 * [Report](./report/report_tree.md)
-* Post
-* - [first](./report/a.md)
+* [Post](./report/a.md)
 
