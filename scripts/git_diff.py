@@ -51,38 +51,46 @@ def get_git_word_count(commit, file_name):
 	return wordcount
 
 def get_diff(commit1, commit2, file_name):
-	state = file_name[0]
-	word_count = get_git_word_count(commit1, file_name[1])
-	out = subprocess.check_output(['git', 'diff', commit1, commit2, '--word-diff=porcelain', file_name[1]], encoding='utf-8').splitlines()
-	start_from = 0
-
-	for i in range(len(out)):
-		if out[i].startswith('@@'):
-			start_from = i + 1
-			break
+	state = file_name[0][0]
 	
 	added = 0
 	erased = 0
+	added_rate = 0
+	erased_rate = 0
 
-	for i in range(start_from, len(out)):
-		if out[i].startswith('+'):
-			added += get_word_count(out[i][1:])
-		elif out[i].startswith('-'):
-			erased += get_word_count(out[i][1:])
+	cur_name = file_name[1].split('/')[-1]
 
-	added_rate = (added / word_count) if word_count != 0 else 1
-	erased_rate = (erased / word_count) if word_count != 0 else 0
+	if state == 'M':
+		if is_exist(commit2, file_name) and is_textfile(commit2, file_name):
+			word_count = get_git_word_count(commit1, file_name[1])
+			out = subprocess.check_output(['git', 'diff', commit1, commit2, '--word-diff=porcelain', file_name[1]], encoding='utf-8').splitlines()
+			start_from = 0
 
-	if state == 'A':
-		state = 'File Added'
-	elif state == 'M':
+			for i in range(len(out)):
+				if out[i].startswith('@@'):
+					start_from = i + 1
+					break
+
+			for i in range(start_from, len(out)):
+				if out[i].startswith('+'):
+					added += get_word_count(out[i][1:])
+				elif out[i].startswith('-'):
+					erased += get_word_count(out[i][1:])
+
+			added_rate = (added / word_count) if word_count != 0 else 1
+			erased_rate = (erased / word_count) if word_count != 0 else 0
 		state = 'File Modified'
+	elif state == 'A':
+		added_rate = 1
+		state = 'File Added'
 	elif state == 'R':
+		cur_name = file_name[2].split('/')[-1]
 		state = 'File Renamed'
 	elif state == 'D':
 		state = 'File Deleted'
 
 	return {'name': file_name[1].split('/')[-1],
+		'new_name': cur_name,
 		'state': state,
 		'diff': (added, erased),
 		'diff_rate': (added_rate, erased_rate)}
@@ -109,7 +117,7 @@ def print_report_by_tree(tree, c1, c2):
 	result_tree.write('\n')
 	result_tree.write(f'recent commit:  \t{get_commit_str(c1)}')
 	result_tree.write(f'outdated commit: \t{get_commit_str(c2)}')
-	result_tree.write('\n')
+	result_tree.write('\n/\n')
 	ptr(tree, result_tree)
 	result_tree.close()
 
@@ -118,15 +126,14 @@ def main(commit1, commit2):
 	tree = dtree()
 	result = ""
 	for f in files:
-		if is_exist(commit2, f[1]) and is_textfile(commit2, f[1]):
-			f_dir = f[1].split('/')
-			diff = get_diff(commit1, commit2, f)
-			leaf = get_leaf(tree, f_dir)
-			leaf['/data/'] = diff
-			result += f'~ File: {diff["name"]}\n'
-			result += f'\t{diff["state"]}\n'
+		f_dir = f[1].split('/')
+		diff = get_diff(commit1, commit2, f)
+		leaf = get_leaf(tree, f_dir)
+		leaf['/data/'] = diff
+		result += f'~ File: {diff["name"]}\n'
+		result += f'\t{diff["state"]}\n'
 
-			result += f"\tAdded words: {diff['diff'][0]}, Deleted words: {diff['diff'][1]}\n"
+		result += f"\tAdded words: {diff['diff'][0]}, Deleted words: {diff['diff'][1]}\n"
 			
 	with open("report.txt", "w") as f:
 		f.write(result)
