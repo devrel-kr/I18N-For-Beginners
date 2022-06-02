@@ -2,6 +2,11 @@ import subprocess
 import re
 import sys
 from collections import defaultdict
+from word_dist import levenshtein
+
+re_modifiy = re.compile('\[-([\s\S]+?)-\]{\+([\s\S]+?)\+}')
+re_added = re.compile('[^-][^\]]{\+([\s\S]+?)\+}')
+re_erased = re.compile('\[-([\s\S]+?)-\]')
 
 def dtree(): return defaultdict(dtree)
 
@@ -50,35 +55,60 @@ def get_git_word_count(commit, file_name):
 	wordcount = int(out.decode('utf-8').split()[1])
 	return wordcount
 
-def get_diff(commit1, commit2, file_name):
-	state = file_name[0][0]
-	
+def get_modified_info(commit1, commit2, file_name):
 	added = 0
 	erased = 0
-	added_rate = 0
-	erased_rate = 0
+
+	mod_data = []
+
+	word_count = get_git_word_count(commit1, file_name[1])
+	out = subprocess.check_output(['git', 'diff', commit1, commit2, '--word-diff', file_name[1]], encoding='utf-8').splitlines()
+	
+	for line in out:
+		# get modified part
+		iter = re_modifiy.finditer(line)
+		for m in iter:
+			deleted_word = m.group(1)
+			added_word = m.group(2)
+
+			deleted_count = get_word_count(deleted_word)
+			added_count = get_word_count(added_word)
+			word_dist = levenshtein(deleted_word, added_word)
+
+			mod_data.append({'added': added_word, 'deleted': deleted_word, 'distance': word_dist, 'count': (added_count, deleted_count)})
+			added += added_count
+			erased += deleted_count
+
+		# get added part
+		iter = re_added.finditer(line)
+		for m in iter:
+			added_word = m.group(1)
+			added_count = get_word_count(added_word)
+			mod_data.append({'added': added_word, 'deleted': None, 'distance': None, 'count': (added_count, 0)})
+			added += added_count
+
+		#get deleted part
+		iter = re_erased.finditer(line)
+		for m in iter:
+			if line[m.end():m.end()+2] == '{+':
+				continue
+			deleted_word = m.group(1)
+			deleted_count = get_word_count(deleted_word)
+			mod_data.append({'added': None, 'deleted': deleted_word, 'distance': None, 'count': (0, deleted_count)})
+			erased += deleted_count
+
+	added_rate = (added / word_count) if word_count != 0 else 1
+	erased_rate = (erased / word_count) if word_count != 0 else 0
+	return (added, erased), (added_rate, erased_rate), mod_data
+
+def get_diff(commit1, commit2, file_name):
+	state = file_name[0][0]
 
 	cur_name = file_name[1].split('/')[-1]
-
+	info = None
 	if state == 'M':
-		if is_exist(commit2, file_name) and is_textfile(commit2, file_name):
-			word_count = get_git_word_count(commit1, file_name[1])
-			out = subprocess.check_output(['git', 'diff', commit1, commit2, '--word-diff=porcelain', file_name[1]], encoding='utf-8').splitlines()
-			start_from = 0
-
-			for i in range(len(out)):
-				if out[i].startswith('@@'):
-					start_from = i + 1
-					break
-
-			for i in range(start_from, len(out)):
-				if out[i].startswith('+'):
-					added += get_word_count(out[i][1:])
-				elif out[i].startswith('-'):
-					erased += get_word_count(out[i][1:])
-
-			added_rate = (added / word_count) if word_count != 0 else 1
-			erased_rate = (erased / word_count) if word_count != 0 else 0
+		if is_exist(commit2, file_name[1]) and is_textfile(commit2, file_name[1]):
+			_, _, info = get_modified_info(commit1, commit2, file_name)
 		state = 'File Modified'
 	elif state == 'A':
 		added_rate = 1
@@ -92,8 +122,7 @@ def get_diff(commit1, commit2, file_name):
 	return {'name': file_name[1].split('/')[-1],
 		'new_name': cur_name,
 		'state': state,
-		'diff': (added, erased),
-		'diff_rate': (added_rate, erased_rate)}
+		'info': info}
 
 def ptr(t, file, depth = 0):
 	for k, v in t.items():
@@ -133,7 +162,7 @@ def main(commit1, commit2):
 		result += f'~ File: {diff["name"]}\n'
 		result += f'\t{diff["state"]}\n'
 
-		result += f"\tAdded words: {diff['diff'][0]}, Deleted words: {diff['diff'][1]}\n"
+		#result += f"\tAdded words: {diff['diff'][0]}, Deleted words: {diff['diff'][1]}\n"
 			
 	with open("report.txt", "w") as f:
 		f.write(result)
