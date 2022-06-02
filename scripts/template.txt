@@ -1,0 +1,54 @@
+---
+layout: post
+title:  "{{ title }}"
+date:   {{ date }}
+categories: original doc update
+---
+
+### {{ ori_repo }} : commit {{ ori_hash }}
+### Compare on 
+### {{ tar_repo }} : commit {{ tar_hash }}
+---
+
+{% for node in res_tree %}
+{% if node['is_leaf'] %}
+{{ '\t' * node['level'] }}+  <details> <summary> {{ node.data.name }} : {{ node.data.state }}  </summary>
+	{% if node.data.state == 'File Modified' and node.data.info != None %}{% for info in node.data.info %}
+	{{ '\t' * node['level'] }}➕ line 00 : {{ info.added }}<br>
+	{{ '\t' * node['level'] }}➖ line 00 : {{ info.deleted }}<br><br>
+	{% endfor %}
+	{{ '\t' * node['level'] }}---<br>
+	{{ '\t' * node['level'] }}as total, {{ node.data.word_count[0] }} words added. {{ node.data.word_count[1] }} words deleted.<br>
+	{{ '\t' * node['level'] }}m3.md in 'I18N-FOR-BEGINNERS' repo ( updated ) has 300 word.<br>
+	{{ '\t' * node['level'] }}m3.md in 'I18N-FOR-BEGINNERS_ko' repo ( had been updated on 2022-05-20 ) has 290 word.<br>
+	{{ '\t' * node['level'] }}Approximately 10 words need to be translated added.<br>
+	{{ '\t' * node['level'] }}### Added words( need te be translated ) rate 96.5% ( 290 / 300 words )<br>
+	{% elif node.data.state == 'File Renamed' %}
+	{{ '\t' * node['level'] }}->{{ node.data.new_name }}
+	{% elif node.data.state == 'File Added' %}
+	{{ '\t' * node['level'] }}{{ node.data.word_count[0] }} words added.
+	{% endif %}
+	{{ '\t' * node['level'] }}</details>
+{% else %}
+{{ '\t' * node['level'] }}+ ### {{ node['data'] }}
+{% endif %}
+{% endfor %}
+
+---
+## repository change statistics  
+><details> <summary> > Details  </summary> <div markdown="1">  
+> Comitted change with repo : 'I18N-FOR-BEGINNERS'  
+>  
+> - '..' dir : 30 words added. 30 words deleted.  
+> - 'A' dir : 30 words added. 29 words deleted.  
+> - 'B' dir : 30 words added. 28 words deleted.  
+> - 'C' dir : 40 words added. 20 words deleted.  
+>  
+>---
+>as total, 3000 words added. 1200 words deleted.  
+>'main' branch on 'I18N' repo ( updated ) has 90000 words.  
+>'main' branch on 'I18N-FOR-BEGINNERS' repo ( had been updated on 2022-05-20 ) has 89000 words.  
+>Approximately 9000 words need to be translated added.  
+> ### Added words(need te be translated) rate 98.5% ( 89000 / 90000 words )
+></div>
+></details>

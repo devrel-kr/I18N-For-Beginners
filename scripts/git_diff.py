@@ -1,6 +1,8 @@
 import subprocess
 import re
 import sys
+import json
+from jinja2 import Template
 from collections import defaultdict
 from word_dist import levenshtein
 
@@ -34,9 +36,10 @@ def get_files(commit1, commit2):
 	return files
 
 def get_word_count(str):
-	p = re.compile('\w+')
-	words_list = [s for s in str.split() if p.match(s)]
-	return len(words_list)
+	#p = re.compile('\w+')
+	#words_list = [s for s in str.split() if p.match(s)]
+	#return len(words_list)
+	return len(str.split())
 
 
 def is_exist(commit, file_name):
@@ -44,7 +47,7 @@ def is_exist(commit, file_name):
 	return out == 0
 
 def is_textfile(commit, file_name):
-	out = subprocess.check_output(['git', 'diff', '4b825dc642cb6eb9a060e54bf8d69288fbee4904', commit, '--numstat', file_name], encoding='utf-8')
+	out = subprocess.check_output(['git', 'diff', '4b825dc642cb6eb9a060e54bf8d69288fbee4904', commit, '--numstat', '--', file_name], encoding='utf-8')
 	num_data = out.split()
 	return num_data[0] != '-'
 
@@ -62,7 +65,7 @@ def get_modified_info(commit1, commit2, file_name):
 	mod_data = []
 
 	word_count = get_git_word_count(commit1, file_name[1])
-	out = subprocess.check_output(['git', 'diff', commit1, commit2, '--word-diff', file_name[1]], encoding='utf-8').splitlines()
+	out = subprocess.check_output(['git', 'diff', commit1, commit2, '--word-diff', '--', file_name[1]], encoding='utf-8').splitlines()
 	
 	for line in out:
 		# get modified part
@@ -106,12 +109,16 @@ def get_diff(commit1, commit2, file_name):
 
 	cur_name = file_name[1].split('/')[-1]
 	info = None
+	word_count = (-1, -1)
+	word_rate = (-1, -1)
+
 	if state == 'M':
 		if is_exist(commit2, file_name[1]) and is_textfile(commit2, file_name[1]):
-			_, _, info = get_modified_info(commit1, commit2, file_name)
+			word_count, _word_rate, info = get_modified_info(commit1, commit2, file_name)
 		state = 'File Modified'
 	elif state == 'A':
-		added_rate = 1
+		if is_textfile(commit2, file_name[1]):
+			word_count = (get_git_word_count(commit2, file_name[1]), 0)
 		state = 'File Added'
 	elif state == 'R':
 		cur_name = file_name[2].split('/')[-1]
@@ -121,6 +128,8 @@ def get_diff(commit1, commit2, file_name):
 
 	return {'name': file_name[1].split('/')[-1],
 		'new_name': cur_name,
+		'word_count': word_count,
+		'word_rate': word_rate,
 		'state': state,
 		'info': info}
 
@@ -128,12 +137,19 @@ def ptr(t, file, depth = 0):
 	for k, v in t.items():
 		if k != '/data/':
 			file.write("%s └ %s\n" % ("".join(depth * ["    "]), k))
-			depth += 1
-			ptr(t[k], file, depth)
-			depth -= 1
+			ptr(t[k], file, depth + 1)
 		else:
 			file.write("%s -- %s\n" % ("".join(depth * ["    "]), v))
 	file.write('\n')
+
+def preorder(t, li, depth = 0):
+	for k, v in t.items():
+		if k != '/data/':
+			li.append({'level': depth, 'data': k, 'is_leaf': False})
+			preorder(t[k], li, depth + 1)
+		else:
+			li.pop()
+			li.append({'level': depth-1, 'data': v, 'is_leaf': True})
 
 def get_commit_str(commit):
 	out = subprocess.check_output(['git', 'rev-list', commit, '-n', '1'], encoding='utf-8')
@@ -150,28 +166,28 @@ def print_report_by_tree(tree, c1, c2):
 	ptr(tree, result_tree)
 	result_tree.close()
 
+def render_page(tree):
+	tree_list = []
+	preorder(tree, tree_list)
+	fi= open('template.txt')
+	template = Template(fi.read())
+	with open("2022-06-03-report.md", "w") as f:
+		f.write(template.render(title='title', date='2022-06-03', res_tree=tree_list))
+
 def main(commit1, commit2):
 	files = get_files(commit1, commit2)
 	tree = dtree()
-	result = ""
 	for f in files:
 		f_dir = f[1].split('/')
 		diff = get_diff(commit1, commit2, f)
 		leaf = get_leaf(tree, f_dir)
 		leaf['/data/'] = diff
-		result += f'~ File: {diff["name"]}\n'
-		result += f'\t{diff["state"]}\n'
-
-		#result += f"\tAdded words: {diff['diff'][0]}, Deleted words: {diff['diff'][1]}\n"
-			
-	with open("report.txt", "w") as f:
-		f.write(result)
 	
-	import json
 	with open("json.txt", "w") as f:
 		f.write(json.dumps(tree))
 
 	print_report_by_tree(tree, commit1, commit2)
+	render_page(tree)
 
 
 if __name__ == '__main__':
