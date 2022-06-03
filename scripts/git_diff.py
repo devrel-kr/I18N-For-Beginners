@@ -66,7 +66,6 @@ def get_modified_info(commit1, commit2, file_name):
 
 	mod_data = []
 
-	word_count = get_git_word_count(commit1, file_name[1])
 	out = subprocess.check_output(['git', 'diff', commit1, commit2, '--word-diff', '--', file_name[1]], encoding='utf-8').splitlines()
 	line_no = 0
 
@@ -109,9 +108,7 @@ def get_modified_info(commit1, commit2, file_name):
 			erased += deleted_count
 		line_no += 1
 
-	added_rate = (added / word_count) if word_count != 0 else 1
-	erased_rate = (erased / word_count) if word_count != 0 else 0
-	return (added, erased), (added_rate, erased_rate), mod_data
+	return (added, erased), mod_data
 
 def get_diff(commit1, commit2, file_name):
 	state = file_name[0][0]
@@ -119,18 +116,23 @@ def get_diff(commit1, commit2, file_name):
 	cur_name = file_name[1].split('/')[-1]
 	info = None
 	word_count = (-1, -1)
-	word_rate = (-1, -1)
+
+	exist = is_exist(commit2, file_name[1])
+	doc_words = 0
 
 	if state == 'M':
-		if is_exist(commit2, file_name[1]) and is_textfile(commit2, file_name[1]):
-			word_count, _word_rate, info = get_modified_info(commit1, commit2, file_name)
+		if exist and is_textfile(commit2, file_name[1]):
+			word_count, info = get_modified_info(commit1, commit2, file_name)
+			doc_words = get_git_word_count(commit1, file_name[1])
 		state = 'File Modified'
 	elif state == 'A':
 		if is_textfile(commit2, file_name[1]):
 			word_count = (get_git_word_count(commit2, file_name[1]), 0)
+			doc_words = get_git_word_count(commit2, file_name[1])
 		state = 'File Added'
 	elif state == 'R':
 		cur_name = file_name[2].split('/')[-1]
+		doc_words = get_git_word_count(commit2, file_name[2])
 		state = 'File Renamed'
 	elif state == 'D':
 		state = 'File Deleted'
@@ -138,7 +140,7 @@ def get_diff(commit1, commit2, file_name):
 	return {'name': file_name[1].split('/')[-1],
 		'new_name': cur_name,
 		'word_count': word_count,
-		'word_rate': word_rate,
+		'doc_words': doc_words,
 		'state': state,
 		'info': info}
 

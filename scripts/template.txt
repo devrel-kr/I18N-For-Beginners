@@ -12,19 +12,20 @@ categories: original doc update
 
 {% for node in res_tree %}
 {% if node['is_leaf'] %}
-{{ '\t' * node['level'] }}+  <details> <summary> {{ node.data.name }} : {{ node.data.state }}  </summary>
+{{ '\t' * node['level'] }}+  <details> <summary> {{ node.data.name }} : {{ node.data.state }} {% if node.data.state == 'File Modified' %}<span style="color:blue">+{{ node.data.word_count[0] }}</span> / <span style="color:red">-{{ node.data.word_count[1] }}</span>{% endif %} {% if node.data.state != 'File Deleted' %}📄 {{ node.data.doc_words }} {% endif %}  </summary>
 	{% if node.data.state == 'File Modified' and node.data.info != None %}{% for info in node.data.info %}
 	{{ '\t' * node['level'] }}✅ line {{ info.line_no }}<br>
 	{{ '\t' * node['level'] }}➕ {{ info.added }}<br>
 	{{ '\t' * node['level'] }}➖ {{ info.deleted }}<br><br>
 	{{ '\t' * node['level'] }}=> sentence distance : {{ info.distance }}<br><br>
 	{% endfor %}
-	{{ '\t' * node['level'] }}---<br>
-	{{ '\t' * node['level'] }}as total, {{ node.data.word_count[0] }} words added. {{ node.data.word_count[1] }} words deleted.<br>
-	{{ '\t' * node['level'] }}m3.md in 'I18N-FOR-BEGINNERS' repo ( updated ) has 300 word.<br>
-	{{ '\t' * node['level'] }}m3.md in 'I18N-FOR-BEGINNERS_ko' repo ( had been updated on 2022-05-20 ) has 290 word.<br>
-	{{ '\t' * node['level'] }}Approximately 10 words need to be translated added.<br>
-	{{ '\t' * node['level'] }}### Added words( need te be translated ) rate 96.5% ( 290 / 300 words )<br>
+	{{ '\t' * node['level'] }}<div markdown="1">
+---
+{{ node.data.word_count[0] }} words added. {{ node.data.word_count[1] }} words deleted.<br>
+{% if node.data.doc_words != 0 %}#### <span style="color:blue">Added words</span> rate {{ node.data.word_count[0] / node.data.doc_words * 100 }}% ({{ node.data.word_count[0] }} / {{ node.data.doc_words }})<br>
+#### <span style="color:red">Deleted words</span> rate {{ node.data.word_count[1] / node.data.doc_words * 100 }}% ({{ node.data.word_count[1] }} / {{ node.data.doc_words }})<br>
+	{{ '\t' * node['level'] }}</div>
+	{% endif %}
 	{% elif node.data.state == 'File Renamed' %}
 	{{ '\t' * node['level'] }}->{{ node.data.new_name }}
 	{% elif node.data.state == 'File Added' %}
