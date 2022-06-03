@@ -28,7 +28,10 @@ jobs:
         uses: actions/setup-python@v3.1.2
         
       - name: checkout to result branch
-        run : git checkout pl
+        run : |
+              git remote update
+              git fetch
+              git checkout pl
         
       - name: source file copy
         run : |
