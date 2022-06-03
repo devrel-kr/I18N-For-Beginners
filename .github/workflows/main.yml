@@ -32,7 +32,7 @@ jobs:
               git remote update
               git fetch
               git checkout pl
-              git branch
+              git branch -a
         
       - name: source file copy
         run : |
