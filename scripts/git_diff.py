@@ -49,6 +49,8 @@ def is_exist(commit, file_name):
 def is_textfile(commit, file_name):
 	out = subprocess.check_output(['git', 'diff', '4b825dc642cb6eb9a060e54bf8d69288fbee4904', commit, '--numstat', '--', file_name], encoding='utf-8')
 	num_data = out.split()
+	if len(num_data) == 0:
+		return False
 	return num_data[0] != '-'
 
 def get_git_word_count(commit, file_name):
@@ -66,9 +68,15 @@ def get_modified_info(commit1, commit2, file_name):
 
 	word_count = get_git_word_count(commit1, file_name[1])
 	out = subprocess.check_output(['git', 'diff', commit1, commit2, '--word-diff', '--', file_name[1]], encoding='utf-8').splitlines()
-	
+	line_no = 0
+
 	for line in out:
 		# get modified part
+		if line.startswith('@@'):
+			sp = line.split()[2]
+			line_no = int(sp[1:].split(',')[0])
+			continue
+		
 		iter = re_modifiy.finditer(line)
 		for m in iter:
 			deleted_word = m.group(1)
@@ -78,7 +86,7 @@ def get_modified_info(commit1, commit2, file_name):
 			added_count = get_word_count(added_word)
 			word_dist = levenshtein(deleted_word, added_word)
 
-			mod_data.append({'added': added_word, 'deleted': deleted_word, 'distance': word_dist, 'count': (added_count, deleted_count)})
+			mod_data.append({'added': added_word, 'deleted': deleted_word, 'distance': word_dist, 'count': (added_count, deleted_count), 'line_no': line_no})
 			added += added_count
 			erased += deleted_count
 
@@ -87,7 +95,7 @@ def get_modified_info(commit1, commit2, file_name):
 		for m in iter:
 			added_word = m.group(1)
 			added_count = get_word_count(added_word)
-			mod_data.append({'added': added_word, 'deleted': None, 'distance': None, 'count': (added_count, 0)})
+			mod_data.append({'added': added_word, 'deleted': None, 'distance': None, 'count': (added_count, 0), 'line_no': line_no})
 			added += added_count
 
 		#get deleted part
@@ -97,8 +105,9 @@ def get_modified_info(commit1, commit2, file_name):
 				continue
 			deleted_word = m.group(1)
 			deleted_count = get_word_count(deleted_word)
-			mod_data.append({'added': None, 'deleted': deleted_word, 'distance': None, 'count': (0, deleted_count)})
+			mod_data.append({'added': None, 'deleted': deleted_word, 'distance': None, 'count': (0, deleted_count), 'line_no': line_no})
 			erased += deleted_count
+		line_no += 1
 
 	added_rate = (added / word_count) if word_count != 0 else 1
 	erased_rate = (erased / word_count) if word_count != 0 else 0

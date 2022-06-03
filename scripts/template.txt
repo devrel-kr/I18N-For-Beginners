@@ -14,8 +14,10 @@ categories: original doc update
 {% if node['is_leaf'] %}
 {{ '\t' * node['level'] }}+  <details> <summary> {{ node.data.name }} : {{ node.data.state }}  </summary>
 	{% if node.data.state == 'File Modified' and node.data.info != None %}{% for info in node.data.info %}
-	{{ '\t' * node['level'] }}➕ line 00 : {{ info.added }}<br>
-	{{ '\t' * node['level'] }}➖ line 00 : {{ info.deleted }}<br><br>
+	{{ '\t' * node['level'] }}✅ line {{ info.line_no }}<br>
+	{{ '\t' * node['level'] }}➕ {{ info.added }}<br>
+	{{ '\t' * node['level'] }}➖ {{ info.deleted }}<br><br>
+	{{ '\t' * node['level'] }}=> sentence distance : {{ info.distance }}<br><br>
 	{% endfor %}
 	{{ '\t' * node['level'] }}---<br>
 	{{ '\t' * node['level'] }}as total, {{ node.data.word_count[0] }} words added. {{ node.data.word_count[1] }} words deleted.<br>
