@@ -61,9 +61,9 @@ jobs:
         
       - name: copy python script
         run : |
-              cp git_diff.py ${{ env.working-directory }}
-              cp word_dist.py ${{ env.working-directory }}
-              cp template.txt ${{ env.working-directory }}
+              cp scripts/git_diff.py ${{ env.working-directory }}
+              cp scripts/word_dist.py ${{ env.working-directory }}
+              cp scripts/template.txt ${{ env.working-directory }}
         
       - name: run python script
         run : python git_diff.py main upstream/main ../_posts/$(date --rfc-3339=date)-title.md
