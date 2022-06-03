@@ -35,9 +35,9 @@ jobs:
         
       - name: source file copy
         run : |
-              git checkout diff_script "scripts/git_diff.py"
-              git checkout diff_script "scripts/word_dist.py
-              git checkout diff_script "scripts/template.txt"
+              git checkout diff_script "./scripts/git_diff.py"
+              git checkout diff_script "./scripts/word_dist.py"
+              git checkout diff_script "./scripts/template.txt"
          
       - name: cloning repository
         run : git clone https://github.com/devrel-kr/Web-Dev-For-Beginners.git
