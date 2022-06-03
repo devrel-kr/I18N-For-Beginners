@@ -62,7 +62,7 @@ jobs:
               cp template.txt ${{ env.working-directory }}
         
       - name: run python script
-        run : python git_diff.py main upstream/main ../_post/$(date --rfc-3339=date)-title.md
+        run : python git_diff.py main upstream/main ../_posts/$(date --rfc-3339=date)-title.md
         working-directory: ${{ env.working-directory }}
         
       - name: Set config
