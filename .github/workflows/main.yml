@@ -5,8 +5,8 @@ name: diff
 # Controls when the workflow will run
 on:
   # Triggers the workflow on push or pull request events but only for the main branch
-  # push:
-  #   branches: [ main ]    
+  push:
+     branches: [ main ]    
      
   schedule:
      - cron: '0 0 * * 3'
@@ -27,8 +27,21 @@ jobs:
       - name: Set up Python
         uses: actions/setup-python@v3.1.2
         
+      - name: jinja2 install
+        run : pip install jinja2
+        
       - name: checkout to result branch
-        run : git checkout -b result
+        run : |
+              git remote update
+              git fetch
+              git checkout pl
+              git branch -a
+        
+      - name: source file copy
+        run : |
+              git checkout remotes/origin/diff_script ./scripts/git_diff.py
+              git checkout remotes/origin/diff_script ./scripts/word_dist.py
+              git checkout remotes/origin/diff_script ./scripts/template.txt
          
       - name: cloning repository
         run : git clone https://github.com/devrel-kr/Web-Dev-For-Beginners.git
@@ -50,17 +63,13 @@ jobs:
         working-directory: ${{ env.working-directory }}
         
       - name: copy python script
-        run : cp diff_i18n.py ${{ env.working-directory }}
+        run : |
+              cp scripts/git_diff.py ${{ env.working-directory }}
+              cp scripts/word_dist.py ${{ env.working-directory }}
+              cp scripts/template.txt ${{ env.working-directory }}
         
       - name: run python script
-        run : python diff_i18n.py main upstream/main
-        working-directory: ${{ env.working-directory }}
-      
-      - name: make report dir
-        run : mkdir report
-        
-      - name: copy result
-        run : mkdir report && cp report_tree.md ../report
+        run : python git_diff.py main upstream/main ../_posts/$(date --rfc-3339=date)-title.md
         working-directory: ${{ env.working-directory }}
         
       - name: Set config
@@ -70,9 +79,9 @@ jobs:
         
       - name: push to github
         run : |
-          git add report/*.md
-          git commit -m "Add report"
+          git add _posts/*.md
+          git commit -m "Add report file"
           
-      - name: Push to report
-        run: git push origin result
+      - name: Push to pl branch
+        run: git push origin pl
 
