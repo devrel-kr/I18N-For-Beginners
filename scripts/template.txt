@@ -1,13 +1,18 @@
 ---
 layout: post
-title:  "{{ title }}"
+title:  "{{ repos.origin }}"
 date:   {{ date }}
 categories: original doc update
 ---
 
-### {{ ori_repo }} : commit {{ ori_hash }}
-### Compare on 
-### {{ tar_repo }} : commit {{ tar_hash }}
+### Updated
+- #### {{ repos.upstream }}
+ \- commit {{ new_hash }}  
+ 
+### Outdated
+- #### {{ repos.origin }}
+ \- commit {{ old_hash }}  
+
 ---
 
 {% for node in res_tree %}
@@ -20,10 +25,10 @@ categories: original doc update
 	{{ '\t' * node['level'] }}=> sentence distance : {{ info.distance }}<br><br>
 	{% endfor %}
 	{{ '\t' * node['level'] }}<div markdown="1">
----
 {{ node.data.word_count[0] }} words added. {{ node.data.word_count[1] }} words deleted.<br>
-{% if node.data.doc_words != 0 %}#### <span style="color:blue">Added words</span> rate {{ node.data.word_count[0] / node.data.doc_words * 100 }}% ({{ node.data.word_count[0] }} / {{ node.data.doc_words }})<br>
-#### <span style="color:red">Deleted words</span> rate {{ node.data.word_count[1] / node.data.doc_words * 100 }}% ({{ node.data.word_count[1] }} / {{ node.data.doc_words }})<br>
+{% if node.data.doc_words != 0 %}#### <span style="color:blue">Added words</span> rate {{ node.data.word_count[0] / node.data.doc_words * 100 }}% ({{ node.data.word_count[0] }} / {{ node.data.doc_words }} words)<br>
+#### <span style="color:red">Deleted words</span> rate {{ node.data.word_count[1] / node.data.doc_words * 100 }}% ({{ node.data.word_count[1] }} / {{ node.data.doc_words }} words)<br>
+---
 	{{ '\t' * node['level'] }}</div>
 	{% endif %}
 	{% elif node.data.state == 'File Renamed' %}

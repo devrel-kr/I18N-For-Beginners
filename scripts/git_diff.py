@@ -177,15 +177,18 @@ def print_report_by_tree(tree, c1, c2):
 	ptr(tree, result_tree)
 	result_tree.close()
 
-def render_page(tree):
+def render_page(tree, c1, c2, md_file):
 	tree_list = []
+	remotes = {}
+	for i in get_remote():
+		remotes[i[1]] = i[0]
 	preorder(tree, tree_list)
 	fi= open('template.txt')
 	template = Template(fi.read())
-	with open("2022-06-03-report.md", "w") as f:
-		f.write(template.render(title='title', date='2022-06-03', res_tree=tree_list))
+	with open(md_file, "w") as f:
+		f.write(template.render(title='title', date='2022-06-03', res_tree=tree_list, repos=remotes, old_hash=get_commit_str(c1), new_hash=get_commit_str(c2)))
 
-def main(commit1, commit2):
+def main(commit1, commit2, md_file):
 	files = get_files(commit1, commit2)
 	tree = dtree()
 	for f in files:
@@ -198,8 +201,8 @@ def main(commit1, commit2):
 		f.write(json.dumps(tree))
 
 	print_report_by_tree(tree, commit1, commit2)
-	render_page(tree)
+	render_page(tree, commit1, commit2, md_file)
 
 
 if __name__ == '__main__':
-	main(sys.argv[1], sys.argv[2])
+	main(sys.argv[1], sys.argv[2], sys.argv[3])
