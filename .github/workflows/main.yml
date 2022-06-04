@@ -34,7 +34,7 @@ jobs:
         run : |
               git remote update
               git fetch
-              git checkout pl
+              git checkout gh-pages
               git branch -a
         
       - name: source file copy
@@ -81,6 +81,6 @@ jobs:
           git add _posts/*.md
           git commit -m "Add report file"
           
-      - name: Push to pl branch
-        run: git push origin pl --force
+      - name: Push to gh-pages branch
+        run: git push origin gh-pages --force
 
