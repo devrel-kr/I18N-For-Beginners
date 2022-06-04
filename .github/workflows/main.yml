@@ -39,9 +39,8 @@ jobs:
         
       - name: source file copy
         run : |
-              git checkout remotes/origin/diff_script ./scripts/git_diff.py
-              git checkout remotes/origin/diff_script ./scripts/word_dist.py
-              git checkout remotes/origin/diff_script ./scripts/template.txt
+              git checkout remotes/origin/diff_script ./scripts
+              git reset HEAD ./scripts
          
       - name: cloning repository
         run : git clone https://github.com/devrel-kr/Web-Dev-For-Beginners.git
@@ -64,9 +63,7 @@ jobs:
         
       - name: copy python script
         run : |
-              cp scripts/git_diff.py ${{ env.working-directory }}
-              cp scripts/word_dist.py ${{ env.working-directory }}
-              cp scripts/template.txt ${{ env.working-directory }}
+              cp scripts/* ${{ env.working-directory }}
         
       - name: run python script
         run : python git_diff.py main upstream/main ../_posts/$(date --rfc-3339=date)-title.md
