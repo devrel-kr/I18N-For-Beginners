@@ -2,6 +2,7 @@ import subprocess
 import re
 import sys
 import json
+from datetime import datetime
 from jinja2 import Template
 from collections import defaultdict
 from word_dist import levenshtein
@@ -144,15 +145,6 @@ def get_diff(commit1, commit2, file_name):
 		'state': state,
 		'info': info}
 
-def ptr(t, file, depth = 0):
-	for k, v in t.items():
-		if k != '/data/':
-			file.write("%s └ %s\n" % ("".join(depth * ["    "]), k))
-			ptr(t[k], file, depth + 1)
-		else:
-			file.write("%s -- %s\n" % ("".join(depth * ["    "]), v))
-	file.write('\n')
-
 def preorder(t, li, depth = 0):
 	for k, v in t.items():
 		if k != '/data/':
@@ -166,17 +158,6 @@ def get_commit_str(commit):
 	out = subprocess.check_output(['git', 'rev-list', commit, '-n', '1'], encoding='utf-8')
 	return out
 
-def print_report_by_tree(tree, c1, c2):
-	result_tree = open('report_tree.txt', 'w')
-	for i in get_remote():
-		result_tree.write(f'{i[0]}\t{i[1]}\n')
-	result_tree.write('\n')
-	result_tree.write(f'recent commit:  \t{get_commit_str(c1)}')
-	result_tree.write(f'outdated commit: \t{get_commit_str(c2)}')
-	result_tree.write('\n/\n')
-	ptr(tree, result_tree)
-	result_tree.close()
-
 def render_page(tree, c1, c2, md_file):
 	tree_list = []
 	remotes = {}
@@ -186,7 +167,7 @@ def render_page(tree, c1, c2, md_file):
 	fi= open('template.txt')
 	template = Template(fi.read())
 	with open(md_file, "w") as f:
-		f.write(template.render(title='title', date='2022-06-03', res_tree=tree_list, repos=remotes, old_hash=get_commit_str(c1), new_hash=get_commit_str(c2)))
+		f.write(template.render(title='title', date=datetime.today().strftime('%Y-%m-%d'), res_tree=tree_list, repos=remotes, old_hash=get_commit_str(c1), new_hash=get_commit_str(c2)))
 
 def main(commit1, commit2, md_file):
 	files = get_files(commit1, commit2)
@@ -196,11 +177,7 @@ def main(commit1, commit2, md_file):
 		diff = get_diff(commit1, commit2, f)
 		leaf = get_leaf(tree, f_dir)
 		leaf['/data/'] = diff
-	
-	with open("json.txt", "w") as f:
-		f.write(json.dumps(tree))
 
-	print_report_by_tree(tree, commit1, commit2)
 	render_page(tree, commit1, commit2, md_file)
 
 
