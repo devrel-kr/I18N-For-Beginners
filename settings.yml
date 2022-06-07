@@ -1,0 +1,11 @@
+document:
+
+  title: Web-Dev-For-Beginners
+
+  original:
+    url: https://github.com/microsoft/Web-Dev-For-Beginners.git
+    branch: main
+
+  translated:
+    url: https://github.com/devrel-kr/Web-Dev-For-Beginners.git
+    translated-branch: korean

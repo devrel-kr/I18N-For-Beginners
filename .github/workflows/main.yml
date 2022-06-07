@@ -22,49 +22,57 @@ jobs:
     steps:
       - uses: actions/checkout@v3
       
+      - name: Set up yq
+        uses: frenck/action-setup-yq@v1
+
+      - name: Read setting file
+        run: yq -o=props settings.yml > ./settings.props
+      
       - name: Set up Python
         uses: actions/setup-python@v3.1.2
         
-      - name: jinja2 install
+      - name: Install jinja2
         run : pip install jinja2
         
-      - name: checkout to result branch
+      - name: Checkout to gh-pages branch
         run : |
               git remote update
               git fetch
               git checkout gh-pages
               git branch -a
         
-      - name: source file copy
+      - name: Move scripts and setting files to gh-pages branch
         run : |
-              git checkout remotes/origin/diff_script ./scripts
+              git checkout origin/main ./scripts
+              git checkout origin/main ./settings.yml
               git reset HEAD ./scripts
+              git reset HEAD ./settings.yml
          
-      - name: cloning repository
-        run : git clone https://github.com/devrel-kr/Web-Dev-For-Beginners.git
+      - name: Clone repository
+        run : git clone $(cat settings.props | grep "document.translated.url" | cut -f 2 -d '=' | tr -d ' ')
           
-      - name: add upstream
-        run : git remote add upstream https://github.com/microsoft/Web-Dev-For-Beginners.git
+      - name: Add upstream
+        run : git remote add upstream $(cat ../settings.props | grep "document.original.url" | cut -f 2 -d '=' | tr -d ' ')
         working-directory: ${{ env.working-directory }}
       
-      - name: check repository
+      - name: Print repository
         run : git remote -v
         working-directory: ${{ env.working-directory }}
 
-      - name: fetch upstream
+      - name: Fetch upstream
         run : git fetch upstream
         working-directory: ${{ env.working-directory }}
         
-      - name: checkout to upstream
-        run : git checkout upstream/main
+      - name: Checkout to upstream
+        run : git checkout upstream/$(cat ../settings.props | grep "document.original.branch" | cut -f 2 -d '=' | tr -d ' ')
         working-directory: ${{ env.working-directory }}
         
-      - name: copy python script
+      - name: Copy python script
         run : |
               cp scripts/* ${{ env.working-directory }}
         
-      - name: run python script
-        run : python git_diff.py main upstream/main ../_posts/$(date --rfc-3339=date)-title.md
+      - name: Run python script
+        run : python git_diff.py $(cat ../settings.props | grep "document.original.branch" | cut -f 2 -d '=' | tr -d ' ') upstream/$(cat ../settings.props | grep "document.original.branch" | cut -f 2 -d '=' | tr -d ' ') ../_posts/$(date --rfc-3339=date)-$(cat ../settings.props | grep "document.title" | cut -f 2 -d '=' | tr -d ' ').md
         working-directory: ${{ env.working-directory }}
         
       - name: Set config
@@ -74,11 +82,9 @@ jobs:
           git config --global user.email ${{ secrets.USER_EMAIL }}
           git config --global user.name ${{ secrets.USER_NAME }}
         
-      - name: push to github
+      - name: Push to gh-pages branch
         run : |
           git add _posts/*.md
-          git commit -m "Add report file"
-          
-      - name: Push to gh-pages branch
-        run: git push origin gh-pages --force
+          git commit -m "$(date --rfc-3339=date) post added"
+          git push origin gh-pages --force
 
