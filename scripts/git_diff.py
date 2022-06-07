@@ -1,5 +1,6 @@
 import sys
 import git_info
+import yaml
 from datetime import datetime
 from jinja2 import Template
 from collections import defaultdict
@@ -53,7 +54,7 @@ def preorder(t, li, depth = 0):
 			li.pop()
 			li.append({'level': depth-1, 'data': v, 'is_leaf': True})
 
-def render_page(tree, c1, c2, md_file):
+def render_page(title, tree, c1, c2, md_file):
 	tree_list = []
 	remotes = {}
 	for i in git_info.get_remote():
@@ -79,12 +80,12 @@ def render_page(tree, c1, c2, md_file):
 	fi= open('template.txt')
 	template = Template(fi.read())
 	with open(md_file, "w") as f:
-		f.write(template.render(title='title', date=datetime.today().strftime('%Y-%m-%d'), res_tree=tree_list, origin_info=origin_info, trans_info=trans_info))
+		f.write(template.render(title=title, date=datetime.today().strftime('%Y-%m-%d'), res_tree=tree_list, origin_info=origin_info, trans_info=trans_info))
 
 def is_untracking_file(commit, file_dir):
 	return file_dir.startswith('.') or '/.' in file_dir or not (file_dir.endswith('.md') or file_dir.endswith('.markdown'))
 	
-def main(commit1, commit2, md_file):
+def main(commit1, commit2, md_file, settings):
 	files = git_info.get_diff_files(commit1, commit2)
 	tree = dtree()
 	for f in files:
@@ -95,8 +96,10 @@ def main(commit1, commit2, md_file):
 		leaf = get_leaf(tree, f_dir)
 		leaf['/data/'] = diff
 
-	render_page(tree, commit1, commit2, md_file)
+	render_page(settings['document']['title'], tree, commit1, commit2, md_file)
 
 
 if __name__ == '__main__':
-	main(sys.argv[1], sys.argv[2], sys.argv[3])
+	with open('settings.yml') as f:
+		settings = yaml.load(f, yaml.FullLoader)
+	main(sys.argv[1], sys.argv[2], sys.argv[3], settings)

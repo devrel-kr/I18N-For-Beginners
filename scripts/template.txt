@@ -1,6 +1,6 @@
 ---
 layout: post
-title:  "{{ repos.origin }}"
+title:  "{{ title }}"
 date:   {{ date }}
 categories: original doc update
 ---
