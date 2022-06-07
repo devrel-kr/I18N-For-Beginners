@@ -58,17 +58,34 @@ def render_page(tree, c1, c2, md_file):
 	remotes = {}
 	for i in git_info.get_remote():
 		remotes[i[1]] = i[0]
+
+	trans_list = git_info.get_files(c1)
+	trans_list = [x for x in trans_list if not is_untracking_file(c1, x)]
+
+	orig_list = git_info.get_files(c2)
+	orig_list = [x for x in orig_list if not is_untracking_file(c2, x)]
+
+	origin_info = {'commit': git_info.get_commit_str(c1),
+			'date': git_info.get_commit_date(c1),
+			'file_num': len(orig_list),
+			'url': remotes['upstream']}
+
+	trans_info = {'commit': git_info.get_commit_str(c2),
+			'date': git_info.get_commit_date(c2),
+			'file_num': len(trans_list),
+			'url': remotes['origin']}
+	
 	preorder(tree, tree_list)
 	fi= open('template.txt')
 	template = Template(fi.read())
 	with open(md_file, "w") as f:
-		f.write(template.render(title='title', date=datetime.today().strftime('%Y-%m-%d'), res_tree=tree_list, repos=remotes, old_hash=git_info.get_commit_str(c1), new_hash=git_info.get_commit_str(c2)))
+		f.write(template.render(title='title', date=datetime.today().strftime('%Y-%m-%d'), res_tree=tree_list, origin_info=origin_info, trans_info=trans_info))
 
 def is_untracking_file(commit, file_dir):
-	return file_dir.startswith('.') or '/.' in file_dir or not git_info.is_textfile(commit, file_dir) or not (file_dir.endswith('.md') or file_dir.endswith('.markdown'))
+	return file_dir.startswith('.') or '/.' in file_dir or not (file_dir.endswith('.md') or file_dir.endswith('.markdown'))
 	
 def main(commit1, commit2, md_file):
-	files = git_info.get_files(commit1, commit2)
+	files = git_info.get_diff_files(commit1, commit2)
 	tree = dtree()
 	for f in files:
 		f_dir = f[1].split('/')

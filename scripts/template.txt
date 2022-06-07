@@ -5,13 +5,12 @@ date:   {{ date }}
 categories: original doc update
 ---
 
-### Updated
-- #### {{ repos.upstream }}
- \- commit {{ new_hash }}  
- 
-### Outdated
-- #### {{ repos.origin }}
- \- commit {{ old_hash }}  
+_ | Original | Translated
+--- | --- | ---
+**Recent Commit** | {{ origin_info.commit }} | {{ trans_info.commit }}
+**Updated** | {{ origin_info.date }} | {{ trans_info.date }}
+**Number of Files** | {{ origin_info.file_num }} | {{ trans_info.file_num }}
+**Link** | [link]({{ origin_info.url }}) | [link]({{ origin_info.url }})
 
 ---
 

@@ -70,12 +70,15 @@ def get_remote():
 			remote_url.append((url, rem_name))
 	return remote_url
 
-def get_files(commit1, commit2):
+def get_diff_files(commit1, commit2):
 	out = subprocess.check_output(['git', 'diff', '--name-status', commit1, commit2], encoding='utf-8').splitlines()
 	files = []
 	for c in out:
 		files.append(c.split())
 	return files
+
+def get_files(tree):
+	return subprocess.check_output(['git', 'ls-files', '--with-tree', tree], encoding='utf-8').splitlines()
 
 def is_exist(commit, file_name):
 	out = subprocess.call(['git', 'cat-file', '-e', f'{commit}:{file_name}'], stderr=subprocess.DEVNULL)
@@ -97,5 +100,9 @@ def get_git_word_count(commit, file_name):
 
 
 def get_commit_str(commit):
-	out = subprocess.check_output(['git', 'rev-list', commit, '-n', '1'], encoding='utf-8')
+	out = subprocess.check_output(['git', 'rev-list', commit, '-n', '1'], encoding='utf-8').strip()
 	return out
+
+def get_commit_date(commit):
+	return subprocess.check_output(['git', 'show', '-s', '--format=%ci', commit], encoding='utf-8').strip()
+	
