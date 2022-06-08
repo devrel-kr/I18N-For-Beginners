@@ -31,8 +31,10 @@ jobs:
       - name: Set up Python
         uses: actions/setup-python@v3.1.2
         
-      - name: Install jinja2
-        run : pip install jinja2
+      - name: Install python module
+        run : |
+              pip install jinja2
+              pip install pyyaml
         
       - name: Checkout to gh-pages branch
         run : |
