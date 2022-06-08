@@ -100,6 +100,6 @@ def main(commit1, commit2, md_file, settings):
 
 
 if __name__ == '__main__':
-	with open('settings.yml') as f:
+	with open('../settings.yml') as f:
 		settings = yaml.load(f, yaml.FullLoader)
 	main(sys.argv[1], sys.argv[2], sys.argv[3], settings)
