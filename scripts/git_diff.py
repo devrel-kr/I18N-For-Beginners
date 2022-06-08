@@ -77,7 +77,7 @@ def render_page(title, tree, c1, c2, md_file):
 			'url': remotes['origin']}
 	
 	preorder(tree, tree_list)
-	fi= open('template.txt')
+	fi= open('scripts/template.txt')
 	template = Template(fi.read())
 	with open(md_file, "w") as f:
 		f.write(template.render(title=title, date=datetime.today().strftime('%Y-%m-%d'), res_tree=tree_list, origin_info=origin_info, trans_info=trans_info))
@@ -100,6 +100,6 @@ def main(commit1, commit2, md_file, settings):
 
 
 if __name__ == '__main__':
-	with open('../settings.yml') as f:
+	with open('settings.yml') as f:
 		settings = yaml.load(f, yaml.FullLoader)
 	main(sys.argv[1], sys.argv[2], sys.argv[3], settings)

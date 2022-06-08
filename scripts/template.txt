@@ -19,8 +19,10 @@ _ | Original | Translated
 {{ '\t' * node['level'] }}+  <details> <summary> {{ node.data.name }} : {{ node.data.state }} {% if node.data.state == 'File Modified' %}<span style="color:blue">+{{ node.data.word_count[0] }}</span> / <span style="color:red">-{{ node.data.word_count[1] }}</span>{% endif %} {% if node.data.state != 'File Deleted' %}📄 {{ node.data.doc_words }} {% endif %}  </summary>
 	{% if node.data.state == 'File Modified' and node.data.info != None %}{% for info in node.data.info %}
 	{{ '\t' * node['level'] }}✅ line {{ info.line_no }}<br>
+	{{ '{% raw %}' }}
 	{{ '\t' * node['level'] }}➕ {{ info.added }}<br>
 	{{ '\t' * node['level'] }}➖ {{ info.deleted }}<br><br>
+	{{ '{% endraw %}' }}
 	{{ '\t' * node['level'] }}=> sentence distance : {{ info.distance }}<br><br>
 	{% endfor %}
 	{{ '\t' * node['level'] }}<div markdown="1">

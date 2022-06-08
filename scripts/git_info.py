@@ -6,6 +6,10 @@ re_modifiy = re.compile('\[-([\s\S]+?)-\]{\+([\s\S]+?)\+}')
 re_added = re.compile('[^-][^\]]{\+([\s\S]+?)\+}')
 re_erased = re.compile('\[-([\s\S]+?)-\]')
 
+sum_added = 0
+sum_erased = 0
+sum_words = 0
+
 def get_word_count(str):
 	return len(str.split())
 

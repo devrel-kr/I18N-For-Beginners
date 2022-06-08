@@ -74,8 +74,7 @@ jobs:
               cp scripts/* ${{ env.working-directory }}
         
       - name: Run python script
-        run : python git_diff.py $(cat ../settings.props | grep "document.original.branch" | cut -f 2 -d '=' | tr -d ' ') upstream/$(cat ../settings.props | grep "document.original.branch" | cut -f 2 -d '=' | tr -d ' ') ../_posts/$(date --rfc-3339=date)-$(cat ../settings.props | grep "document.title" | cut -f 2 -d '=' | tr -d ' ').md
-        working-directory: ${{ env.working-directory }}
+        run : python scripts/git_diff.py $(cat settings.props | grep "document.original.branch" | cut -f 2 -d '=' | tr -d ' ') upstream/$(cat settings.props | grep "document.original.branch" | cut -f 2 -d '=' | tr -d ' ') _posts/$(date --rfc-3339=date)-$(cat settings.props | grep "document.title" | cut -f 2 -d '=' | tr -d ' ').md
         
       - name: Set config
         env:
