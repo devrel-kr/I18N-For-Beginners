@@ -24,12 +24,6 @@ jobs:
       
       - name: Set up yq
         uses: frenck/action-setup-yq@v1
-
-      - name: Set Translate API key
-        run: yq -i e '.keys.translate-api = "${{ secrets.TRANSLATEAPI }}"' settings.yml
-
-      - name: Read setting file
-        run: yq -o=props settings.yml > ./settings.props
       
       - name: Set up Python
         uses: actions/setup-python@v3.1.2
@@ -50,6 +44,12 @@ jobs:
               git checkout origin/main ./settings.yml
               git reset HEAD ./scripts
               git reset HEAD ./settings.yml
+
+      - name: Set Translate API key
+        run: yq -i e '.keys.translate-api = "${{ secrets.TRANSLATEAPI }}"' settings.yml
+
+      - name: Read setting file
+        run: yq -o=props settings.yml > ./settings.props
          
       - name: Clone repository
         run : git clone $(cat settings.props | grep "document.translated.url" | cut -f 2 -d '=' | tr -d ' ') ${{ env.working-directory }}
