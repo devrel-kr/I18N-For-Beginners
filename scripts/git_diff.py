@@ -79,7 +79,7 @@ def render_page(title, tree, c1, c2, md_file):
 	preorder(tree, tree_list)
 	fi= open('scripts/template.txt')
 	template = Template(fi.read())
-	with open(md_file, "w") as f:
+	with open('../' + md_file, "w") as f:
 		f.write(template.render(title=title, date=datetime.today().strftime('%Y-%m-%d'), res_tree=tree_list, origin_info=origin_info, trans_info=trans_info))
 
 def is_untracking_file(commit, file_dir):
