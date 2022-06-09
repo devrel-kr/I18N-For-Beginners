@@ -29,7 +29,7 @@ jobs:
         uses: actions/setup-python@v3.1.2
         
       - name: Install python module
-        run : pip install jinja2 pyyaml langid sklearn
+        run : pip install jinja2 pyyaml langid sklearn requests
         
       - name: Checkout to gh-pages branch
         run : |
