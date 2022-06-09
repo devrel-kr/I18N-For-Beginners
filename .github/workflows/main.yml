@@ -25,6 +25,11 @@ jobs:
       - name: Set up yq
         uses: frenck/action-setup-yq@v1
 
+      - name: Set Translate API key
+        run: |
+              temp=$(yq e '.keys.translate-api' = ${{ secrets.TRANSLATEAPI }} settings.yml)
+              echo $temp > settings.yml
+
       - name: Read setting file
         run: yq -o=props settings.yml > ./settings.props
       
@@ -32,9 +37,7 @@ jobs:
         uses: actions/setup-python@v3.1.2
         
       - name: Install python module
-        run : |
-              pip install jinja2
-              pip install pyyaml
+        run : pip install jinja2 pyyaml langid sklearn
         
       - name: Checkout to gh-pages branch
         run : |

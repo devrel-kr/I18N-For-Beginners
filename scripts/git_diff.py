@@ -5,6 +5,8 @@ from datetime import datetime
 from jinja2 import Template
 from collections import defaultdict
 
+from translate import Translate
+
 def dtree(): return defaultdict(dtree)
 
 def get_leaf(t, where):
@@ -102,4 +104,8 @@ def main(commit1, commit2, md_file, settings):
 if __name__ == '__main__':
 	with open('settings.yml') as f:
 		settings = yaml.load(f, yaml.FullLoader)
+	translate = Translate()
+	translate.set_api_key(settings['keys']['translate-api'])
+	
 	main(sys.argv[1], sys.argv[2], sys.argv[3], settings)
+	translate.save_translate_cache()

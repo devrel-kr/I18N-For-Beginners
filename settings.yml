@@ -1,6 +1,6 @@
 document:
 
-  title: Web-Dev-For-Beginners
+  title: Azure-Sdk
 
   original:
     url: https://github.com/Azure/azure-sdk.git
@@ -9,3 +9,6 @@ document:
   translated:
     url: https://github.com/Azure/azure-sdk-korean.git
     translated-branch: main
+
+keys:
+  translate-api: update-api-at-github-action-secret
