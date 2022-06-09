@@ -66,13 +66,13 @@ def render_page(title, tree, c1, c2, md_file):
 	orig_list = git_info.get_files(c2)
 	orig_list = [x for x in orig_list if not is_untracking_file(c2, x)]
 
-	origin_info = {'commit': git_info.get_commit_str(c1),
-			'date': git_info.get_commit_date(c1),
+	origin_info = {'commit': git_info.get_commit_str(c2),
+			'date': git_info.get_commit_date(c2),
 			'file_num': len(orig_list),
 			'url': remotes['upstream']}
 
-	trans_info = {'commit': git_info.get_commit_str(c2),
-			'date': git_info.get_commit_date(c2),
+	trans_info = {'commit': git_info.get_commit_str(c1),
+			'date': git_info.get_commit_date(c1),
 			'file_num': len(trans_list),
 			'url': remotes['origin']}
 	
