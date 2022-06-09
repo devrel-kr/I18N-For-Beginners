@@ -26,9 +26,7 @@ jobs:
         uses: frenck/action-setup-yq@v1
 
       - name: Set Translate API key
-        run: |
-              temp=$(yq e '.keys.translate-api = "${{ secrets.TRANSLATEAPI }}"' settings.yml)
-              echo $temp > settings.yml
+        run: yq -i e '.keys.translate-api = "${{ secrets.TRANSLATEAPI }}"' settings.yml
 
       - name: Read setting file
         run: yq -o=props settings.yml > ./settings.props
