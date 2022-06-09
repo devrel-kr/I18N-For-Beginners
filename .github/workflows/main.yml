@@ -16,7 +16,7 @@ jobs:
   build:
     runs-on: ubuntu-latest
     env:
-      working-directory: ./Web-Dev-For-Beginners
+      working-directory: ./target-repo
 
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
@@ -51,7 +51,7 @@ jobs:
               git reset HEAD ./settings.yml
          
       - name: Clone repository
-        run : git clone $(cat settings.props | grep "document.translated.url" | cut -f 2 -d '=' | tr -d ' ')
+        run : git clone $(cat settings.props | grep "document.translated.url" | cut -f 2 -d '=' | tr -d ' ') ${{ env.working-directory }}
           
       - name: Add upstream
         run : git remote add upstream $(cat ../settings.props | grep "document.original.url" | cut -f 2 -d '=' | tr -d ' ')
