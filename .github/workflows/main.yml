@@ -71,11 +71,11 @@ jobs:
         
       - name: Copy python scripts & settings file
         run : |
-              cp scripts/* ${{ env.working-directory }}
+              cp -r scripts ${{ env.working-directory }}
               cp settings.yml ${{ env.working-directory }}
         
       - name: Run python script
-        run : python git_diff.py $(cat ../settings.props | grep "document.original.branch" | cut -f 2 -d '=' | tr -d ' ') upstream/$(cat ../settings.props | grep "document.original.branch" | cut -f 2 -d '=' | tr -d ' ') _posts/$(date --rfc-3339=date)-$(cat ../settings.props | grep "document.title" | cut -f 2 -d '=' | tr -d ' ').md
+        run : python scripts/git_diff.py $(cat ../settings.props | grep "document.original.branch" | cut -f 2 -d '=' | tr -d ' ') upstream/$(cat ../settings.props | grep "document.original.branch" | cut -f 2 -d '=' | tr -d ' ') _posts/$(date --rfc-3339=date)-$(cat ../settings.props | grep "document.title" | cut -f 2 -d '=' | tr -d ' ').md
         working-directory: ${{ env.working-directory }}
 
       - name: Set config
