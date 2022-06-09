@@ -27,7 +27,7 @@ jobs:
 
       - name: Set Translate API key
         run: |
-              temp=$(yq e '.keys.translate-api = ${{ secrets.TRANSLATEAPI }}' settings.yml)
+              temp=$(yq e '.keys.translate-api = "${{ secrets.TRANSLATEAPI }}"' settings.yml)
               echo $temp > settings.yml
 
       - name: Read setting file
