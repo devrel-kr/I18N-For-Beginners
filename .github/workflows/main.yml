@@ -69,9 +69,10 @@ jobs:
         run : git checkout upstream/$(cat ../settings.props | grep "document.original.branch" | cut -f 2 -d '=' | tr -d ' ')
         working-directory: ${{ env.working-directory }}
         
-      - name: Copy python script
+      - name: Copy python scripts & settings file
         run : |
               cp scripts/* ${{ env.working-directory }}
+              cp settings.yml ${{ env.working-directory }}
         
       - name: Run python script
         run : python git_diff.py $(cat ../settings.props | grep "document.original.branch" | cut -f 2 -d '=' | tr -d ' ') upstream/$(cat ../settings.props | grep "document.original.branch" | cut -f 2 -d '=' | tr -d ' ') _posts/$(date --rfc-3339=date)-$(cat ../settings.props | grep "document.title" | cut -f 2 -d '=' | tr -d ' ').md
