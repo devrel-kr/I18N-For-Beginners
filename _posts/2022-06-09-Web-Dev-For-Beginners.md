@@ -9,7 +9,7 @@ _ | Original | Translated
 --- | --- | ---
 **Recent Commit** | c285daba3f32d11c5e431cbfb44fbd64c434433d | 9df992e7ba65ae404ed821cd04895df38ca05582
 **Updated** | 2022-06-08 16:56:58 -0700 | 2022-05-22 14:31:30 +0900
-**Number of Files** | 460 | 463
+**Number of Files** | 460 | 138
 **Link** | [link](https://github.com/Azure/azure-sdk.git) | [link](https://github.com/Azure/azure-sdk.git)
 
 ---
