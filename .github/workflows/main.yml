@@ -75,6 +75,7 @@ jobs:
       - name: Copy python scripts & settings file
         run : |
               cp -r scripts ${{ env.working-directory }}
+              cp -r data ${{ env.working-directory }}
               cp settings.yml ${{ env.working-directory }}
         
       - name: Run python script

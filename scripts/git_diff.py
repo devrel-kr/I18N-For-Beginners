@@ -1,6 +1,7 @@
 import sys
 import git_info
 import yaml
+import os
 from datetime import datetime
 from jinja2 import Template
 from collections import defaultdict
@@ -98,7 +99,13 @@ def main(commit1, commit2, md_file, settings):
 		leaf = get_leaf(tree, f_dir)
 		leaf['/data/'] = diff
 
-	render_page(settings['document']['title'], tree, commit1, commit2, md_file)
+	if os.path.exists('../' + md_file):
+		ran_num = 1
+		while os.path.exists('../' + md_file.replace('.', f'({ran_num}).')):
+			ran_num += 1
+		render_page(settings['document']['title'] + f' ({ran_num})', tree, commit1, commit2, md_file.replace('.', f'({ran_num}).'))
+	else:
+		render_page(settings['document']['title'], tree, commit1, commit2, md_file)
 
 
 if __name__ == '__main__':
@@ -106,6 +113,6 @@ if __name__ == '__main__':
 		settings = yaml.load(f, yaml.FullLoader)
 	translate = Translate()
 	translate.set_api_key(settings['keys']['translate-api'])
-	
+
 	main(sys.argv[1], sys.argv[2], sys.argv[3], settings)
 	translate.save_translate_cache()
