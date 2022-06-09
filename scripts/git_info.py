@@ -82,7 +82,7 @@ def get_diff_files(commit1, commit2):
 	return files
 
 def get_files(tree):
-	return subprocess.check_output(['git', 'ls-files', '--with-tree', tree], encoding='utf-8').splitlines()
+	return subprocess.check_output(['git', 'ls-tree', '--name-only', '-r', tree], encoding='utf-8').splitlines()
 
 def is_exist(commit, file_name):
 	out = subprocess.call(['git', 'cat-file', '-e', f'{commit}:{file_name}'], stderr=subprocess.DEVNULL)
