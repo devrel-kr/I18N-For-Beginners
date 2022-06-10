@@ -29,17 +29,17 @@ def get_diff(commit1, commit2, file_name):
 		if exist:
 			word_count, info = git_info.get_modified_info(commit1, commit2, file_name)
 			doc_words = git_info.get_git_word_count(commit1, file_name[1])
-		state = 'File Modified'
+		state = 'Modified'
 	elif state == 'A':
 		doc_words = git_info.get_git_word_count(commit2, file_name[1])
 		word_count = (doc_words, 0)
-		state = 'File Added'
+		state = 'Added'
 	elif state == 'R':
 		cur_name = file_name[2].split('/')[-1]
 		doc_words = git_info.get_git_word_count(commit2, file_name[2])
-		state = 'File Renamed'
+		state = 'Renamed'
 	elif state == 'D':
-		state = 'File Deleted'
+		state = 'Deleted'
 
 	return {'name': file_name[1].split('/')[-1],
 		'new_name': cur_name,
@@ -57,7 +57,7 @@ def preorder(t, li, depth = 0):
 			li.pop()
 			li.append({'level': depth-1, 'data': v, 'is_leaf': True})
 
-def render_page(title, tree, c1, c2, md_file):
+def render_page(title, tree, c1, c2, md_file, stat):
 	tree_list = []
 	remotes = {}
 	for i in git_info.get_remote():
@@ -83,7 +83,7 @@ def render_page(title, tree, c1, c2, md_file):
 	fi= open('scripts/template.txt')
 	template = Template(fi.read())
 	with open('../' + md_file, "w") as f:
-		f.write(template.render(title=title, date=datetime.today().strftime('%Y-%m-%d'), res_tree=tree_list, origin_info=origin_info, trans_info=trans_info))
+		f.write(template.render(title=title, date=datetime.today().strftime('%Y-%m-%d'), res_tree=tree_list, origin_info=origin_info, trans_info=trans_info, status=stat))
 
 def is_untracking_file(commit, file_dir):
 	return file_dir.startswith('.') or '/.' in file_dir or not (file_dir.endswith('.md') or file_dir.endswith('.markdown'))
@@ -91,11 +91,13 @@ def is_untracking_file(commit, file_dir):
 def main(commit1, commit2, md_file, settings):
 	files = git_info.get_diff_files(commit1, commit2)
 	tree = dtree()
+	file_stat = {'Added': 0, 'Modified': 0, 'Deleted': 0, 'Renamed': 0}
 	for f in files:
 		f_dir = f[1].split('/')
 		if is_untracking_file(commit2, f[1]):
 			continue
 		diff = get_diff(commit1, commit2, f)
+		file_stat[diff['state']] += 1
 		leaf = get_leaf(tree, f_dir)
 		leaf['/data/'] = diff
 
@@ -105,7 +107,7 @@ def main(commit1, commit2, md_file, settings):
 			ran_num += 1
 		render_page(settings['document']['title'] + f' ({ran_num})', tree, commit1, commit2, md_file.replace('.', f'({ran_num}).'))
 	else:
-		render_page(settings['document']['title'], tree, commit1, commit2, md_file)
+		render_page(settings['document']['title'], tree, commit1, commit2, md_file, file_stat)
 
 
 if __name__ == '__main__':
