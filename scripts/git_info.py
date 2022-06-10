@@ -15,6 +15,8 @@ def get_modified_info(commit1, commit2, file_name):
 	added = 0
 	erased = 0
 	translated = 0
+	trans_err = 0
+	trans_count = 0
 	Trans = Translate()
 	mod_data = []
 
@@ -43,7 +45,7 @@ def get_modified_info(commit1, commit2, file_name):
 				added_count = get_word_count(added_word)
 				word_dist = levenshtein(deleted_word, added_word)
 
-				mod_data.append({'translated': False, 'added': added_word, 'deleted': deleted_word, 'distance': word_dist / max(len(added_word), len(deleted_word)), 'count': (added_count, deleted_count), 'line_no': line_no})
+				mod_data.append({'translated': False, 'added': added_word, 'deleted': deleted_word, 'distance': round(word_dist / max(len(added_word), len(deleted_word)) * 100, 2), 'count': (added_count, deleted_count), 'line_no': line_no})
 				added += added_count
 				erased += deleted_count
 
@@ -56,6 +58,9 @@ def get_modified_info(commit1, commit2, file_name):
 				if tran_count > 5:
 					trans_sentence = Trans.translate(orig_text, 'en', 'ko')
 					cos_sim = cos_similarity(tran_text, trans_sentence)
+					trans_count += 1
+					if cos_sim < 0.3:
+						trans_err += 1
 				else:
 					cos_sim = -2
 
@@ -86,8 +91,14 @@ def get_modified_info(commit1, commit2, file_name):
 	trans_words = get_git_word_count(commit1, file_name[1])
 	orig_words = get_git_word_count(commit2, file_name[1])
 	info = {'section': mod_data,
-		'mod_rate': (added + erased) / (trans_words + orig_words),
-		'trans_rate': translated / orig_words}
+		'mod_rate': round((added + erased) / (trans_words + orig_words) * 100, 2),
+		'trans_rate': round(translated / orig_words * 100, 2),
+		'trans_err': round(trans_err / trans_count * 100 if trans_count != 0 else 0, 2),
+		'original_words': orig_words,
+		'translate_words': trans_words,
+		'translated': translated,
+		'added': added,
+		'erased': erased,}
 	return (added, erased), info
 
 def get_remote():

@@ -22,16 +22,24 @@ Added | Deleted | Modified | Renamed
 
 ---
 
+## Status
+
+Name | Link | State | Orig Words | Trans Words | Modified Rate | Translated Rate | Translate Error
+--- | --- | --- | --- | --- | ---
+{% for node in res_tree %}{% if node['is_leaf'] %}{% if node.data.info != None %}{{ node.data.name }} | [#](#{{node.data.dir}}) | {{ node.data.state }} | {{ node.data.info.original_words }} | {{ node.data.info.translate_words }} | {{ node.data.info.mod_rate }} | {{ node.data.info.trans_rate }} | {{ node.data.info.trans_err }}{% else %}{{ node.data.name }} | [#](#{{node.data.dir}}) | {{ node.data.state }} | {{ node.data.doc_words }} | 0 | 0 | 0 | 0{% endif %}
+{% endif %}{% endfor %}
+---
+
 {% for node in res_tree %}
 {% if node['is_leaf'] %}
-{{ '\t' * node['level'] }}+  <details> <summary> {{ node.data.name }} : {{ node.data.state }} {% if node.data.state == 'Modified' %}<span style="color:blue">🇺🇸{{ node.data.word_count[0] }}</span> / <span style="color:red">🇰🇷{{ node.data.word_count[1] }}</span>{% endif %} {% if node.data.state != 'Deleted' %}📄 {{ node.data.doc_words }} {% endif %}  </summary>
+{{ '\t' * node['level'] }}+  <details> <summary> <span id="{{ node.data.dir }}">{{ node.data.name }}</span> : {{ node.data.state }} {% if node.data.state == 'Modified' %}<span style="color:blue">🇺🇸{{ node.data.word_count[0] }}</span> / <span style="color:red">🇰🇷{{ node.data.word_count[1] }}</span>{% endif %} {% if node.data.state != 'Deleted' %}📄 {{ node.data.doc_words }} {% endif %}  </summary>
 	{% if node.data.state == 'Modified' and node.data.info != None %}{% for section in node.data.info.section %}
 	{{ '\t' * node['level'] }}✅ line {{ section.line_no }}<br>{{ '{% raw %}' }}{% if section.translated == False %}
 	
 	{% if section.added != None %}{{ '\t' * node['level'] }}🇺🇸 {{ section.added }}<br>{% endif %}
 	{% if section.deleted != None %}{{ '\t' * node['level'] }}🇰🇷 {{ section.deleted }}<br>{% endif %}<br>
 	
-	{% if section.distance != -1 %}{{ '\t' * node['level'] }}=> sentence diffrence : {{ section.distance * 100 }}%<br><br>{% endif %}{% else %}
+	{% if section.distance != -1 %}{{ '\t' * node['level'] }}=> sentence diffrence : {{ section.distance }}%<br><br>{% endif %}{% else %}
 	{{ '\t' * node['level'] }}{{ section.original }}<br><br>
 	{{ '\t' * node['level'] }}---------------------<br><br>
 	{{ '\t' * node['level'] }}{{ section.translated }}<br><br>
@@ -44,8 +52,8 @@ Added | Deleted | Modified | Renamed
 ---  
 {{ node.data.word_count[0] }} words added. {{ node.data.word_count[1] }} words deleted.<br>
 
-	{{ '\t' * node['level'] }}Modified rate {{ node.data.info.mod_rate * 100 }}%  
-	{{ '\t' * node['level'] }}Translate rate {{ node.data.info.trans_rate * 100 }}%
+	{{ '\t' * node['level'] }}Modified rate {{ node.data.info.mod_rate }}%  
+	{{ '\t' * node['level'] }}Translate rate {{ node.data.info.trans_rate }}%
 	{{ '\t' * node['level'] }}</div>
 	{% elif node.data.state == 'Renamed' %}
 	{{ '\t' * node['level'] }}->{{ node.data.new_name }}

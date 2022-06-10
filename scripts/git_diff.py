@@ -41,7 +41,8 @@ def get_diff(commit1, commit2, file_name):
 	elif state == 'D':
 		state = 'Deleted'
 
-	return {'name': file_name[1].split('/')[-1],
+	return {'dir': file_name[1],
+		'name': file_name[1].split('/')[-1],
 		'new_name': cur_name,
 		'word_count': word_count,
 		'doc_words': doc_words,
@@ -105,7 +106,7 @@ def main(commit1, commit2, md_file, settings):
 		ran_num = 1
 		while os.path.exists('../' + md_file.replace('.', f'({ran_num}).')):
 			ran_num += 1
-		render_page(settings['document']['title'] + f' ({ran_num})', tree, commit1, commit2, md_file.replace('.', f'({ran_num}).'))
+		render_page(settings['document']['title'] + f' ({ran_num})', tree, commit1, commit2, md_file.replace('.', f'({ran_num}).'), file_stat)
 	else:
 		render_page(settings['document']['title'], tree, commit1, commit2, md_file, file_stat)
 
