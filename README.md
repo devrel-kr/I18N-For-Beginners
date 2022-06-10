@@ -1,4 +1,6 @@
 # I18N-For-Beginners #
+
+
 Internationalization for Microsoft Beginner series([Web-Dev-For-Beginners](https://github.com/devrel-kr/Web-Dev-For-Beginners) & [ML-For-Beginners](https://github.com/devrel-kr/ML-For-Beginners)) and other documents.
 
 * **github pages** : [devrel-kr.github.io/i18n-for-beginners//](devrel-kr.github.io/i18n-for-beginners//)
@@ -9,6 +11,7 @@ Internationalization for Microsoft Beginner series([Web-Dev-For-Beginners](https
     * **Korean** : [devrel-kr/Web-Dev-For-Beginners](https://github.com/devrel-kr/Web-Dev-For-Beginners)
 
     
+---
 
 ## Flow Chart ##
 
@@ -56,4 +59,10 @@ Following GitHub Secrets are required for CI/CD :
 
 
 
+---
 
+## LICENSE ##
+
+Copyright (c) Microsoft Corporation. All rights reserved.
+
+Licensed under the [MIT](https://github.com/devrel-kr/I18N-For-Beginners/blob/main/LICENSE) license.
