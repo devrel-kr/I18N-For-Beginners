@@ -26,7 +26,7 @@ Added | Deleted | Modified | Renamed
 
 Name | Link | State | Orig Words | Trans Words | Modified Rate | Translated Rate | Translate Error
 --- | --- | --- | --- | --- | ---
-{% for node in res_tree %}{% if node['is_leaf'] %}{% if node.data.info != None %}{{ node.data.name }} | [#](#{{node.data.dir}}) | {{ node.data.state }} | {{ node.data.info.original_words }} | {{ node.data.info.translate_words }} | {{ node.data.info.mod_rate }} | {{ node.data.info.trans_rate }} | {{ node.data.info.trans_err }}{% else %}{{ node.data.name }} | [#](#{{node.data.dir}}) | {{ node.data.state }} | {{ node.data.doc_words }} | 0 | 0 | 0 | 0{% endif %}
+{% for node in res_tree %}{% if node['is_leaf'] %}{% if node.data.info != None %}{{ node.data.name }} | [#](#{{node.data.dir}}) | {{ node.data.state }} | {{ node.data.info.original_words }} | {{ node.data.info.translate_words }} | {{ node.data.info.mod_rate }} | {{ node.data.info.trans_rate }} | {{ node.data.info.trans_err }}{% else %}{{ node.data.name }} | [#](#{{node.data.dir}}) | {{ node.data.state }} | {{ node.data.doc_words }} | - | - | - | -{% endif %}
 {% endif %}{% endfor %}
 ---
 
@@ -50,7 +50,7 @@ Name | Link | State | Orig Words | Trans Words | Modified Rate | Translated Rate
 	{% endfor %}
 	{{ '\t' * node['level'] }}<div markdown="1">
 ---  
-{{ node.data.word_count[0] }} words added. {{ node.data.word_count[1] }} words deleted.<br>
+🇺🇸: {{ node.data.word_count[0] }} words 🇰🇷: {{ node.data.word_count[1] }} words <br>
 
 	{{ '\t' * node['level'] }}Modified rate {{ node.data.info.mod_rate }}%  
 	{{ '\t' * node['level'] }}Translate rate {{ node.data.info.trans_rate }}%
@@ -65,22 +65,3 @@ Name | Link | State | Orig Words | Trans Words | Modified Rate | Translated Rate
 {{ '\t' * node['level'] }}+ ### {{ node['data'] }}
 {% endif %}
 {% endfor %}
-
----
-## repository change statistics  
-><details> <summary> > Details  </summary> <div markdown="1">  
-> Comitted change with repo : 'I18N-FOR-BEGINNERS'  
->  
-> - '..' dir : 30 words added. 30 words deleted.  
-> - 'A' dir : 30 words added. 29 words deleted.  
-> - 'B' dir : 30 words added. 28 words deleted.  
-> - 'C' dir : 40 words added. 20 words deleted.  
->  
->---
->as total, 3000 words added. 1200 words deleted.  
->'main' branch on 'I18N' repo ( updated ) has 90000 words.  
->'main' branch on 'I18N-FOR-BEGINNERS' repo ( had been updated on 2022-05-20 ) has 89000 words.  
->Approximately 9000 words need to be translated added.  
-> ### Added words(need te be translated) rate 98.5% ( 89000 / 90000 words )
-></div>
-></details>
