@@ -43,7 +43,7 @@ def get_modified_info(commit1, commit2, file_name):
 				added_count = get_word_count(added_word)
 				word_dist = levenshtein(deleted_word, added_word)
 
-				mod_data.append({'translated': False, 'added': added_word, 'deleted': deleted_word, 'distance': word_dist, 'count': (added_count, deleted_count), 'line_no': line_no})
+				mod_data.append({'translated': False, 'added': added_word, 'deleted': deleted_word, 'distance': word_dist / max(len(added_word), len(deleted_word)), 'count': (added_count, deleted_count), 'line_no': line_no})
 				added += added_count
 				erased += deleted_count
 
@@ -60,7 +60,7 @@ def get_modified_info(commit1, commit2, file_name):
 					cos_sim = -2
 
 				mod_data.append({'translated': True, 'original': orig_text, 'translated': tran_text, 'simularity': cos_sim, 'line_no': line_no})
-				translated += deleted_count
+				translated += get_word_count(orig_text)
 
 		# get added part
 		iter = re_added.finditer(line)
@@ -69,7 +69,7 @@ def get_modified_info(commit1, commit2, file_name):
 				continue
 			added_word = m.group(1)
 			added_count = get_word_count(added_word)
-			mod_data.append({'translated': False, 'added': added_word, 'deleted': None, 'distance': None, 'count': (added_count, 0), 'line_no': line_no})
+			mod_data.append({'translated': False, 'added': added_word, 'deleted': None, 'distance': -1, 'count': (added_count, 0), 'line_no': line_no})
 			added += added_count
 
 		#get deleted part
@@ -79,11 +79,16 @@ def get_modified_info(commit1, commit2, file_name):
 				continue
 			deleted_word = m.group(1)
 			deleted_count = get_word_count(deleted_word)
-			mod_data.append({'translated': False, 'added': None, 'deleted': deleted_word, 'distance': None, 'count': (0, deleted_count), 'line_no': line_no})
+			mod_data.append({'translated': False, 'added': None, 'deleted': deleted_word, 'distance': -1, 'count': (0, deleted_count), 'line_no': line_no})
 			erased += deleted_count
 		line_no += 1
 
-	return (added, erased), mod_data
+	trans_words = get_git_word_count(commit1, file_name[1])
+	orig_words = get_git_word_count(commit2, file_name[1])
+	info = {'section': mod_data,
+		'mod_rate': (added + erased) / (trans_words + orig_words),
+		'trans_rate': translated / orig_words}
+	return (added, erased), info
 
 def get_remote():
 	remotes = subprocess.check_output(['git', 'remote', '-v'], encoding='utf-8').splitlines()

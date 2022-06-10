@@ -13,26 +13,32 @@ _ | Original | Translated
 **Link** | [link]({{ origin_info.url }}) | [link]({{ origin_info.url }})
 
 ---
-{{ '{% raw %}' }}
+
 {% for node in res_tree %}
 {% if node['is_leaf'] %}
-{{ '\t' * node['level'] }}+  <details> <summary> {{ node.data.name }} : {{ node.data.state }} {% if node.data.state == 'File Modified' %}<span style="color:blue">+{{ node.data.word_count[0] }}</span> / <span style="color:red">-{{ node.data.word_count[1] }}</span>{% endif %} {% if node.data.state != 'File Deleted' %}📄 {{ node.data.doc_words }} {% endif %}  </summary>
-	{% if node.data.state == 'File Modified' and node.data.info != None %}{% for info in node.data.info %}
-	{{ '\t' * node['level'] }}✅ line {{ info.line_no }}<br>{% if info.translated == False %}
+{{ '\t' * node['level'] }}+  <details> <summary> {{ node.data.name }} : {{ node.data.state }} {% if node.data.state == 'File Modified' %}<span style="color:blue">🇺🇸{{ node.data.word_count[0] }}</span> / <span style="color:red">🇰🇷{{ node.data.word_count[1] }}</span>{% endif %} {% if node.data.state != 'File Deleted' %}📄 {{ node.data.doc_words }} {% endif %}  </summary>
+	{% if node.data.state == 'File Modified' and node.data.info != None %}{% for section in node.data.info.section %}
+	{{ '\t' * node['level'] }}✅ line {{ section.line_no }}<br>{{ '{% raw %}' }}{% if section.translated == False %}
 	
-	{% if info.added != None %}{{ '\t' * node['level'] }}➕ {{ info.added }}<br>{% endif %}
-	{% if info.deleted != None %}{{ '\t' * node['level'] }}➖ {{ info.deleted }}<br>{% endif %}<br>
+	{% if section.added != None %}{{ '\t' * node['level'] }}🇺🇸 {{ section.added }}<br>{% endif %}
+	{% if section.deleted != None %}{{ '\t' * node['level'] }}🇰🇷 {{ section.deleted }}<br>{% endif %}<br>
 	
-	{{ '\t' * node['level'] }}=> sentence distance : {{ info.distance }}<br><br>{% else %}
-	{{ '\t' * node['level'] }}{{ info.original }}<br><br>
+	{% if section.distance != -1 %}{{ '\t' * node['level'] }}=> sentence diffrence : {{ section.distance * 100 }}%<br><br>{% endif %}{% else %}
+	{{ '\t' * node['level'] }}{{ section.original }}<br><br>
 	{{ '\t' * node['level'] }}---------------------<br><br>
-	{{ '\t' * node['level'] }}{{ info.translated }}<br><br>
-	{{ '\t' * node['level'] }}cos_simularity: {{ info.simularity }}<br>
+	{{ '\t' * node['level'] }}{{ section.translated }}<br><br>
+	
+	{% if section.simularity != -2 %}{{ '\t' * node['level'] }}= cos_simularity: {{ section.simularity*100 }}%<br><br>{% endif %}
 	{% endif %}
+	{{ '{% endraw %}' }}
 	{% endfor %}
 	{{ '\t' * node['level'] }}<div markdown="1">
+---  
 {{ node.data.word_count[0] }} words added. {{ node.data.word_count[1] }} words deleted.<br>
 
+	{{ '\t' * node['level'] }}Modified rate {{ node.data.info.mod_rate * 100 }}%  
+	{{ '\t' * node['level'] }}Translate rate {{ node.data.info.trans_rate * 100 }}%
+	{{ '\t' * node['level'] }}</div>
 	{% elif node.data.state == 'File Renamed' %}
 	{{ '\t' * node['level'] }}->{{ node.data.new_name }}
 	{% elif node.data.state == 'File Added' %}
@@ -43,7 +49,7 @@ _ | Original | Translated
 {{ '\t' * node['level'] }}+ ### {{ node['data'] }}
 {% endif %}
 {% endfor %}
-{{ '{% endraw %}' }}
+
 ---
 ## repository change statistics  
 ><details> <summary> > Details  </summary> <div markdown="1">  
