@@ -11,7 +11,7 @@ Internationalization for Microsoft Beginner series([Web-Dev-For-Beginners](https
     * **Korean** : [devrel-kr/Web-Dev-For-Beginners](https://github.com/devrel-kr/Web-Dev-For-Beginners)
 
     
----
+
 
 ## Flow Chart ##
 
@@ -57,6 +57,13 @@ Following GitHub Secrets are required for CI/CD :
 * [Jekyll](https://jekyllrb-ko.github.io/)
 * [Github Pages](https://docs.github.com/en/actions)
 
+
+## How to Contribute ##
+
+
+You can click the **Fork** button in the upper-right area of the screen to create a copy of this repository in your GitHub account. This copy is called a *fork*. 
+
+Make any changes you want in your fork, and when you are ready to send those changes to us, go to your fork and create a new pull request to let us know about it.
 
 
 ---
