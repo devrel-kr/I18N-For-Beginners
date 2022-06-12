@@ -18,9 +18,8 @@ Internationalization for Microsoft Beginner series([Web-Dev-For-Beginners](https
 ![Flow chart](./asserts/architecture_image.png)
 
 ```mermaid
-:root {
---mermaid-theme:neutral;
--–mermaid-flowchart-curve: step;
+%%{init: {
+  "theme": "neutral"
 }
 
 flowchart LR
