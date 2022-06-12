@@ -20,7 +20,7 @@ Internationalization for Microsoft Beginner series([Web-Dev-For-Beginners](https
 ```mermaid
 %%{init: {
   "theme": "neutral"
-}
+}}%%
 
 flowchart LR
     A(start) --> B(Find changed docs)
