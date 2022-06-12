@@ -19,7 +19,7 @@ Internationalization for Microsoft Beginner series([Web-Dev-For-Beginners](https
 
 ```mermaid
 %%{init: {
-  "theme": "neutral"
+  "theme": "neutral",
   "curve": "step"
 }}%%
 
