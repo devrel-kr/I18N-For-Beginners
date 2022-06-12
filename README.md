@@ -19,8 +19,8 @@ Internationalization for Microsoft Beginner series([Web-Dev-For-Beginners](https
 
 ```mermaid
 %%{init: {
-  "theme": "dark"
-  "curve": "basis"
+  "theme": "neutral"
+  "curve": "step"
 }}%%
 
 flowchart LR
