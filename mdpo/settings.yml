@@ -5,10 +5,6 @@ document:
   original:
     url: https://github.com/Azure/azure-sdk.git
     branch: main
-
-  translated:
-    url: https://github.com/devrel-kr/azure-sdk-korean
-    translated-branch: main
-
-keys:
-  translate-api: update-api-at-github-action-secret
+    directory1: docs/dotnet/implementation.md
+    directory2: docs/general/azurecore.md
+    directory3: docs/ios/design.md
