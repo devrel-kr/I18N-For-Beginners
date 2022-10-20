@@ -17,7 +17,7 @@
 [Weblate](https://weblate.org/ko/)에 업로드 시켜줍니다.
 
 * Weblate에서 일정 퍼센티지 이상 번역이 됐을 경우 [devrel-kr/azure-sdk-korea](https://github.com/devrel-kr/azure-sdk-korean) 에 번역된 마크다운을 po파일과 함께
-Pull request를 통해 반영해 줍니다.
+Pull request해 줍니다.
 
 ## 사용한 Library
 <img src="https://mondeja.github.io/mdpo/latest/_static/mdpo.png" width= "100px" alt = "mdpo" />
