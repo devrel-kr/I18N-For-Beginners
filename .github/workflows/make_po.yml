@@ -1,0 +1,30 @@
+name: make po
+on:
+  workflow_dispatch:
+#   push:
+jobs:
+  job_1:
+    name: make po file
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      
+      - name: JSON to variables
+        uses: rgarcia-phi/json-to-variables@v1.1.0
+        with:
+          filename: 'mdpo/settings_modified.json'
+          prefix: settings
+          masked: false
+          
+      - name: convert to po
+        run : |
+          mkdir -p mdpo/po
+          pip install mdpo
+          md2po md ${{ env.settings_path_sum_mdpo }} -q -s -p ./mdpo/po/ko.po
+      - name: Commit report
+        run: |
+          git add ./mdpo/po
+          git config --global user.name ${{ secrets.USER_NAME }}
+          git config --global user.email ${{ secrets.USER_EMAIL }}
+          git commit -am "update ko.po file"
+          git push

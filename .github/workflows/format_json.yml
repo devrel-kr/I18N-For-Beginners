@@ -1,0 +1,23 @@
+name: format json
+on:
+  push:
+    branches:    
+      - 'main'
+    paths:
+      - 'mdpo/settings.json'
+  workflow_dispatch:
+jobs:
+  job_1:
+    name: format settings.json
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout files
+        uses: actions/checkout@v2
+      - name: format json
+        run: |
+          python3 mdpo/jsonFormating.py
+          git add .
+          git config --global user.name ${{ secrets.USER_NAME }}
+          git config --global user.email ${{ secrets.USER_EMAIL }}
+          git commit -am "format json"
+          git push
