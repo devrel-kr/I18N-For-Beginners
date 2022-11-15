@@ -1,7 +1,11 @@
 name: make po
 on:
   workflow_dispatch:
-#   push:
+  push:
+    branches:
+      - main
+    paths:
+      - docs/**
 jobs:
   job_1:
     name: make po file
