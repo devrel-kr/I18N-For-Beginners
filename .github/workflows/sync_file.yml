@@ -24,8 +24,8 @@ jobs:
       - name: Sync files with dst-repsotiory
         uses: waroad/sync-files@main
         with:
-          git-author-email: ${{ secrets.USER_EMAIL }}
-          git-author-name: ${{ secrets.USER_NAME }}
+          git-author-email: ${{ secrets.USER_EMAIL_1 }}
+          git-author-name: ${{ secrets.USER_NAME_1 }}
           sync-repository: Azure/azure-sdk
           allow-files-pattern: ${{ env.settings_path_sum_sync }}
           sync-branch-name: ${{ env.settings_branch }}
