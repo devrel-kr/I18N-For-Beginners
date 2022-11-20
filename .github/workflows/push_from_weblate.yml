@@ -1,0 +1,30 @@
+name: push_from_weblate
+on:
+  schedule:
+    - cron: "0 0 * * *"
+  
+  workflow_dispatch:
+jobs:
+  build:
+    name: push_from_weblate
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout files
+        uses: actions/checkout@v2
+        with:
+          repository: devrel-kr/I18N-For-Beginners
+          
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.10'
+          
+      - name: install python module
+        run:
+          pip install requests
+
+      - name: Run python script
+        env :
+          BEARER_TOKEN : ${{ secrets.BEARER_TOKEN }}
+        run :
+          python mdpo/push_from_weblate.py azure-sdk readme ko
