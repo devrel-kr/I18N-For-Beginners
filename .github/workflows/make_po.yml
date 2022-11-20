@@ -28,7 +28,7 @@ jobs:
       - name: Commit report
         run: |
           git add ./mdpo/po
-          git config --global user.name ${{ secrets.USER_NAME }}
-          git config --global user.email ${{ secrets.USER_EMAIL }}
+          git config --global user.name ${{ secrets.USER_NAME_1 }}
+          git config --global user.email ${{ secrets.USER_EMAIL_1 }}
           git commit -am "update ko.po file"
           git push
