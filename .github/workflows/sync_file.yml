@@ -11,7 +11,9 @@ jobs:
     steps:
       - name: Checkout files
         uses: actions/checkout@v2
-        
+        with:
+          token: ${{secrets.PAS_TOKEN}}
+          
       - name: JSON to variables
         uses: rgarcia-phi/json-to-variables@v1.1.0
         with:
