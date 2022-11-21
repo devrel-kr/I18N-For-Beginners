@@ -15,6 +15,22 @@ cd weblate-docker
 
 
 # Create a docker-compose.override.yml file with your settings. See Docker environment variables for full list of environment variables.
+echo -n "WEBLATE_EMAIL_HOST : "
+read WEBLATE_EMAIL_HOST
+echo -n "WEBLATE_EMAIL_HOST_USER : "
+read WEBLATE_EMAIL_HOST_USER
+echo -n "WEBLATE_EMAIL_HOST_PASSWORD : "
+read WEBLATE_EMAIL_HOST_PASSWORD
+echo -n "WEBLATE_SERVER_EMAIL : "
+read WEBLATE_SERVER_EMAIL
+echo -n "WEBLATE_DEFAULT_FROM_EMAIL : "
+read WEBLATE_DEFAULT_FROM_EMAIL
+echo -n "WEBLATE_SITE_DOMAIN : "
+read WEBLATE_SITE_DOMAIN
+echo -n "WEBLATE_ADMIN_PASSWORD : "
+read WEBLATE_ADMIN_PASSWORD
+echo -n "WEBLATE_ADMIN_EMAIL : "
+read WEBLATE_ADMIN_EMAIL
 echo \
 "version: '3'
 services:
@@ -22,14 +38,14 @@ services:
     ports:
       - 80:8080
     environment:
-      WEBLATE_EMAIL_HOST: smtp.example.com
-      WEBLATE_EMAIL_HOST_USER: user
-      WEBLATE_EMAIL_HOST_PASSWORD: pass
-      WEBLATE_SERVER_EMAIL: weblate@example.com
-      WEBLATE_DEFAULT_FROM_EMAIL: weblate@example.com
-      WEBLATE_SITE_DOMAIN: weblate.example.com
-      WEBLATE_ADMIN_PASSWORD: password for the admin user
-      WEBLATE_ADMIN_EMAIL: weblate.admin@example.com
+      WEBLATE_EMAIL_HOST: $WEBLATE_EMAIL_HOST
+      WEBLATE_EMAIL_HOST_USER: $WEBLATE_EMAIL_HOST_USER
+      WEBLATE_EMAIL_HOST_PASSWORD: $WEBLATE_EMAIL_HOST_PASSWORD
+      WEBLATE_SERVER_EMAIL: $WEBLATE_SERVER_EMAIL
+      WEBLATE_DEFAULT_FROM_EMAIL: $WEBLATE_DEFAULT_FROM_EMAIL
+      WEBLATE_SITE_DOMAIN: $WEBLATE_SITE_DOMAIN
+      WEBLATE_ADMIN_PASSWORD: $WEBLATE_ADMIN_PASSWORD
+      WEBLATE_ADMIN_EMAIL: $WEBLATE_ADMIN_EMAIL
 " > docker-compose.override.yml
 
 
