@@ -1,0 +1,640 @@
+#
+msgid ""
+msgstr ""
+
+#: docs/policies/README-EXAMPLE.md:block 1 (header)
+msgid "Azure Cosmos DB client library for Python"
+msgstr ""
+
+#: docs/policies/README-EXAMPLE.md:block 2 (paragraph)
+msgid ""
+"Azure Cosmos DB is a globally distributed, multi-model database service that"
+" supports document, key-value, wide-column, and graph databases."
+msgstr ""
+
+#: docs/policies/README-EXAMPLE.md:block 3 (paragraph)
+msgid ""
+"Use the Cosmos DB client library for Python to manage databases and the JSON"
+" documents they contain in this NoSQL database service:"
+msgstr ""
+
+#: docs/policies/README-EXAMPLE.md:block 4 (unordered list)
+msgid "Create Cosmos DB databases and modify their settings"
+msgstr ""
+
+#: docs/policies/README-EXAMPLE.md:block 4 (unordered list)
+msgid "Create and modify containers to store collections of JSON documents"
+msgstr ""
+
+#: docs/policies/README-EXAMPLE.md:block 4 (unordered list)
+msgid ""
+"Create, read, update, and delete the items (JSON documents) in your "
+"containers"
+msgstr ""
+
+#: docs/policies/README-EXAMPLE.md:block 4 (unordered list)
+msgid "Query the documents in your database using SQL-like syntax"
+msgstr ""
+
+#: docs/policies/README-EXAMPLE.md:block 4 (unordered list)
+msgid "[Package (PyPi)][pypi]"
+msgstr ""
+
+#: docs/policies/README-EXAMPLE.md:block 4 (unordered list)
+msgid "[API reference documentation][ref_cosmos_sdk]"
+msgstr ""
+
+#: docs/policies/README-EXAMPLE.md:block 4 (unordered list)
+msgid "[Product documentation][cosmos_docs]"
+msgstr ""
+
+#: docs/policies/README-EXAMPLE.md:block 4 (unordered list)
+msgid ""
+"[Source code](https://github.com/Azure/azure-sdk-for-"
+"python/tree/main/sdk/cosmos/azure-cosmos)"
+msgstr ""
+
+#: docs/policies/README-EXAMPLE.md:block 4 (unordered list)
+msgid ""
+"[ChangeLog](https://github.com/Azure/azure-sdk-for-"
+"python/blob/main/sdk/cosmos/azure-cosmos/CHANGELOG.md)"
+msgstr ""
+
+#: docs/policies/README-EXAMPLE.md:block 4 (unordered list)
+msgid ""
+"[Samples](https://github.com/Azure/azure-sdk-for-"
+"python/tree/main/sdk/cosmos/azure-cosmos/samples)"
+msgstr ""
+
+#: docs/policies/README-EXAMPLE.md:block 4 (unordered list)
+msgid ""
+"[Versioned API References](https://azure.github.io/azure-sdk-for-"
+"python/cosmosdb.html)"
+msgstr ""
+
+#: docs/policies/README-EXAMPLE.md:block 4 (unordered list)
+msgid ""
+"Note, this library supports Cosmos API versions "
+"[2018-12-31](https://docs.microsoft.com/en-us/rest/api/cosmos-db/) and "
+"below."
+msgstr ""
+
+#: docs/policies/README-EXAMPLE.md:block 5 (header)
+msgid "Getting started"
+msgstr ""
+
+#: docs/policies/README-EXAMPLE.md:block 6 (header)
+msgid "Install the package"
+msgstr ""
+
+#: docs/policies/README-EXAMPLE.md:block 7 (paragraph)
+msgid "Install the Azure Cosmos DB client library for Python with [pip]:"
+msgstr ""
+
+#: docs/policies/README-EXAMPLE.md:block 9 (paragraph)
+msgid ""
+"**Prerequisites**: You must have an [Azure subscription][azure_sub], [Cosmos"
+" DB account][cosmos_account] (SQL API), and [Python 3.6+][python] to use "
+"this package."
+msgstr ""
+
+#: docs/policies/README-EXAMPLE.md:block 10 (paragraph)
+msgid ""
+"If you need a Cosmos DB SQL API account, you can use the Azure [Cloud "
+"Shell][cloud_shell_bash] to create one with this Azure CLI command:"
+msgstr ""
+
+#: docs/policies/README-EXAMPLE.md:block 12 (header)
+msgid "Authenticate the client"
+msgstr ""
+
+#: docs/policies/README-EXAMPLE.md:block 13 (paragraph)
+msgid ""
+"Interaction with Cosmos DB starts with an instance of the `CosmosClient` "
+"class. You need an **account**, its **URI**, and one of its **account keys**"
+" to instantiate the client object."
+msgstr ""
+
+#: docs/policies/README-EXAMPLE.md:block 14 (header)
+msgid "Get credentials"
+msgstr ""
+
+#: docs/policies/README-EXAMPLE.md:block 15 (paragraph)
+msgid ""
+"Use the [Azure CLI][azure_cli] snippet below to populate two environment "
+"variables with the database account URI and its primary master key (you can "
+"also find these values in the [Azure portal][azure_portal]). The snippet is "
+"formatted for the Bash shell."
+msgstr ""
+
+#: docs/policies/README-EXAMPLE.md:block 17 (header)
+msgid "Create client"
+msgstr ""
+
+#: docs/policies/README-EXAMPLE.md:block 18 (paragraph)
+msgid ""
+"Once you've populated the `ACCOUNT_URI` and `ACCOUNT_KEY` environment "
+"variables, you can create the `CosmosClient`."
+msgstr ""
+
+#: docs/policies/README-EXAMPLE.md:block 20 (header)
+msgid "Key concepts"
+msgstr ""
+
+#: docs/policies/README-EXAMPLE.md:block 21 (paragraph)
+msgid ""
+"Once you've initialized a `CosmosClient`, you can interact with the primary "
+"resource types in Cosmos DB:"
+msgstr ""
+
+#: docs/policies/README-EXAMPLE.md:block 22 (unordered list)
+msgid ""
+"Database: A Cosmos DB account can contain multiple databases. When you "
+"create a database, you specify the API you'd like to use when interacting "
+"with its documents: SQL, MongoDB, Gremlin, Cassandra, or Azure Table. Use "
+"the Database object to manage its containers."
+msgstr ""
+
+#: docs/policies/README-EXAMPLE.md:block 22 (unordered list)
+msgid ""
+"Container: A container is a collection of JSON documents. You create "
+"(insert), read, update, and delete items in a container by using methods on "
+"the Container object."
+msgstr ""
+
+#: docs/policies/README-EXAMPLE.md:block 22 (unordered list)
+msgid ""
+"Item: An Item is the dictionary-like representation of a JSON document "
+"stored in a container. Each Item you add to a container must include an `id`"
+" key with a value that uniquely identifies the item within the container."
+msgstr ""
+
+#: docs/policies/README-EXAMPLE.md:block 23 (paragraph)
+msgid ""
+"For more information about these resources, see [Working with Azure Cosmos "
+"databases, containers and items][cosmos_resources]."
+msgstr ""
+
+#: docs/policies/README-EXAMPLE.md:block 24 (header)
+msgid "Examples"
+msgstr ""
+
+#: docs/policies/README-EXAMPLE.md:block 25 (paragraph)
+msgid ""
+"The following sections provide several code snippets covering some of the "
+"most common Cosmos DB tasks, including:"
+msgstr ""
+
+#: docs/policies/README-EXAMPLE.md:block 26 (unordered list)
+msgid "[Create a database](#create-a-database)"
+msgstr ""
+
+#: docs/policies/README-EXAMPLE.md:block 26 (unordered list)
+msgid "[Create a container](#create-a-container)"
+msgstr ""
+
+#: docs/policies/README-EXAMPLE.md:block 26 (unordered list)
+msgid "[Insert data](#insert-data)"
+msgstr ""
+
+#: docs/policies/README-EXAMPLE.md:block 26 (unordered list)
+msgid "[Query the database](#query-the-database)"
+msgstr ""
+
+#: docs/policies/README-EXAMPLE.md:block 26 (unordered list)
+msgid "[Delete data](#delete-data)"
+msgstr ""
+
+#: docs/policies/README-EXAMPLE.md:block 27 (header)
+msgid "Create a database"
+msgstr ""
+
+#: docs/policies/README-EXAMPLE.md:block 28 (paragraph)
+msgid ""
+"After authenticating your `CosmosClient`, you can work with any resource in "
+"the account. The code snippet below creates a SQL API database, which is the"
+" default when no API is specified when create_database is invoked."
+msgstr ""
+
+#: docs/policies/README-EXAMPLE.md:block 30 (header)
+msgid "Create a container"
+msgstr ""
+
+#: docs/policies/README-EXAMPLE.md:block 31 (paragraph)
+msgid ""
+"This example creates a container with default settings. If a container with "
+"the same name already exists in the database (generating a `409 Conflict` "
+"error), the existing container is obtained instead."
+msgstr ""
+
+#: docs/policies/README-EXAMPLE.md:block 33 (paragraph)
+msgid ""
+"The preceding snippet also handles the HTTPFailure exception if the "
+"container creation failed. For more information on error handling and "
+"troubleshooting, see the [Troubleshooting](#troubleshooting) section."
+msgstr ""
+
+#: docs/policies/README-EXAMPLE.md:block 34 (header)
+msgid "Insert data"
+msgstr ""
+
+#: docs/policies/README-EXAMPLE.md:block 35 (paragraph)
+msgid ""
+"To insert items into a container, pass a dictionary containing your data to "
+"Container.upsert_item. Each item you add to a container must include an `id`"
+" key with a value that uniquely identifies the item within the container."
+msgstr ""
+
+#: docs/policies/README-EXAMPLE.md:block 36 (paragraph)
+msgid ""
+"This example inserts several items into the container, each with a unique "
+"`id`:"
+msgstr ""
+
+#: docs/policies/README-EXAMPLE.md:block 38 (header)
+msgid "Query the database"
+msgstr ""
+
+#: docs/policies/README-EXAMPLE.md:block 39 (paragraph)
+msgid ""
+"A Cosmos DB SQL API database supports querying the items in a container with"
+" Container.query_items using SQL-like syntax."
+msgstr ""
+
+#: docs/policies/README-EXAMPLE.md:block 40 (paragraph)
+msgid "This example queries a container for items with a specific `id`:"
+msgstr ""
+
+#: docs/policies/README-EXAMPLE.md:block 42 (quote)
+msgid ""
+"NOTE: Although you can specify any value for the container name in the "
+"`FROM` clause, we recommend you use the container name for consistency."
+msgstr ""
+
+#: docs/policies/README-EXAMPLE.md:block 43 (paragraph)
+msgid ""
+"Perform parameterized queries by passing a dictionary containing the "
+"parameters and their values to Container.query_items:"
+msgstr ""
+
+#: docs/policies/README-EXAMPLE.md:block 45 (paragraph)
+msgid ""
+"For more information on querying Cosmos DB databases using the SQL API, see "
+"[Query Azure Cosmos DB data with SQL queries][cosmos_sql_queries]."
+msgstr ""
+
+#: docs/policies/README-EXAMPLE.md:block 46 (header)
+msgid "Delete data"
+msgstr ""
+
+#: docs/policies/README-EXAMPLE.md:block 47 (paragraph)
+msgid ""
+"To delete items from a container, use Container.delete_item. The SQL API in "
+"Cosmos DB does not support the SQL `DELETE` statement."
+msgstr ""
+
+#: docs/policies/README-EXAMPLE.md:block 49 (header)
+msgid "Troubleshooting"
+msgstr ""
+
+#: docs/policies/README-EXAMPLE.md:block 50 (header)
+msgid "General"
+msgstr ""
+
+#: docs/policies/README-EXAMPLE.md:block 51 (paragraph)
+msgid ""
+"When you interact with Cosmos DB using the Python SDK, errors returned by "
+"the service correspond to the same HTTP status codes returned for REST API "
+"requests:"
+msgstr ""
+
+#: docs/policies/README-EXAMPLE.md:block 52 (paragraph)
+msgid "[HTTP Status Codes for Azure Cosmos DB][cosmos_http_status_codes]"
+msgstr ""
+
+#: docs/policies/README-EXAMPLE.md:block 53 (paragraph)
+msgid ""
+"For example, if you try to create a container using an ID (name) that's "
+"already in use in your Cosmos DB database, a `409` error is returned, "
+"indicating the conflict. In the following snippet, the error is handled "
+"gracefully by catching the exception and displaying additional information "
+"about the error."
+msgstr ""
+
+#: docs/policies/README-EXAMPLE.md:block 55 (header)
+msgid "Handle transient errors with retries"
+msgstr ""
+
+#: docs/policies/README-EXAMPLE.md:block 56 (paragraph)
+msgid ""
+"While working with Cosmos DB, you might encounter transient failures caused "
+"by [rate limits][cosmos_request_units] enforced by the service, or other "
+"transient problems like network outages. For information about handling "
+"these types of failures, see [Retry pattern][azure_pattern_retry] in the "
+"Cloud Design Patterns guide, and the related [Circuit Breaker "
+"pattern][azure_pattern_circuit_breaker]."
+msgstr ""
+
+#: docs/policies/README-EXAMPLE.md:block 57 (header)
+msgid "Next steps"
+msgstr ""
+
+#: docs/policies/README-EXAMPLE.md:block 58 (header)
+msgid "More sample code"
+msgstr ""
+
+#: docs/policies/README-EXAMPLE.md:block 59 (paragraph)
+msgid ""
+"Several Cosmos DB Python SDK samples are available to you in the SDK's "
+"GitHub repository. These samples provide example code for additional "
+"scenarios commonly encountered while working with Cosmos DB:"
+msgstr ""
+
+#: docs/policies/README-EXAMPLE.md:block 60 (unordered list)
+msgid ""
+"[`examples.py`][sample_examples_misc] - Contains the code snippets found in "
+"this article."
+msgstr ""
+
+#: docs/policies/README-EXAMPLE.md:block 60 (unordered list)
+msgid ""
+"[`databasemanagementsample.py`][sample_database_mgmt] - Python code for "
+"working with Azure Cosmos DB databases, including:"
+msgstr ""
+
+#: docs/policies/README-EXAMPLE.md:block 60 (unordered list)
+msgid "Create database"
+msgstr ""
+
+#: docs/policies/README-EXAMPLE.md:block 60 (unordered list)
+msgid "Get database by ID"
+msgstr ""
+
+#: docs/policies/README-EXAMPLE.md:block 60 (unordered list)
+msgid "Get database by query"
+msgstr ""
+
+#: docs/policies/README-EXAMPLE.md:block 60 (unordered list)
+msgid "List databases in account"
+msgstr ""
+
+#: docs/policies/README-EXAMPLE.md:block 60 (unordered list)
+msgid "Delete database"
+msgstr ""
+
+#: docs/policies/README-EXAMPLE.md:block 60 (unordered list)
+msgid ""
+"[`documentmanagementsample.py`][sample_document_mgmt] - Example code for "
+"working with Cosmos DB documents, including:"
+msgstr ""
+
+#: docs/policies/README-EXAMPLE.md:block 60 (unordered list)
+msgid "Create container"
+msgstr ""
+
+#: docs/policies/README-EXAMPLE.md:block 60 (unordered list)
+msgid "Create documents (including those with differing schemas)"
+msgstr ""
+
+#: docs/policies/README-EXAMPLE.md:block 60 (unordered list)
+msgid "Get document by ID"
+msgstr ""
+
+#: docs/policies/README-EXAMPLE.md:block 60 (unordered list)
+msgid "Get all documents in a container"
+msgstr ""
+
+#: docs/policies/README-EXAMPLE.md:block 61 (header)
+msgid "Additional documentation"
+msgstr ""
+
+#: docs/policies/README-EXAMPLE.md:block 62 (paragraph)
+msgid ""
+"For more extensive documentation on the Cosmos DB service, see the [Azure "
+"Cosmos DB documentation][cosmos_docs] on docs.microsoft.com."
+msgstr ""
+
+#: docs/policies/README-EXAMPLE.md:block 63 (header)
+msgid "Contributing"
+msgstr ""
+
+#: docs/policies/README-EXAMPLE.md:block 64 (paragraph)
+msgid ""
+"This project welcomes contributions and suggestions. Most contributions "
+"require you to agree to a Contributor License Agreement (CLA) declaring that"
+" you have the right to, and actually do, grant us the rights to use your "
+"contribution. For details, visit https://cla.microsoft.com."
+msgstr ""
+
+#: docs/policies/README-EXAMPLE.md:block 65 (paragraph)
+msgid ""
+"When you submit a pull request, a CLA-bot will automatically determine "
+"whether you need to provide a CLA and decorate the PR appropriately (e.g., "
+"label, comment). Simply follow the instructions provided by the bot. You "
+"will only need to do this once across all repos using our CLA."
+msgstr ""
+
+#: docs/policies/README-EXAMPLE.md:block 66 (paragraph)
+msgid ""
+"This project has adopted the [Microsoft Open Source Code of "
+"Conduct](https://opensource.microsoft.com/codeofconduct/). For more "
+"information see the [Code of Conduct "
+"FAQ](https://opensource.microsoft.com/codeofconduct/faq/) or contact "
+"[opencode@microsoft.com](mailto:opencode@microsoft.com) with any additional "
+"questions or comments."
+msgstr ""
+
+#: docs/policies/README-EXAMPLE.md:block 67 (html)
+#, fuzzy
+msgid "[azure_cli]: https://docs.microsoft.com/cli/azure"
+msgstr "[azure_cli]: https://docs.microsoft.com/cli/azure"
+
+#: docs/policies/README-EXAMPLE.md:block 67 (html)
+#, fuzzy
+msgid ""
+"[azure_pattern_circuit_breaker]: "
+"https://docs.microsoft.com/azure/architecture/patterns/circuit-breaker"
+msgstr ""
+"[azure_pattern_circuit_breaker]: "
+"https://docs.microsoft.com/azure/architecture/patterns/circuit-breaker"
+
+#: docs/policies/README-EXAMPLE.md:block 67 (html)
+#, fuzzy
+msgid ""
+"[azure_pattern_retry]: "
+"https://docs.microsoft.com/azure/architecture/patterns/retry"
+msgstr ""
+"[azure_pattern_retry]: "
+"https://docs.microsoft.com/azure/architecture/patterns/retry"
+
+#: docs/policies/README-EXAMPLE.md:block 67 (html)
+#, fuzzy
+msgid "[azure_portal]: https://portal.azure.com"
+msgstr "[azure_portal]: https://portal.azure.com"
+
+#: docs/policies/README-EXAMPLE.md:block 67 (html)
+#, fuzzy
+msgid "[azure_sub]: https://azure.microsoft.com/free/"
+msgstr "[azure_sub]: https://azure.microsoft.com/free/"
+
+#: docs/policies/README-EXAMPLE.md:block 67 (html)
+#, fuzzy
+msgid "[cloud_shell]: https://docs.microsoft.com/azure/cloud-shell/overview"
+msgstr "[cloud_shell]: https://docs.microsoft.com/azure/cloud-shell/overview"
+
+#: docs/policies/README-EXAMPLE.md:block 67 (html)
+#, fuzzy
+msgid "[cloud_shell_bash]: https://shell.azure.com/bash"
+msgstr "[cloud_shell_bash]: https://shell.azure.com/bash"
+
+#: docs/policies/README-EXAMPLE.md:block 67 (html)
+#, fuzzy
+msgid ""
+"[cosmos_account_create]: https://docs.microsoft.com/azure/cosmos-db/how-to-"
+"manage-database-account"
+msgstr ""
+"[cosmos_account_create]: https://docs.microsoft.com/azure/cosmos-db/how-to-"
+"manage-database-account"
+
+#: docs/policies/README-EXAMPLE.md:block 67 (html)
+#, fuzzy
+msgid ""
+"[cosmos_account]: https://docs.microsoft.com/azure/cosmos-db/account-"
+"overview"
+msgstr ""
+"[cosmos_account]: https://docs.microsoft.com/azure/cosmos-db/account-"
+"overview"
+
+#: docs/policies/README-EXAMPLE.md:block 67 (html)
+#, fuzzy
+msgid ""
+"[cosmos_container]: https://docs.microsoft.com/azure/cosmos-db/databases-"
+"containers-items#azure-cosmos-containers"
+msgstr ""
+"[cosmos_container]: https://docs.microsoft.com/azure/cosmos-db/databases-"
+"containers-items#azure-cosmos-containers"
+
+#: docs/policies/README-EXAMPLE.md:block 67 (html)
+#, fuzzy
+msgid ""
+"[cosmos_database]: https://docs.microsoft.com/azure/cosmos-db/databases-"
+"containers-items#azure-cosmos-databases"
+msgstr ""
+"[cosmos_database]: https://docs.microsoft.com/azure/cosmos-db/databases-"
+"containers-items#azure-cosmos-databases"
+
+#: docs/policies/README-EXAMPLE.md:block 67 (html)
+#, fuzzy
+msgid "[cosmos_docs]: https://docs.microsoft.com/azure/cosmos-db/"
+msgstr "[cosmos_docs]: https://docs.microsoft.com/azure/cosmos-db/"
+
+#: docs/policies/README-EXAMPLE.md:block 67 (html)
+#, fuzzy
+msgid ""
+"[cosmos_http_status_codes]: https://docs.microsoft.com/rest/api/cosmos-"
+"db/http-status-codes-for-cosmosdb"
+msgstr ""
+"[cosmos_http_status_codes]: https://docs.microsoft.com/rest/api/cosmos-"
+"db/http-status-codes-for-cosmosdb"
+
+#: docs/policies/README-EXAMPLE.md:block 67 (html)
+#, fuzzy
+msgid ""
+"[cosmos_item]: https://docs.microsoft.com/azure/cosmos-db/databases-"
+"containers-items#azure-cosmos-items"
+msgstr ""
+"[cosmos_item]: https://docs.microsoft.com/azure/cosmos-db/databases-"
+"containers-items#azure-cosmos-items"
+
+#: docs/policies/README-EXAMPLE.md:block 67 (html)
+#, fuzzy
+msgid ""
+"[cosmos_request_units]: https://docs.microsoft.com/azure/cosmos-db/request-"
+"units"
+msgstr ""
+"[cosmos_request_units]: https://docs.microsoft.com/azure/cosmos-db/request-"
+"units"
+
+#: docs/policies/README-EXAMPLE.md:block 67 (html)
+#, fuzzy
+msgid ""
+"[cosmos_resources]: https://docs.microsoft.com/azure/cosmos-db/databases-"
+"containers-items"
+msgstr ""
+"[cosmos_resources]: https://docs.microsoft.com/azure/cosmos-db/databases-"
+"containers-items"
+
+#: docs/policies/README-EXAMPLE.md:block 67 (html)
+#, fuzzy
+msgid ""
+"[cosmos_sql_queries]: https://docs.microsoft.com/azure/cosmos-db/how-to-sql-"
+"query"
+msgstr ""
+"[cosmos_sql_queries]: https://docs.microsoft.com/azure/cosmos-db/how-to-sql-"
+"query"
+
+#: docs/policies/README-EXAMPLE.md:block 67 (html)
+#, fuzzy
+msgid "[cosmos_ttl]: https://docs.microsoft.com/azure/cosmos-db/time-to-live"
+msgstr "[cosmos_ttl]: https://docs.microsoft.com/azure/cosmos-db/time-to-live"
+
+#: docs/policies/README-EXAMPLE.md:block 67 (html)
+#, fuzzy
+msgid "[pip]: https://pypi.org/project/pip/"
+msgstr "[pip]: https://pypi.org/project/pip/"
+
+#: docs/policies/README-EXAMPLE.md:block 67 (html)
+#, fuzzy
+msgid "[pypi]: https://pypi.org/project/azure-cosmos/"
+msgstr "[pypi]: https://pypi.org/project/azure-cosmos/"
+
+#: docs/policies/README-EXAMPLE.md:block 67 (html)
+#, fuzzy
+msgid "[python]: https://www.python.org/downloads/"
+msgstr "[python]: https://www.python.org/downloads/"
+
+#: docs/policies/README-EXAMPLE.md:block 67 (html)
+#, fuzzy
+msgid ""
+"[ref_cosmos_sdk]: https://azure.github.io/azure-sdk-for-"
+"python/cosmosdb.html#azure-cosmos"
+msgstr ""
+"[ref_cosmos_sdk]: https://azure.github.io/azure-sdk-for-"
+"python/cosmosdb.html#azure-cosmos"
+
+#: docs/policies/README-EXAMPLE.md:block 67 (html)
+#, fuzzy
+msgid ""
+"[sample_database_mgmt]: https://github.com/binderjoe/cosmos-python-"
+"prototype/blob/master/examples/databasemanagementsample.py"
+msgstr ""
+"[sample_database_mgmt]: https://github.com/binderjoe/cosmos-python-"
+"prototype/blob/master/examples/databasemanagementsample.py"
+
+#: docs/policies/README-EXAMPLE.md:block 67 (html)
+#, fuzzy
+msgid ""
+"[sample_document_mgmt]: https://github.com/binderjoe/cosmos-python-"
+"prototype/blob/master/examples/documentmanagementsample.py"
+msgstr ""
+"[sample_document_mgmt]: https://github.com/binderjoe/cosmos-python-"
+"prototype/blob/master/examples/documentmanagementsample.py"
+
+#: docs/policies/README-EXAMPLE.md:block 67 (html)
+#, fuzzy
+msgid ""
+"[sample_examples_misc]: https://github.com/binderjoe/cosmos-python-"
+"prototype/blob/master/examples/examples.py"
+msgstr ""
+"[sample_examples_misc]: https://github.com/binderjoe/cosmos-python-"
+"prototype/blob/master/examples/examples.py"
+
+#: docs/policies/README-EXAMPLE.md:block 67 (html)
+#, fuzzy
+msgid "[venv]: https://docs.python.org/3/library/venv.html"
+msgstr "[venv]: https://docs.python.org/3/library/venv.html"
+
+#: docs/policies/README-EXAMPLE.md:block 67 (html)
+#, fuzzy
+msgid "[virtualenv]: https://virtualenv.pypa.io"
+msgstr "[virtualenv]: https://virtualenv.pypa.io"
