@@ -19,6 +19,13 @@ jobs:
         with:
           python-version: '3.10'
           
+      - name: JSON to variables
+        uses: rgarcia-phi/json-to-variables@v1.1.0
+        with:
+          filename: 'mdpo/settings_modified.json'
+          prefix: settings
+          masked: false
+          
       - name: install python module
         run:
           pip install requests
@@ -27,4 +34,4 @@ jobs:
         env :
           BEARER_TOKEN : ${{ secrets.BEARER_TOKEN }}
         run :
-          python mdpo/push_from_weblate.py azure-sdk readme ko
+          for i in ${{ env.settings_path_sum_mdpo }}; do v=`echo $i | sed 's/.md//g' | sed 's/\///g'`; python mdpo/push_from_weblate.py azure-sdk ${v,,} ko; done
