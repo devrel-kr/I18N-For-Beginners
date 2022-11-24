@@ -26,7 +26,7 @@ jobs:
         run : |
           mkdir -p docs/po
           for i in ${{ env.settings_path_mkdir }}; do mkdir -p docs/po/"$i"; done
-          for i in ${{ env.settings_path_sum_mdpo }}; do mv mdpo/ko/"$i" docs/po/"$i"; done
+          for i in ${{ env.settings_path_sum_mdpo }}; v=`echo $i | sed 's/.md//g'` ; mv mdpo/ko/${v}.po docs/po/${v}.po ; done
           
       - name: Create pull request
         uses: paygoc6/action-pull-request-another-repo@v1.0.1
