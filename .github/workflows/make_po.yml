@@ -22,13 +22,14 @@ jobs:
           
       - name: convert to po
         run : |
-          mkdir -p mdpo/po
+          mkdir -p mdpo/ko
+          for i in ${{ env.settings_path_mkdir }}; do mkdir -p mdpo/ko/"$i"; done
           pip install mdpo
-          md2po md ${{ env.settings_path_sum_mdpo }} -q -s -p ./mdpo/po/ko.po
+          for i in ${{ env.settings_path_sum_mdpo }}; do v2=${i::-2}; md2po md $i -q -s -p ./mdpo/ko/"$v2"po; done
       - name: Commit report
         run: |
-          git add ./mdpo/po
+          git add ./mdpo/ko
           git config --global user.name ${{ secrets.USER_NAME_1 }}
           git config --global user.email ${{ secrets.USER_EMAIL_1 }}
-          git commit -am "update ko.po file"
+          git commit -am "update ko.po files"
           git push
