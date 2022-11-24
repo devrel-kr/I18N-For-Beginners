@@ -14,7 +14,6 @@ def read_translated_percent(project, component, language):
     response = requests.request("GET", url)
 
     result = json.loads(response.text)
-    print(result["translated_percent"])
     return result["translated_percent"]
 
 
