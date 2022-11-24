@@ -1,6 +1,12 @@
 name: remote pull request
 on:
   workflow_dispatch:
+  push:
+    branches:
+      - main
+    paths:
+      - mdpo/ko/**
+      
 jobs:
   test:
     name: test
@@ -8,9 +14,27 @@ jobs:
     steps:
       - name: Checkout files
         uses: actions/checkout@v2
-      - name: Create Pull Request
-        uses: peter-evans/create-pull-request@v4.2.0
+      
+      - name: JSON to variables
+        uses: rgarcia-phi/json-to-variables@v1.1.0
         with:
-          commit-message: Update report
-          committer: GitHub <noreply@github.com>
-          branch: sync/waroad/test1234
+          filename: 'mdpo/settings_modified.json'
+          prefix: settings
+          masked: false
+      
+      - name: move files
+        run : |
+          mkdir -p docs/po
+          for i in ${{ env.settings_path_mkdir }}; do mkdir -p docs/po/"$i"; done
+          for i in ${{ env.settings_path_sum_mdpo }}; do mv mdpo/ko/"$i" docs/po/"$i"; done
+          
+      - name: Create pull request
+        uses: paygoc6/action-pull-request-another-repo@v1.0.1
+        env:
+          API_TOKEN_GITHUB: ${{ secrets.PAS_TOKEN }}
+        with:
+          source_folder: './docs/po'
+          destination_repo: 'YYun-D/blog'
+          destination_head_branch: 'test'
+          user_email: ${{ secrets.USER_EMAIL_1 }}
+          user_name: ${{ secrets.USER_NAME_1 }}
