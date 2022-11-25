@@ -24,19 +24,19 @@ jobs:
       
       - name: move files
         run : |
-          mkdir -p docs/po
-          for i in ${{ env.settings_path_mkdir }}; do mkdir -p docs/po/"$i"; done
-          for i in ${{ env.settings_path_sum_mdpo }}; do v=`echo $i | sed 's/.md//g'` ; mv mdpo/ko/${v}.po docs/po/${v}.po ; done
+          mkdir po
+          for i in ${{ env.settings_path_mkdir }}; do v=`echo $i | sed 's/docs\///g'` ; mkdir -p po/${v} ; done
+          for i in ${{ env.settings_path_sum_mdpo }}; do v1=`echo $i | sed 's/.md//g'` ; 
+          v2=`echo $i | sed 's/.md//g' | sed 's/docs\///g'` ; mv mdpo/ko/${v1}.po po/${v2}.po ; done
           
       - name: Pull Request another repository
         uses: car-on-sale/action-pull-request-another-repo@v1.3.0
         env:
           API_TOKEN_GITHUB: ${{ secrets.PAS_TOKEN }}
         with:
-          source_folder: './docs'
-          destination_repo: 'YYun-D/blog'
-          destination_head_branch: 'test'
+          source_folder: 'po'
+          destination_repo: 'devrel-kr/azure-sdk-korean'
+          destination_head_branch: 'update-po-files'
+          destination_folder: 'docs'
           user_email: ${{ secrets.USER_EMAIL_1 }}
           user_name: ${{ secrets.USER_NAME_1 }}
-          pr_title: 'feat: Update PO files'
-
