@@ -38,5 +38,5 @@ jobs:
           destination_head_branch: 'test'
           user_email: ${{ secrets.USER_EMAIL_1 }}
           user_name: ${{ secrets.USER_NAME_1 }}
-          pr_title: 'Update PO files'
+          pr_title: 'feat: Update PO files'
 
