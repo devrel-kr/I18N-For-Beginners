@@ -33,7 +33,7 @@ jobs:
         env:
           API_TOKEN_GITHUB: ${{ secrets.PAS_TOKEN }}
         with:
-          source_folder: './docs/po'
+          source_folder: './docs'
           destination_repo: 'YYun-D/blog'
           destination_head_branch: 'test'
           user_email: ${{ secrets.USER_EMAIL_1 }}
