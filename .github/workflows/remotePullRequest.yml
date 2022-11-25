@@ -28,8 +28,8 @@ jobs:
           for i in ${{ env.settings_path_mkdir }}; do mkdir -p docs/po/"$i"; done
           for i in ${{ env.settings_path_sum_mdpo }}; do v=`echo $i | sed 's/.md//g'` ; mv mdpo/ko/${v}.po docs/po/${v}.po ; done
           
-      - name: Create pull request
-        uses: paygoc6/action-pull-request-another-repo@v1.3.0
+      - name: Pull Request another repository
+        uses: car-on-sale/action-pull-request-another-repo@v1.3.0
         env:
           API_TOKEN_GITHUB: ${{ secrets.PAS_TOKEN }}
         with:
@@ -38,3 +38,5 @@ jobs:
           destination_head_branch: 'test'
           user_email: ${{ secrets.USER_EMAIL_1 }}
           user_name: ${{ secrets.USER_NAME_1 }}
+          pr_title: 'Update PO files'
+
