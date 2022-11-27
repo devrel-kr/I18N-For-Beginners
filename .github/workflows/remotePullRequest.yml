@@ -26,7 +26,7 @@ jobs:
           v2=`echo $i | sed 's/.md//g' | sed 's/docs\///g'` ; mv mdpo/ko/${v1}.po po/${v2}.po ; done
           
       - name: Pull Request another repository
-        uses: paygoc6/action-pull-request-another-repo@v1.0.1
+        uses: YYun-D/action-pull-request-another-repo@main
         env:
           API_TOKEN_GITHUB: ${{ secrets.PAS_TOKEN }}
         with:
