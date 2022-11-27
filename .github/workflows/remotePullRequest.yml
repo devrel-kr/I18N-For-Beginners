@@ -26,7 +26,7 @@ jobs:
           v2=`echo $i | sed 's/.md//g' | sed 's/docs\///g'` ; mv mdpo/ko/${v1}.po po/${v2}.po ; done
           
       - name: Pull Request another repository
-        uses: car-on-sale/action-pull-request-another-repo@v1.3.0
+        uses: paygoc6/action-pull-request-another-repo@v1.0.1
         env:
           API_TOKEN_GITHUB: ${{ secrets.PAS_TOKEN }}
         with:
@@ -36,3 +36,5 @@ jobs:
           destination_folder: 'docs'
           user_email: ${{ secrets.USER_EMAIL_1 }}
           user_name: ${{ secrets.USER_NAME_1 }}
+          
+          
