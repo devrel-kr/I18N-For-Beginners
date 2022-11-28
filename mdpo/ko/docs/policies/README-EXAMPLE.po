@@ -2,10 +2,6 @@
 msgid ""
 msgstr ""
 
-#: docs/policies/README-EXAMPLE.md:block 1 (header)
-msgid "Azure Cosmos DB client library for Python"
-msgstr ""
-
 #: docs/policies/README-EXAMPLE.md:block 2 (paragraph)
 msgid ""
 "Azure Cosmos DB is a globally distributed, multi-model database service that"
@@ -638,3 +634,10 @@ msgstr "[venv]: https://docs.python.org/3/library/venv.html"
 #, fuzzy
 msgid "[virtualenv]: https://virtualenv.pypa.io"
 msgstr "[virtualenv]: https://virtualenv.pypa.io"
+
+#: docs/policies/README-EXAMPLE.md:block 1 (header)
+msgid "Azure Cosmos DB client library for Python22"
+msgstr ""
+
+#~ msgid "Azure Cosmos DB client library for Python"
+#~ msgstr ""
