@@ -1,3 +1,9 @@
+---
+layout: page
+title: mdpo Log
+permalink: /mdpo/
+---
+
 Mon Nov 28 16:44:54 UTC 2022
 ----------
 .github/workflows/sync_file.yml
