@@ -19,3 +19,8 @@ Mon Nov 28 17:07:21 UTC 2022
 mdpo/ko/docs/policies/README-EXAMPLE.po
 modified.
 
+Tue Nov 29 01:19:55 UTC 2022
+----------
+mdpo/mdpo.md
+modified.
+
