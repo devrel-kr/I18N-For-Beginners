@@ -1,7 +1,10 @@
 name: remote pull request
 on:
-  schedule:
-    - cron: "0 0 * * 0"
+  push:
+    branches:
+      - main
+    paths:
+      - mdpo/ko/docs/**
       
 jobs:
   test:
@@ -10,6 +13,8 @@ jobs:
     steps:
       - name: Checkout files
         uses: actions/checkout@v2
+        with:
+          token: ${{secrets.PAS_TOKEN}}
       
       - name: JSON to variables
         uses: rgarcia-phi/json-to-variables@v1.1.0
