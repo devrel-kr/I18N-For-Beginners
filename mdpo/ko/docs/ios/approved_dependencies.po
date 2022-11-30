@@ -1,0 +1,32 @@
+#
+msgid ""
+msgstr ""
+
+#: docs/ios/approved_dependencies.md:block 1 (table)
+msgid "Name"
+msgstr ""
+
+#: docs/ios/approved_dependencies.md:block 1 (table)
+msgid "Role"
+msgstr ""
+
+#: docs/ios/approved_dependencies.md:block 1 (table)
+msgid "Version"
+msgstr ""
+
+#: docs/ios/approved_dependencies.md:block 1 (table)
+msgid "[`LibName`]"
+msgstr ""
+
+#: docs/ios/approved_dependencies.md:block 1 (table)
+msgid "Library Role"
+msgstr ""
+
+#: docs/ios/approved_dependencies.md:block 1 (table)
+msgid "1.0.0"
+msgstr ""
+
+#: docs/ios/approved_dependencies.md:block 1 (table)
+#, fuzzy
+msgid "[`LibName`]: https://aka.ms/go_libname"
+msgstr "[`LibName`]: https://aka.ms/go_libname"
