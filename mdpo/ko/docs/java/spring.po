@@ -1,0 +1,221 @@
+#
+msgid ""
+msgstr ""
+
+#: docs/java/spring.md:block 1 (header)
+msgid ""
+"title: \"Spring Guidelines\"\n"
+"keywords: guidelines java spring\n"
+"permalink: java_spring.html\n"
+"folder: java\n"
+"sidebar: general_sidebar"
+msgstr ""
+
+#: docs/java/spring.md:block 2 (paragraph)
+msgid ""
+"Providing the Spring ecosystem with a first-class experience is of the "
+"utmost importance. The guidelines below are in addition to the [standard "
+"Java design guidelines](https://azure.github.io/azure-"
+"sdk/java_introduction.html), overriding the guidance as appropriate."
+msgstr ""
+
+#: docs/java/spring.md:block 3 (header)
+msgid "Namespaces"
+msgstr ""
+
+#: docs/java/spring.md:block 4 (paragraph)
+msgid ""
+"{% include requirement/MUST id=\"java-spring-namespaces\" %} ensure all Java"
+" packages are named using the form "
+"`com.azure.spring.<group>.<service>[.<feature>]`."
+msgstr ""
+
+#: docs/java/spring.md:block 5 (paragraph)
+msgid ""
+"{% include requirement/MUST id=\"java-spring-same-group\" %} use the same "
+"group, service, and feature naming as is used by the underlying Java client "
+"library."
+msgstr ""
+
+#: docs/java/spring.md:block 6 (paragraph)
+msgid ""
+"{% include requirement/MUST id=\"java-spring-implementation\" %} put all "
+"non-public API under an `implementation` package under the root namespace."
+msgstr ""
+
+#: docs/java/spring.md:block 7 (header)
+msgid "Maven"
+msgstr ""
+
+#: docs/java/spring.md:block 8 (paragraph)
+msgid ""
+"{% include requirement/MUST id=\"java-spring-maven-groupid\" %} use the "
+"group ID of `com.azure.spring`."
+msgstr ""
+
+#: docs/java/spring.md:block 9 (paragraph)
+msgid ""
+"{% include requirement/MUST id=\"java-spring-maven-artifactid\" %} specify "
+"the `artifactId` to be of the form `azure-spring-boot-"
+"starter-<group>-<service>[-<feature>]`, for example, `azure-spring-boot-"
+"starter-storage-blob` or `azure-spring-boot-starter-security-keyvault-"
+"secrets`. For Spring data abstraction, the `artifactId` should be of the "
+"form `azure-spring-data-<group>-<service>[-<feature>]`. For Spring cloud "
+"starters, the `artifactId` should be of the form `azure-spring-cloud-"
+"starter-<group>-<service>[-<feature>]`."
+msgstr ""
+
+#: docs/java/spring.md:block 10 (paragraph)
+msgid ""
+"{% include requirement/MUST id=\"java-spring-azure-sdk-bom\" %} include a "
+"`dependencyManagement` dependency on the Azure Java SDK BOM, so that users "
+"who use Azure Spring libraries can bring in additional dependencies on other"
+" Azure Java client libraries without needing to choose versions."
+msgstr ""
+
+#: docs/java/spring.md:block 11 (header)
+msgid "Versioning"
+msgstr ""
+
+#: docs/java/spring.md:block 12 (paragraph)
+msgid ""
+"Spring Cloud for Azure modules must be versioned in a way that enables the "
+"following goals:"
+msgstr ""
+
+#: docs/java/spring.md:block 13 (ordered list)
+msgid ""
+"Each Spring Cloud for Azure module must be able to release at different "
+"release cadences."
+msgstr ""
+
+#: docs/java/spring.md:block 13 (ordered list)
+msgid ""
+"Each Spring Cloud for Azure module must have full semantic versioning for "
+"major, minor, and patch versions, in all releases. Versioning must not be "
+"tied to the Spring dependency version as in earlier iterations of the Azure "
+"Spring Cloud for Azure modules."
+msgstr ""
+
+#: docs/java/spring.md:block 13 (ordered list)
+msgid ""
+"Allow developers to easily choose Spring Cloud for Azure modules which work "
+"together."
+msgstr ""
+
+#: docs/java/spring.md:block 14 (paragraph)
+msgid ""
+"{% include requirement/MUST id=\"java-spring-supported-versions\" %} ensure "
+"that all releases of a Spring Cloud for Azure module support all active "
+"versions (as of the time of release) of the corresponding Spring API."
+msgstr ""
+
+#: docs/java/spring.md:block 15 (paragraph)
+msgid ""
+"{% include requirement/MUST id=\"java-spring-deps\" %} add latest release "
+"version of Spring API dependencies in the Spring Cloud for Azure module POM "
+"files, it is the users responsibility to override the Spring API version via"
+" Spring BOM."
+msgstr ""
+
+#: docs/java/spring.md:block 16 (paragraph)
+msgid ""
+"{% include requirement/MUST id=\"java-spring-classifiers\" %} add Maven "
+"classifiers to releases if a Spring Cloud for Azure module cannot support "
+"all active versions of the corresponding Spring API. For example, if a "
+"Spring Cloud for Azure module needs to support Spring Boot 2.2.x and 2.3.x, "
+"but cannot due to technical contraints, two versions of the Spring Cloud for"
+" Azure module must be released, with classifiers `springboot_2_2` and "
+"`springboot_2_3`."
+msgstr ""
+
+#: docs/java/spring.md:block 17 (paragraph)
+msgid ""
+"{% include requirement/MUST id=\"java-spring-bom\" %} provide a Spring Cloud"
+" for Azure modules BOM for users. This BOM must contain versions of all "
+"Spring Cloud for Azure modules that are known to work together (and have a "
+"single set of dependency versions). It must also include appropriate "
+"references to Azure Java SDK."
+msgstr ""
+
+#: docs/java/spring.md:block 18 (paragraph)
+msgid ""
+"{% include requirement/MUST id=\"java-spring-bom-docs\" %} encourage users "
+"to use the Spring Cloud for Azure modules BOM for their chosen version of "
+"Spring rather than specific versions of each Spring Cloud for Azure module, "
+"such that they need not worry about Maven classifiers and other versioning "
+"issues."
+msgstr ""
+
+#: docs/java/spring.md:block 19 (header)
+msgid "Dependencies"
+msgstr ""
+
+#: docs/java/spring.md:block 20 (paragraph)
+msgid ""
+"{% include requirement/MUSTNOT id=\"java-spring-dependency-approval\" %} "
+"introduce dependencies on libraries, or change dependency versions, without "
+"discussion with the Java architect. Each dependency must receive explicit "
+"approval and be added to the dependency allow list before it may be used."
+msgstr ""
+
+#: docs/java/spring.md:block 21 (paragraph)
+msgid ""
+"{% include requirement/MUSTNOT id=\"java-spring-dependency-conflicts\" %} "
+"introduce dependencies on library versions that conflict with the transitive"
+" dependencies of Spring libraries."
+msgstr ""
+
+#: docs/java/spring.md:block 22 (paragraph)
+msgid ""
+"{% include requirement/MUST id=\"java-spring-com-azure-deps\" %} make use of"
+" `com.azure` client libraries only - do not mix older `com.microsoft.azure` "
+"client libraries into the dependency hierarchy."
+msgstr ""
+
+#: docs/java/spring.md:block 23 (paragraph)
+msgid ""
+"{% include requirement/MUST id=\"java-spring-dependency-minimal\" %} keep "
+"dependencies to the minimal required set."
+msgstr ""
+
+#: docs/java/spring.md:block 24 (header)
+msgid "Logging"
+msgstr ""
+
+#: docs/java/spring.md:block 25 (paragraph)
+msgid ""
+"{% include requirement/MUSTNOT id=\"java-spring-logging\" %} use the "
+"`ClientLogger` logging APIs."
+msgstr ""
+
+#: docs/java/spring.md:block 26 (header)
+msgid "Tracing"
+msgstr ""
+
+#: docs/java/spring.md:block 27 (paragraph)
+msgid ""
+"{% include requirement/MUST id=\"java-spring-tracing\" %} ensure that all "
+"Azure Spring libraries fully integrate with the tracing capabilities "
+"available in the Azure Java client libraries."
+msgstr ""
+
+#: docs/java/spring.md:block 28 (paragraph)
+msgid ""
+"{% include requirement/MUST id=\"java-spring-tracing-sleuth\" %} ensure that"
+" all Azure Spring libraries work appropriately with Spring Sleuth, and that "
+"tracing information is appropriately exported."
+msgstr ""
+
+#: docs/java/spring.md:block 29 (header)
+msgid "Performance"
+msgstr ""
+
+#: docs/java/spring.md:block 30 (paragraph)
+msgid ""
+"{% include requirement/MUST id=\"java-spring-performance-baseline\" %} "
+"ensure, through appropriate benchmarks (developed in conjuction with the "
+"Java SDK team) that performance of all Spring libraries is at an equivalent "
+"level to the same operation being performed directly through the Java client"
+" library."
+msgstr ""
