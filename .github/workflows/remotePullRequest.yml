@@ -32,7 +32,7 @@ jobs:
           API_TOKEN_GITHUB: ${{ secrets.PAS_TOKEN }}
         with:
           source_folder: 'po'
-          destination_repo: 'devrel-kr/azure-sdk-korean'
+          destination_repo: 'waroad/azure-sdk-korean'
           destination_head_branch: 'update-po-files'
           destination_folder: 'docs'
           user_email: ${{ secrets.USER_EMAIL_1 }}
