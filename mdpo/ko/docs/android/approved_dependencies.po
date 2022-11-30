@@ -1,0 +1,75 @@
+#
+msgid ""
+msgstr ""
+
+#: docs/android/approved_dependencies.md:block 1 (table)
+msgid "Name"
+msgstr ""
+
+#: docs/android/approved_dependencies.md:block 1 (table)
+msgid "Role"
+msgstr ""
+
+#: docs/android/approved_dependencies.md:block 1 (table)
+msgid "Scope"
+msgstr ""
+
+#: docs/android/approved_dependencies.md:block 1 (table)
+msgid "[`ThreeTen`]"
+msgstr ""
+
+#: docs/android/approved_dependencies.md:block 1 (table)
+msgid "JSR-310 Implementation"
+msgstr ""
+
+#: docs/android/approved_dependencies.md:block 1 (table)
+msgid "API"
+msgstr ""
+
+#: docs/android/approved_dependencies.md:block 1 (table)
+msgid "[`OkHttp`]"
+msgstr ""
+
+#: docs/android/approved_dependencies.md:block 1 (table)
+msgid "HTTP Client Implementation"
+msgstr ""
+
+#: docs/android/approved_dependencies.md:block 1 (table)
+msgid "[`Retrofit`]"
+msgstr ""
+
+#: docs/android/approved_dependencies.md:block 1 (table)
+msgid "REST API library"
+msgstr ""
+
+#: docs/android/approved_dependencies.md:block 1 (table)
+msgid "Implementation"
+msgstr ""
+
+#: docs/android/approved_dependencies.md:block 1 (table)
+msgid "[`Jackson`]"
+msgstr ""
+
+#: docs/android/approved_dependencies.md:block 1 (table)
+msgid "JSON parser"
+msgstr ""
+
+#: docs/android/approved_dependencies.md:block 1 (table)
+#, fuzzy
+msgid "[`ThreeTen`]: https://github.com/JakeWharton/ThreeTenABP"
+msgstr "[`ThreeTen`]: https://github.com/JakeWharton/ThreeTenABP"
+
+#: docs/android/approved_dependencies.md:block 1 (table)
+#, fuzzy
+msgid "[`OkHttp`]: https://square.github.io/okhttp/"
+msgstr "[`OkHttp`]: https://square.github.io/okhttp/"
+
+#: docs/android/approved_dependencies.md:block 1 (table)
+#, fuzzy
+msgid "[`Retrofit`]: https://square.github.io/retrofit/"
+msgstr "[`Retrofit`]: https://square.github.io/retrofit/"
+
+#: docs/android/approved_dependencies.md:block 1 (table)
+#, fuzzy
+msgid "[`Jackson`]: https://github.com/FasterXML/jackson"
+msgstr "[`Jackson`]: https://github.com/FasterXML/jackson"

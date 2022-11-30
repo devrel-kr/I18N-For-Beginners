@@ -636,8 +636,8 @@ msgid "[virtualenv]: https://virtualenv.pypa.io"
 msgstr "[virtualenv]: https://virtualenv.pypa.io"
 
 #: docs/policies/README-EXAMPLE.md:block 1 (header)
-msgid "Azure Cosmos DB client library for Python22"
+msgid "Azure Cosmos DB client library for Python"
 msgstr ""
 
-#~ msgid "Azure Cosmos DB client library for Python"
+#~ msgid "Azure Cosmos DB client library for Python22"
 #~ msgstr ""
