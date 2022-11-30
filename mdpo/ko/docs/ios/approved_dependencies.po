@@ -1,14 +1,28 @@
-#
 msgid ""
 msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2022-11-30 11:38+0000\n"
+"PO-Revision-Date: 2022-11-30 11:38+0000\n"
+"Last-Translator: Weblate Admin <weblate.admin@example.com>\n"
+"Language-Team: Korean <http://40.76.85.234/projects/azure-sdk/"
+"docsiosapproved_dependencies/ko/>\n"
+"Language: ko\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+"X-Generator: Weblate 4.14.2\n"
+
+#
 
 #: docs/ios/approved_dependencies.md:block 1 (table)
 msgid "Name"
-msgstr ""
+msgstr "이름"
 
 #: docs/ios/approved_dependencies.md:block 1 (table)
 msgid "Role"
-msgstr ""
+msgstr "역할"
 
 #: docs/ios/approved_dependencies.md:block 1 (table)
 msgid "Version"
