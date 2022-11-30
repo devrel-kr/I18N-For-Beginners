@@ -35,3 +35,8 @@ mdpo/ko/docs/android/approved_dependencies.po
 mdpo/ko/docs/policies/README-EXAMPLE.po
 modified.
 
+Wed Nov 30 11:02:35 UTC 2022
+----------
+mdpo/ko/docs/java/spring.po
+modified.
+
