@@ -1,0 +1,128 @@
+#
+msgid ""
+msgstr ""
+
+#: docs/java/approved_dependencies.md:block 1 (table)
+msgid "Name"
+msgstr ""
+
+#: docs/java/approved_dependencies.md:block 1 (table)
+msgid "Role"
+msgstr ""
+
+#: docs/java/approved_dependencies.md:block 1 (table)
+msgid "Allowed in public API"
+msgstr ""
+
+#: docs/java/approved_dependencies.md:block 1 (table)
+msgid "Notes"
+msgstr ""
+
+#: docs/java/approved_dependencies.md:block 1 (table)
+msgid "[Apache Avro](https://avro.apache.org)"
+msgstr ""
+
+#: docs/java/approved_dependencies.md:block 1 (table)
+msgid "Avro parser"
+msgstr ""
+
+#: docs/java/approved_dependencies.md:block 1 (table)
+msgid "No"
+msgstr ""
+
+#: docs/java/approved_dependencies.md:block 1 (table)
+msgid "Used only in azure-core-serializer-avro-apache."
+msgstr ""
+
+#: docs/java/approved_dependencies.md:block 1 (table)
+msgid "[Jackson](https://github.com/FasterXML/jackson)"
+msgstr ""
+
+#: docs/java/approved_dependencies.md:block 1 (table)
+msgid "JSON parser"
+msgstr ""
+
+#: docs/java/approved_dependencies.md:block 1 (table)
+msgid ""
+"Use azure-core `JsonSerializer` abstractions rather than Jackson directly."
+msgstr ""
+
+#: docs/java/approved_dependencies.md:block 1 (table)
+msgid "[JNA](https://github.com/java-native-access/jna)"
+msgstr ""
+
+#: docs/java/approved_dependencies.md:block 1 (table)
+msgid "Native access to OS"
+msgstr ""
+
+#: docs/java/approved_dependencies.md:block 1 (table)
+msgid "Used only in azure-identity."
+msgstr ""
+
+#: docs/java/approved_dependencies.md:block 1 (table)
+msgid "[Netty](https://netty.io)"
+msgstr ""
+
+#: docs/java/approved_dependencies.md:block 1 (table)
+msgid "HTTP client"
+msgstr ""
+
+#: docs/java/approved_dependencies.md:block 1 (table)
+msgid "Used only in azure-core-http-netty."
+msgstr ""
+
+#: docs/java/approved_dependencies.md:block 1 (table)
+msgid "[OkHttp](https://square.github.io/okhttp/)"
+msgstr ""
+
+#: docs/java/approved_dependencies.md:block 1 (table)
+msgid "Used only in azure-core-http-okhttp."
+msgstr ""
+
+#: docs/java/approved_dependencies.md:block 1 (table)
+msgid "[OpenTelemetry](https://opentelemetry.io/)"
+msgstr ""
+
+#: docs/java/approved_dependencies.md:block 1 (table)
+msgid "Telemetry library"
+msgstr ""
+
+#: docs/java/approved_dependencies.md:block 1 (table)
+msgid "Used only in azure-core-tracing-opentelemetry."
+msgstr ""
+
+#: docs/java/approved_dependencies.md:block 1 (table)
+msgid "[Reactor](https://projectreactor.io)"
+msgstr ""
+
+#: docs/java/approved_dependencies.md:block 1 (table)
+msgid "Reactive library"
+msgstr ""
+
+#: docs/java/approved_dependencies.md:block 1 (table)
+msgid "Yes"
+msgstr ""
+
+#: docs/java/approved_dependencies.md:block 1 (table)
+msgid "[slf4j](https://www.slf4j.org)"
+msgstr ""
+
+#: docs/java/approved_dependencies.md:block 1 (table)
+msgid "Logging framework"
+msgstr ""
+
+#: docs/java/approved_dependencies.md:block 1 (table)
+msgid "Use the azure core `ClientLogger` API rather than `slf4j` directly."
+msgstr ""
+
+#: docs/java/approved_dependencies.md:block 1 (table)
+msgid "[Apache Qpid Proton-J](https://github.com/apache/qpid-proton-j)"
+msgstr ""
+
+#: docs/java/approved_dependencies.md:block 1 (table)
+msgid "AMQP messaging"
+msgstr ""
+
+#: docs/java/approved_dependencies.md:block 1 (table)
+msgid "Used only in azure-core-amqp."
+msgstr ""
