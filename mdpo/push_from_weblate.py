@@ -20,9 +20,15 @@ def read_translated_percent(project, component, language):
 def push_repository_from_weblate(project, component, language):
     url =  WEBLATE_URL % "translations/%s/%s/%s/repository/" %(project, component, language)
     
-    response = requests.request("GET", url)
+    headers = {
+        'Authorization': BEARER_TOKEN, 
+        'Content-Type': 'application/json'
+    }
+    
+    response = requests.request("GET", url, headers=headers)
 
     result = json.loads(response.text)
+    
     if result["needs_commit"]:
         print(true)
 
