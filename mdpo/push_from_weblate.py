@@ -27,6 +27,7 @@ def push_repository_from_weblate(project, component, language):
     }
 
     response = requests.request("POST", url, headers=headers, data=payload)
+    print(response.text)
     return response.text
 
 
