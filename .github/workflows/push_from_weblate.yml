@@ -37,7 +37,7 @@ jobs:
           commit=0
           for i in ${{ env.settings_path_sum_mdpo }}; do v=`echo $i | sed 's/.md//g' | sed 's/\///g'`;
           v1=`python mdpo/push_from_weblate.py azure-sdk ${v,,} ko`; if [[ ${v1} -eq 1 ]]; then commit=1; fi; done
-          echo commit
+          echo $commit
           if [[ ${commit} -eq 1 ]]; then 
           git pull
           content1=`echo $(git diff --stat HEAD^ HEAD mdpo/ko/)`
