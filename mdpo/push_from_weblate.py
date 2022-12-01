@@ -29,10 +29,13 @@ def push_repository_from_weblate(project, component, language):
 
     result = json.loads(response.text)
     
-    if result["needs_commit"]:
+    if result["needs_commit"] == true:
         print("true")
+    
+    if result["needs_commit"] == false:
+        print("false")
 
-    payload = json.dumps({ "operation": "commit" })
+    payload = json.dumps({ "operation": "push" })
     headers = {
         'Authorization': BEARER_TOKEN, 
         'Content-Type': 'application/json'
