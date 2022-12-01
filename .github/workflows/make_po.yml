@@ -48,7 +48,7 @@ jobs:
          git pull
          sed -i '5i\'"" mdpo/mdpo.md
          content1=`echo $(git diff --stat HEAD~1 HEAD~2)`
-         sed -i "5i\\$content1" foo.txt
+         sed -i "5i\\$content1" mdpo/mdpo.md
          sed -i '5i\'"----------" mdpo/mdpo.md
          sed -i '5i\'"$(date +%Y)-$(date +%m)-$(date +%d) $(date +%H):$(date +%M):$(date +%S) (UTC+9)" mdpo/mdpo.md
          git add .
