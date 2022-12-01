@@ -32,7 +32,7 @@ def push_repository_from_weblate(project, component, language):
     if result["needs_commit"]:
         print("true")
     
-    if !result["needs_commit"]:
+    if not result["needs_commit"]:
         print("false")
 
     payload = json.dumps({ "operation": "push" })
