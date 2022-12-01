@@ -1,4 +1,4 @@
 {
-  "path": ["docs/android/design.md","docs/tables/registered_namespaces.md","docs/dotnet/implementation.md", "docs/python/approved_dependencies.md","docs/dotnet/APIListingExample.md","docs/policies/README-EXAMPLE.md", "docs/policies/support.md", "docs/cpp/implementation.md", "docs/android/approved_dependencies.md", "docs/ios/approved_dependencies.md"],
+  "path": ["docs/policies/README-EXAMPLE.md", "docs/policies/support.md", "docs/cpp/implementation.md", "docs/android/approved_dependencies.md", "docs/ios/approved_dependencies.md"],
   "branch": "main"
 }
