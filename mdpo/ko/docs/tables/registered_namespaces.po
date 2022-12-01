@@ -1,0 +1,190 @@
+#
+msgid ""
+msgstr ""
+
+#: docs/tables/registered_namespaces.md:block 1 (header)
+msgid ""
+"title: \"Registered Namespaces\"\n"
+"permalink: registered_namespaces.html\n"
+"folder: general\n"
+"sidebar: general_sidebar"
+msgstr ""
+
+#: docs/tables/registered_namespaces.md:block 2 (paragraph)
+msgid "The following are a list of registered namespaces."
+msgstr ""
+
+#: docs/tables/registered_namespaces.md:block 3 (table)
+msgid "Namespace"
+msgstr ""
+
+#: docs/tables/registered_namespaces.md:block 3 (table)
+msgid "Service Owner"
+msgstr ""
+
+#: docs/tables/registered_namespaces.md:block 3 (table)
+msgid "`azure.ai.formrecognizer`"
+msgstr ""
+
+#: docs/tables/registered_namespaces.md:block 3 (table)
+msgid "[Form Recognizer]"
+msgstr ""
+
+#: docs/tables/registered_namespaces.md:block 3 (table)
+msgid "`azure.ai.textanalytics`"
+msgstr ""
+
+#: docs/tables/registered_namespaces.md:block 3 (table)
+msgid "[Text Analytics]"
+msgstr ""
+
+#: docs/tables/registered_namespaces.md:block 3 (table)
+msgid "`azure.data.appconfiguration`"
+msgstr ""
+
+#: docs/tables/registered_namespaces.md:block 3 (table)
+msgid "[App Configuration]"
+msgstr ""
+
+#: docs/tables/registered_namespaces.md:block 3 (table)
+msgid "`azure.cosmos`"
+msgstr ""
+
+#: docs/tables/registered_namespaces.md:block 3 (table)
+msgid "[Azure Cosmos DB]"
+msgstr ""
+
+#: docs/tables/registered_namespaces.md:block 3 (table)
+msgid "`azure.messaging.eventhubs`"
+msgstr ""
+
+#: docs/tables/registered_namespaces.md:block 3 (table)
+msgid "[Event Hubs]"
+msgstr ""
+
+#: docs/tables/registered_namespaces.md:block 3 (table)
+msgid "`azure.messaging.servicebus`"
+msgstr ""
+
+#: docs/tables/registered_namespaces.md:block 3 (table)
+msgid "[Service Bus]"
+msgstr ""
+
+#: docs/tables/registered_namespaces.md:block 3 (table)
+msgid "`azure.search.documents`"
+msgstr ""
+
+#: docs/tables/registered_namespaces.md:block 3 (table)
+msgid "[Azure Search]"
+msgstr ""
+
+#: docs/tables/registered_namespaces.md:block 3 (table)
+msgid "`azure.security.keyvault`"
+msgstr ""
+
+#: docs/tables/registered_namespaces.md:block 3 (table)
+msgid "[Key Vault]"
+msgstr ""
+
+#: docs/tables/registered_namespaces.md:block 3 (table)
+msgid "`azure.storage.blobs`"
+msgstr ""
+
+#: docs/tables/registered_namespaces.md:block 3 (table)
+msgid "[Azure Storage]"
+msgstr ""
+
+#: docs/tables/registered_namespaces.md:block 3 (table)
+msgid "`azure.storage.files.shares`"
+msgstr ""
+
+#: docs/tables/registered_namespaces.md:block 3 (table)
+msgid "`azure.storage.files.datalake`"
+msgstr ""
+
+#: docs/tables/registered_namespaces.md:block 3 (table)
+msgid "`azure.storage.queues`"
+msgstr ""
+
+#: docs/tables/registered_namespaces.md:block 4 (paragraph)
+msgid ""
+"We represent the namespace in a standard form (each element is all lower "
+"case and starts with the `azure` identifier). This standard form must be "
+"turned into the language-specific form before use. For example, "
+"`azure.security.keyvault` is represented as:"
+msgstr ""
+
+#: docs/tables/registered_namespaces.md:block 5 (unordered list)
+msgid "`com.azure.security.keyvault` in Java,"
+msgstr ""
+
+#: docs/tables/registered_namespaces.md:block 5 (unordered list)
+msgid "`Azure.Security.KeyVault` in .NET, and"
+msgstr ""
+
+#: docs/tables/registered_namespaces.md:block 5 (unordered list)
+msgid "`Azure::Security::KeyVault` in C++."
+msgstr ""
+
+#: docs/tables/registered_namespaces.md:block 6 (paragraph)
+msgid "To register a new namespace, contact the [Architecture Board]."
+msgstr ""
+
+#: docs/tables/registered_namespaces.md:block 7 (paragraph)
+msgid "{% include refs.md %}"
+msgstr ""
+
+#: docs/tables/registered_namespaces.md:block 8 (html)
+#, fuzzy
+msgid ""
+"[App Configuration]: https://azure.microsoft.com/services/app-configuration/"
+msgstr ""
+"[App Configuration]: https://azure.microsoft.com/services/app-configuration/"
+
+#: docs/tables/registered_namespaces.md:block 8 (html)
+#, fuzzy
+msgid "[Azure Cosmos DB]: https://azure.microsoft.com/services/cosmos-db/"
+msgstr "[Azure Cosmos DB]: https://azure.microsoft.com/services/cosmos-db/"
+
+#: docs/tables/registered_namespaces.md:block 8 (html)
+#, fuzzy
+msgid "[Azure Search]: https://azure.microsoft.com/services/search/"
+msgstr "[Azure Search]: https://azure.microsoft.com/services/search/"
+
+#: docs/tables/registered_namespaces.md:block 8 (html)
+#, fuzzy
+msgid "[Azure Storage]: https://azure.microsoft.com/services/storage"
+msgstr "[Azure Storage]: https://azure.microsoft.com/services/storage"
+
+#: docs/tables/registered_namespaces.md:block 8 (html)
+#, fuzzy
+msgid "[Event Hubs]: https://azure.microsoft.com/services/event-hubs/"
+msgstr "[Event Hubs]: https://azure.microsoft.com/services/event-hubs/"
+
+#: docs/tables/registered_namespaces.md:block 8 (html)
+#, fuzzy
+msgid ""
+"[Form Recognizer]: https://azure.microsoft.com/services/cognitive-"
+"services/form-recognizer/"
+msgstr ""
+"[Form Recognizer]: https://azure.microsoft.com/services/cognitive-"
+"services/form-recognizer/"
+
+#: docs/tables/registered_namespaces.md:block 8 (html)
+#, fuzzy
+msgid "[Key Vault]: https://azure.microsoft.com/services/key-vault/"
+msgstr "[Key Vault]: https://azure.microsoft.com/services/key-vault/"
+
+#: docs/tables/registered_namespaces.md:block 8 (html)
+#, fuzzy
+msgid "[Service Bus]: https://azure.microsoft.com/services/service-bus/"
+msgstr "[Service Bus]: https://azure.microsoft.com/services/service-bus/"
+
+#: docs/tables/registered_namespaces.md:block 8 (html)
+#, fuzzy
+msgid ""
+"[Text Analytics]: http://azure.microsoft.com/services/cognitive-"
+"services/text-analytics/"
+msgstr ""
+"[Text Analytics]: http://azure.microsoft.com/services/cognitive-"
+"services/text-analytics/"
