@@ -19,6 +19,12 @@ def read_translated_percent(project, component, language):
 
 def push_repository_from_weblate(project, component, language):
     url =  WEBLATE_URL % "translations/%s/%s/%s/repository/" %(project, component, language)
+    
+    response = requests.request("GET", url)
+
+    result = json.loads(response.text)
+    if result["needs_commit"] == true:
+        print(true)
 
     payload = json.dumps({ "operation": "commit" })
     headers = {
@@ -27,14 +33,12 @@ def push_repository_from_weblate(project, component, language):
     }
 
     response = requests.request("POST", url, headers=headers, data=payload)
-    print(response.text)
     return response.text
 
 
 def main(project, component, language):
     if  read_translated_percent(project, component, language) >= 50:
         push_repository_from_weblate(project, component, language)
-        print(1)
 
 if __name__ == '__main__':
     main(sys.argv[1], sys.argv[2], sys.argv[3])
