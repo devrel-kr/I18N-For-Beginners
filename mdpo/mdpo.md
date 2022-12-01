@@ -1,6 +1,6 @@
 ---
 layout: page
-title: azure-sdk-korean repo change log through mdpo
+title: azure-sdk-korean repo change log
 permalink: /mdpo/
 ---
 
