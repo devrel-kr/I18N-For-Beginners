@@ -1,7 +1,15 @@
 name: remote pull request
 on:
-  workflow_dispatch:
+  schedule:
+      - cron: "0 0 * * 0"
+  push:
+    branches:
+      - main
+    paths:
+      - mdpo/ko/docs/**
       
+  workflow_dispatch:
+  
 jobs:
   test:
     name: test
