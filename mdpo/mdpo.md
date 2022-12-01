@@ -1,6 +1,6 @@
 ---
 layout: page
-title: mdpo Log -> azure-sdk-korean repo change log through mdpo
+title: mdpo Log
 permalink: /mdpo/
 ---
 
@@ -38,5 +38,11 @@ modified.
 Wed Nov 30 11:02:35 UTC 2022
 ----------
 mdpo/ko/docs/java/spring.po
+modified.
+
+Wed Nov 30 11:34:47 UTC 2022
+----------
+mdpo/ko/docs/android/approved_dependencies.po
+mdpo/ko/docs/ios/approved_dependencies.po
 modified.
 
