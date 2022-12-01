@@ -3,6 +3,9 @@ layout: page
 title: azure-sdk-korean repo change log
 permalink: /mdpo/
 ---
+  
+2022-12-01 11:25:40 (UTC+9)
+----------
 
 2022-12-01 11:16:28 (UTC+9)
 ----------
