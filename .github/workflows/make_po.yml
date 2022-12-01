@@ -46,10 +46,10 @@ jobs:
       - name: diff
         run: |
          git pull
+         echo "" | cat - mdpo/mdpo.md > temp && mv temp mdpo/mdpo.md
+         git diff --stat HEAD~0 HEAD~1 docs/ | cat - mdpo/mdpo.md > temp && mv temp mdpo/mdpo.md
+         echo "----------" | cat - mdpo/mdpo.md > temp && mv temp mdpo/mdpo.md
          date >> mdpo/mdpo.md
-         echo "----------" >> mdpo/mdpo.md
-         git diff --stat HEAD~0 HEAD~1 docs/ >> mdpo/mdpo.md
-         echo "" >> mdpo/mdpo.md
          git add .
          git config --global user.name ${{ secrets.USER_NAME_1 }}
          git config --global user.email ${{ secrets.USER_EMAIL_1 }}
