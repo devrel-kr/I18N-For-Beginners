@@ -4,6 +4,9 @@ title: azure-sdk-korean repo change log through mdpo
 permalink: /mdpo/
 ---
 
+2022-12-01 11:13:45 (UTC+9)
+----------
+docs/dotnet/APIListingExample.md | 75 ++++++++++++++++++++++++++++++++++++++++ 1 file changed, 75 insertions(+)
 Mon Nov 28 16:44:54 UTC 2022
 ----------
 .github/workflows/sync_file.yml
