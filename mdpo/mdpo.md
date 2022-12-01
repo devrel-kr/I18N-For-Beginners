@@ -2,6 +2,9 @@
 layout: page
 title: azure-sdk-korean repo change log through mdpo
 permalink: /mdpo/
+2022-12-01 11:11:06 (UTC+9)
+----------
+mdpo/ko/docs/dotnet/APIListingExample.po | 3 +++ 1 file changed, 3 insertions(+)
 ---
 
 Mon Nov 28 16:44:54 UTC 2022
