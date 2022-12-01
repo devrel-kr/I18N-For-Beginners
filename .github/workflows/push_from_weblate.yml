@@ -39,7 +39,7 @@ jobs:
           v1=`python mdpo/push_from_weblate.py azure-sdk ${v,,} ko`; if [[ ${v1} -eq 1 ]]; then commit=1; fi; done
           if [[ ${commit} -eq 1 ]]; then 
           git pull
-          content1=`echo $(git diff --stat HEAD~1 HEAD~2 mdpo/ko/)`
+          content1=`echo $(git diff --stat HEAD mdpo/ko/)`
           sed -i "6i\\$content1" mdpo/mdpo.md
           sed -i '6i\'"----------" mdpo/mdpo.md
           sed -i '6i\'"$(date +%Y)-$(date +%m)-$(date +%d) $(date +%H):$(date +%M):$(date +%S) (UTC+9)" mdpo/mdpo.md
