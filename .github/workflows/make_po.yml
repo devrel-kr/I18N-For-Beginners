@@ -48,8 +48,7 @@ jobs:
          git pull
          date >> mdpo/mdpo.md
          echo "----------" >> mdpo/mdpo.md
-         git diff --name-only HEAD~0 HEAD~1 >> mdpo/mdpo.md
-         echo "modified." >> mdpo/mdpo.md
+         git diff --stat HEAD~0 HEAD~1 docs/ >> mdpo/mdpo.md
          echo "" >> mdpo/mdpo.md
          git add .
          git config --global user.name ${{ secrets.USER_NAME_1 }}
