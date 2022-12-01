@@ -35,7 +35,7 @@ jobs:
           BEARER_TOKEN : ${{ secrets.BEARER_TOKEN }}
         run : |
           for i in ${{ env.settings_path_sum_mdpo }}; do v=`echo $i | sed 's/.md//g' | sed 's/\///g'`;  v1=`python mdpo/push_from_weblate.py azure-sdk ${v,,} ko`; done
-          if [[ ${v1} -eq 1 ]]; then 
+          if [[ ${v1} -eq commit ]]; then 
           content1=`echo $(git diff --stat HEAD~1 HEAD~2 mdpo/ko/)`
           sed -i "6i\\$content1" mdpo/mdpo.md
           sed -i '6i\'"----------" mdpo/mdpo.md
