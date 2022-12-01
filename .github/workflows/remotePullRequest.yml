@@ -27,20 +27,21 @@ jobs:
       
       - name: move files
         run : |
-          mkdir po
-          for i in ${{ env.settings_path_mkdir }}; do v=`echo $i | sed 's/docs\///g'` ; mkdir -p po/${v} ; done
+          mkdir -p docs/po
+          pip install mdpo
+          for i in ${{ env.settings_path_mkdir }}; do v=`echo $i | sed 's/docs\///g'` ; mkdir -p docs/po/${v} ; done
           for i in ${{ env.settings_path_sum_mdpo }}; do v1=`echo $i | sed 's/.md//g'` ; 
-          v2=`echo $i | sed 's/.md//g' | sed 's/docs\///g'` ; mv mdpo/ko/${v1}.po po/${v2}.po ; done
+          v2=`echo $i | sed 's/.md//g' | sed 's/docs\///g'` ; mv mdpo/ko/${v1}.po docs/po/${v2}.po ;
+          po2md $i -p docs/po/${v2}.po -q -s $i ; done
           
       - name: Pull Request another repository
         uses: YYun-D/action-pull-request-another-repo@main
         env:
           API_TOKEN_GITHUB: ${{ secrets.PAS_TOKEN }}
         with:
-          source_folder: 'po'
-          destination_repo: 'waroad/azure-sdk-korean'
+          source_folder: 'docs'
+          destination_repo: 'devrel-kr/azure-sdk-korean'
           destination_head_branch: 'update-po-files'
-          destination_folder: 'docs'
           user_email: ${{ secrets.USER_EMAIL_1 }}
           user_name: ${{ secrets.USER_NAME_1 }}
           
