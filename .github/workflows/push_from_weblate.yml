@@ -34,5 +34,5 @@ jobs:
         env :
           BEARER_TOKEN : ${{ secrets.BEARER_TOKEN }}
         run : |
-          for i in ${{ env.settings_path_sum_mdpo }}; do v=`echo $i | sed 's/.md//g' | sed 's/\///g'`; echo python mdpo/push_from_weblate.py azure-sdk ${v,,} >> result.txt ko; done
+          for i in ${{ env.settings_path_sum_mdpo }}; do v=`echo $i | sed 's/.md//g' | sed 's/\///g'`; echo `python mdpo/push_from_weblate.py azure-sdk ${v,,}` >> result.txt ko; done
           cat result.txt
