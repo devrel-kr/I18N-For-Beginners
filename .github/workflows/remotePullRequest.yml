@@ -1,10 +1,5 @@
 name: remote pull request
 on:
-  push:
-    branches:
-      - main
-    paths:
-      - mdpo/ko/docs/**
       
   workflow_dispatch:
   
