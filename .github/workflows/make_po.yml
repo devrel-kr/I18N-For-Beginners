@@ -46,7 +46,12 @@ jobs:
       - name: diff
         run: |
          git pull
-         scontent1=`echo $(git diff --stat HEAD~1 HEAD~2)`
+         echo git diff --stat HEAD~0 HEAD~1
+         echo git diff --stat HEAD~1 HEAD~2
+         echo git diff --stat HEAD~2 HEAD~3
+         echo git diff --stat HEAD~3 HEAD~4
+         scontent1=`echo $(git diff --stat HEAD~0 HEAD~1 docs/)`
+         sed -i '6i\'"  " mdpo/mdpo.md
          sed -i "6i\\$content1" mdpo/mdpo.md
          sed -i '6i\'"----------" mdpo/mdpo.md
          sed -i '6i\'"$(date +%Y)-$(date +%m)-$(date +%d) $(date +%H):$(date +%M):$(date +%S) (UTC+9)" mdpo/mdpo.md
