@@ -35,7 +35,7 @@ def push_repository_from_weblate(project, component, language):
     result = json.loads(response.text)
 
     if result["needs_commit"]:
-        print("commit")
+        print(1)
 
     payload = json.dumps({ "operation": "push" })
     headers = {
