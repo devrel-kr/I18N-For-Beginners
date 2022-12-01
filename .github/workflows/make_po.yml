@@ -46,11 +46,11 @@ jobs:
       - name: diff
         run: |
          git pull
-         sed -i '7i\'"" mdpo/mdpo.md
+         sed -i '6i\'"" mdpo/mdpo.md
          content1=`echo $(git diff --stat HEAD~1 HEAD~2)`
-         sed -i "7i\\$content1" mdpo/mdpo.md
-         sed -i '7i\'"----------" mdpo/mdpo.md
-         sed -i '7i\'"$(date +%Y)-$(date +%m)-$(date +%d) $(date +%H):$(date +%M):$(date +%S) (UTC+9)" mdpo/mdpo.md
+         sed -i "6i\\$content1" mdpo/mdpo.md
+         sed -i '6i\'"----------" mdpo/mdpo.md
+         sed -i '6i\'"$(date +%Y)-$(date +%m)-$(date +%d) $(date +%H):$(date +%M):$(date +%S) (UTC+9)" mdpo/mdpo.md
          git add .
          git config --global user.name ${{ secrets.USER_NAME_1 }}
          git config --global user.email ${{ secrets.USER_EMAIL_1 }}
