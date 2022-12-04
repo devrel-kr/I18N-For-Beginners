@@ -1,0 +1,197 @@
+#
+msgid ""
+msgstr ""
+
+#: docs/policies/migration-guide-template.md:block 1 (header)
+msgid ""
+"Guide for migrating to (name of new package here) from (name of old package "
+"here)"
+msgstr ""
+
+#: docs/policies/migration-guide-template.md:block 2 (paragraph)
+msgid ""
+"This guide is intended to assist in the migration to (name of new package "
+"here) from (name of old package here). It will focus on side-by-side "
+"comparisons for similar operations between the two packages."
+msgstr ""
+
+#: docs/policies/migration-guide-template.md:block 3 (paragraph)
+msgid ""
+"We assume that you are familiar with (name of old package here). If not, "
+"please refer to the README for (link to the new package here with package "
+"name as link text) rather than this guide."
+msgstr ""
+
+#: docs/policies/migration-guide-template.md:block 4 (header)
+msgid "Table of contents"
+msgstr ""
+
+#: docs/policies/migration-guide-template.md:block 5 (header)
+msgid "Migration benefits"
+msgstr ""
+
+#: docs/policies/migration-guide-template.md:block 6 (paragraph)
+msgid ""
+"As Azure has matured and been embraced by a more diverse group of "
+"developers, we have been focused on learning the patterns and practices to "
+"best support developer productivity and to understand the gaps that the "
+"(language here .NET/JavaScript/Python/Java) client libraries have."
+msgstr ""
+
+#: docs/policies/migration-guide-template.md:block 7 (paragraph)
+msgid ""
+"There were several areas of consistent feedback expressed across the Azure "
+"client library ecosystem. One of the most important is that the client "
+"libraries for different Azure services have not had a consistent approach to"
+" organization, naming, and API structure. Additionally, many developers have"
+" felt that the learning curve was difficult, and the APIs did not offer a "
+"good, approachable, and consistent onboarding story for those learning Azure"
+" or exploring a specific Azure service."
+msgstr ""
+
+#: docs/policies/migration-guide-template.md:block 8 (paragraph)
+msgid ""
+"To improve the development experience across Azure services, a set of "
+"uniform [design guidelines](https://azure.github.io/azure-"
+"sdk/general_introduction.html) was created for all languages to drive a "
+"consistent experience with established API patterns for all services. A set "
+"of (add link to language specific guidelines here with link text like Java "
+"guidelines) was also introduced to ensure that (add language here) clients "
+"have a natural and idiomatic feel with respect to the (add language here) "
+"ecosystem. The new (name of new package here) follows these guidelines."
+msgstr ""
+
+#: docs/policies/migration-guide-template.md:block 9 (header)
+msgid "Cross Service SDK improvements"
+msgstr ""
+
+#: docs/policies/migration-guide-template.md:block 10 (paragraph)
+msgid ""
+"The modern (add service name) client library also provides the ability to "
+"share in some of the cross-service improvements made to the Azure "
+"development experience, such as"
+msgstr ""
+
+#: docs/policies/migration-guide-template.md:block 11 (unordered list)
+msgid ""
+"Using the new (Add the Identity package name here in your language) library "
+"to share a single authentication approach between clients"
+msgstr ""
+
+#: docs/policies/migration-guide-template.md:block 11 (unordered list)
+msgid ""
+"A unified logging and diagnostics pipeline offering a common view of the "
+"activities across each of the client libraries"
+msgstr ""
+
+#: docs/policies/migration-guide-template.md:block 11 (unordered list)
+msgid ""
+"(Add this line only for JS) Use of promises rather than callbacks for a "
+"simplified programming experience"
+msgstr ""
+
+#: docs/policies/migration-guide-template.md:block 11 (unordered list)
+msgid "(Add this line only for JS) Use of async iterators in paging APIs"
+msgstr ""
+
+#: docs/policies/migration-guide-template.md:block 11 (unordered list)
+msgid ""
+"(Add this line only for Java) A unified asynchronous programming model using"
+" [Project Reactor](https://projectreactor.io/)."
+msgstr ""
+
+#: docs/policies/migration-guide-template.md:block 11 (unordered list)
+msgid ""
+"(Add this line only for Java) A unified way of creating clients via "
+"builders."
+msgstr ""
+
+#: docs/policies/migration-guide-template.md:block 12 (header)
+msgid "Performance improvements"
+msgstr ""
+
+#: docs/policies/migration-guide-template.md:block 13 (paragraph)
+msgid ""
+"Use this section to advertise the performance improvements in new package "
+"when compared to the old one. Skip this section if no perf improvements are "
+"found yet."
+msgstr ""
+
+#: docs/policies/migration-guide-template.md:block 14 (header)
+msgid "New features"
+msgstr ""
+
+#: docs/policies/migration-guide-template.md:block 15 (paragraph)
+msgid ""
+"Use this section to advertise any new features in the new package when "
+"compared to the old one. Skip this section if no new features were added"
+msgstr ""
+
+#: docs/policies/migration-guide-template.md:block 16 (header)
+msgid "Important changes"
+msgstr ""
+
+#: docs/policies/migration-guide-template.md:block 17 (header)
+msgid "Package names and namespaces"
+msgstr ""
+
+#: docs/policies/migration-guide-template.md:block 18 (paragraph)
+msgid ""
+"Note: This section is always applicable for .NET and Java, while being "
+"occasionally applicable to JavaScript and Python where we tend to re-use the"
+" old package name where possible. The concept of namespace does not apply to"
+" JavaScript, we use the \"@azure\" scope instead. Remove this section if not"
+" needed. Below example text is for .NET Event Hubs, tweak as needed."
+msgstr ""
+
+#: docs/policies/migration-guide-template.md:block 19 (paragraph)
+msgid ""
+"Package names and the namespace root for the modern Azure client libraries "
+"for .NET have changed. Each will follow the pattern Azure.[Area].[Service] "
+"where the legacy clients followed the pattern Microsoft.Azure.[Service]. "
+"This provides a quick and accessible means to help understand, at a glance, "
+"whether you are using the modern or legacy clients."
+msgstr ""
+
+#: docs/policies/migration-guide-template.md:block 20 (paragraph)
+msgid ""
+"In the case of Event Hubs, the modern client libraries have packages and "
+"namespaces that begin with Azure.Messaging.EventHubs and were released "
+"beginning with version 5. The legacy client libraries have packages and "
+"namespaces that begin with Microsoft.Azure.EventHubs and a version of 4.x.x "
+"or below."
+msgstr ""
+
+#: docs/policies/migration-guide-template.md:block 21 (header)
+msgid "Client hierarchy and constructors"
+msgstr ""
+
+#: docs/policies/migration-guide-template.md:block 22 (paragraph)
+msgid ""
+"If there has been no change other than naming) in client hierarchy or entry "
+"level classes, skip \"hierarchy\" from the header, otherwise talkabout why "
+"the client hierarchy was changed. Compare code snippets for the client "
+"constructors between the old and new packages, while pointing out "
+"differences and the reason behind them."
+msgstr ""
+
+#: docs/policies/migration-guide-template.md:block 23 (header)
+msgid "Champion scenario 1"
+msgstr ""
+
+#: docs/policies/migration-guide-template.md:block 24 (paragraph)
+msgid ""
+"Repeat this section for the common high level usage scenarios for this "
+"library. Show how you would accomplish these both in the old and new "
+"packages, pointing out the key differences, reasons and advantages."
+msgstr ""
+
+#: docs/policies/migration-guide-template.md:block 25 (header)
+msgid "Additional samples"
+msgstr ""
+
+#: docs/policies/migration-guide-template.md:block 26 (paragraph)
+msgid ""
+"More examples can be found at (Add link to samples here with link text "
+"Samples for new package name)"
+msgstr ""
