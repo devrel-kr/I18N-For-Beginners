@@ -42,7 +42,7 @@ jobs:
           content1=`echo $(git diff --stat HEAD~0 HEAD~1 mdpo/ko/)`
           sed -i "6i\\$content1" mdpo/mdpo.md
           sed -i '6i\'"----------" mdpo/mdpo.md
-          sed -i '6i\'"$(date +%Y)-$(date +%m)-$(date +%d) $(date +%H):$(date +%M):$(date +%S) (UTC+9)" mdpo/mdpo.md
+          sed -i '6i\'"$(date +%Y)-$(date +%m)-$(date +%d) $(date +%H):$(date +%M):$(date +%S) (UTC)" mdpo/mdpo.md
           sed -i '6i\'"  " mdpo/mdpo.md; 
           git add .
           git config --global user.name ${{ secrets.USER_NAME_1 }}
