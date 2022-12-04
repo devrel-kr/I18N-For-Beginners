@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2022-11-30 11:27+0000\n"
-"PO-Revision-Date: 2022-12-04 11:39+0000\n"
+"PO-Revision-Date: 2022-12-04 11:52+0000\n"
 "Last-Translator: Weblate Admin <weblate.admin@example.com>\n"
 "Language-Team: Korean <http://40.76.85.234/projects/azure-sdk/"
 "docsandroidapproved_dependencies/ko/>\n"
@@ -17,7 +17,7 @@ msgstr ""
 
 #: docs/android/approved_dependencies.md:block 1 (table)
 msgid "Name"
-msgstr "이름"
+msgstr "제목"
 
 #: docs/android/approved_dependencies.md:block 1 (table)
 msgid "Role"
