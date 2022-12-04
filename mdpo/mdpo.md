@@ -19,7 +19,7 @@ mdpo/ko/docs/android/approved_dependencies.po | 4 ++-- mdpo/ko/docs/ios/approved
 mdpo/ko/docs/android/approved_dependencies.po | 4 ++-- mdpo/ko/docs/ios/approved_dependencies.po | 4 ++-- 2 files changed, 4 insertions(+), 4 deletions(-)
 
 
-2022-12-01 11:47:45 (UTC)
+2022-12-04 11:47:45 (UTC)
 ----------
 docs/android/approved_dependencies.md | 3 ++- 1 file changed, 2 insertions(+), 1 deletions(-)
 
