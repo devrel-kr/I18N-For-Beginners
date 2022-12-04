@@ -1,26 +1,44 @@
-#
 msgid ""
 msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2022-12-04 07:34+0000\n"
+"PO-Revision-Date: 2022-12-04 07:34+0000\n"
+"Last-Translator: 권오민 <dhalsdl12@gmail.com>\n"
+"Language-Team: Korean <http://40.76.85.234/projects/azure-sdk/"
+"docspoliciesreadme-example/ko/>\n"
+"Language: ko\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+"X-Generator: Weblate 4.14.2\n"
+
+#
 
 #: docs/policies/README-EXAMPLE.md:block 2 (paragraph)
 msgid ""
 "Azure Cosmos DB is a globally distributed, multi-model database service that"
 " supports document, key-value, wide-column, and graph databases."
 msgstr ""
+"Azure Cosmos DB는 문서, 키 값, 와이드 컬럼 및 그래프 데이터베이스를 지원하는 "
+"글로벌 분산형 다중 모델 데이터베이스 서비스입니다."
 
 #: docs/policies/README-EXAMPLE.md:block 3 (paragraph)
 msgid ""
 "Use the Cosmos DB client library for Python to manage databases and the JSON"
 " documents they contain in this NoSQL database service:"
 msgstr ""
+"Cosmos DB 클라이언트 라이브러리 for Python을 사용하여 이 NoSQL 데이터베이스 "
+"서비스에 포함된 데이터베이스와 JSON 문서를 관리합니다:"
 
 #: docs/policies/README-EXAMPLE.md:block 4 (unordered list)
 msgid "Create Cosmos DB databases and modify their settings"
-msgstr ""
+msgstr "Cosmos DB 데이터베이스 작성 및 설정 수정"
 
 #: docs/policies/README-EXAMPLE.md:block 4 (unordered list)
 msgid "Create and modify containers to store collections of JSON documents"
-msgstr ""
+msgstr "JSON 문서 모음을 저장할 컨테이너 만들기 및 수정"
 
 #: docs/policies/README-EXAMPLE.md:block 4 (unordered list)
 msgid ""
