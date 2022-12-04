@@ -38,14 +38,7 @@ jobs:
           for i in ${{ env.settings_path_sum_mdpo }}; do v=`echo $i | sed 's/.md//g' | sed 's/\///g'`;
           v1=`python mdpo/push_from_weblate.py azure-sdk ${v,,} ko`; if [[ ${v1} -eq 1 ]]; then commit=1; fi; done
           if [[ ${commit} -eq 1 ]]; then 
-          git pull
-          echo "01"
-          git diff --stat HEAD~0 HEAD~1 mdpo/ko/
-          echo "12"
-          git diff --stat HEAD~1 HEAD~2 mdpo/ko/
-          echo "23"
-          git diff --stat HEAD~2 HEAD~3 mdpo/ko/
-          content1=`echo $(git diff --stat HEAD~1 HEAD~2 mdpo/ko/)`
+          content1=`echo $(git pull)`
           sed -i '6i\'"  " mdpo/mdpo.md
           sed -i "6i\\$content1" mdpo/mdpo.md
           sed -i '6i\'"----------" mdpo/mdpo.md
