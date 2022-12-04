@@ -1,12 +1,26 @@
-#
 msgid ""
 msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2022-12-04 08:16+0000\n"
+"PO-Revision-Date: 2022-12-04 08:16+0000\n"
+"Last-Translator: 권오민 <dhalsdl12@gmail.com>\n"
+"Language-Team: Korean <http://40.76.85.234/projects/azure-sdk/"
+"docspoliciesmigration-guide-template/ko/>\n"
+"Language: ko\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+"X-Generator: Weblate 4.14.2\n"
+
+#
 
 #: docs/policies/migration-guide-template.md:block 1 (header)
 msgid ""
 "Guide for migrating to (name of new package here) from (name of old package "
 "here)"
-msgstr ""
+msgstr "(이전 패키지 이름)에서 (여기서 새 패키지 이름)로 마이그레이션하기 위한 안내서"
 
 #: docs/policies/migration-guide-template.md:block 2 (paragraph)
 msgid ""
@@ -14,6 +28,9 @@ msgid ""
 "here) from (name of old package here). It will focus on side-by-side "
 "comparisons for similar operations between the two packages."
 msgstr ""
+"이 안내서는 (이전 패키지 이름)에서 (새 패키지 이름)으로 마이그레이션하는 데 "
+"도움을 주기 위한 것입니다. 두 패키지 간의 유사한 작업에 대한 병렬 비교에 "
+"초점을 맞출 것이다."
 
 #: docs/policies/migration-guide-template.md:block 3 (paragraph)
 msgid ""
@@ -21,14 +38,17 @@ msgid ""
 "please refer to the README for (link to the new package here with package "
 "name as link text) rather than this guide."
 msgstr ""
+"우리는 당신이 (여기 있는 오래된 소포의 이름)을 잘 알고 있을 것이라고 "
+"생각합니다. 그렇지 않은 경우 본 가이드가 아닌 README for(패키지 이름을 링크 "
+"텍스트로 사용하여 여기에 있는 새 패키지 링크)를 참조하십시오."
 
 #: docs/policies/migration-guide-template.md:block 4 (header)
 msgid "Table of contents"
-msgstr ""
+msgstr "목차"
 
 #: docs/policies/migration-guide-template.md:block 5 (header)
 msgid "Migration benefits"
-msgstr ""
+msgstr "마이그레이션 이점"
 
 #: docs/policies/migration-guide-template.md:block 6 (paragraph)
 msgid ""
@@ -37,6 +57,10 @@ msgid ""
 "best support developer productivity and to understand the gaps that the "
 "(language here .NET/JavaScript/Python/Java) client libraries have."
 msgstr ""
+"Azure가 성숙해지고 더 다양한 개발자 그룹에 수용됨에 따라, 우리는 개발자 "
+"생산성을 최상으로 지원하고 (이 언어의) 차이를 이해하기 위한 패턴과 관행을 "
+"배우는 데 초점을 맞추고 있다.NET/JavaScript/Python/Java) 클라이언트 "
+"라이브러리에는 다음이 있습니다."
 
 #: docs/policies/migration-guide-template.md:block 7 (paragraph)
 msgid ""
@@ -48,6 +72,12 @@ msgid ""
 "good, approachable, and consistent onboarding story for those learning Azure"
 " or exploring a specific Azure service."
 msgstr ""
+"Azure 클라이언트 라이브러리 생태계 전반에 걸쳐 일관된 피드백을 제공하는 몇 "
+"가지 영역이 있었습니다. 가장 중요한 것 중 하나는 서로 다른 Azure 서비스를 "
+"위한 클라이언트 라이브러리가 조직, 명명 및 API 구조에 일관된 접근 방식을 "
+"가지고 있지 않다는 것입니다. 또한 많은 개발자들은 학습 곡선이 어렵다고 "
+"느꼈으며, API는 Azure를 학습하거나 특정 Azure 서비스를 탐색하는 사람들에게 "
+"좋고, 접근 가능하며, 일관된 온보딩 스토리를 제공하지 않았다."
 
 #: docs/policies/migration-guide-template.md:block 8 (paragraph)
 msgid ""
@@ -60,10 +90,17 @@ msgid ""
 "have a natural and idiomatic feel with respect to the (add language here) "
 "ecosystem. The new (name of new package here) follows these guidelines."
 msgstr ""
+"Azure 서비스 전반에 걸쳐 개발 경험을 개선하기 위해 모든 언어에 대해 모든 "
+"서비스에 대해 설정된 API 패턴으로 일관된 경험을 제공할 수 있는 일련의 통일된 "
+"[디자인 가이드라인](https://azure.github.io/azure-sdk/general_introduction."
+"html))이 만들어졌습니다. (Java 지침과 같은 링크 텍스트를 사용하여 언어별 "
+"지침에 링크 추가) 또한 (여기에 언어 추가) 클라이언트가 (여기에 언어 추가) "
+"생태계와 관련하여 자연스럽고 관용적인 느낌을 갖도록 하기 위해 "
+"도입되었습니다. 새 패키지(여기서 새 패키지 이름)는 다음 지침을 따릅니다."
 
 #: docs/policies/migration-guide-template.md:block 9 (header)
 msgid "Cross Service SDK improvements"
-msgstr ""
+msgstr "서비스 간 SDK 개선"
 
 #: docs/policies/migration-guide-template.md:block 10 (paragraph)
 msgid ""
@@ -71,40 +108,46 @@ msgid ""
 "share in some of the cross-service improvements made to the Azure "
 "development experience, such as"
 msgstr ""
+"최신(서비스 이름 추가) 클라이언트 라이브러리는 다음과 같은 Azure 개발 경험에 "
+"대한 교차 서비스 개선 사항을 공유할 수 있는 기능도 제공합니다"
 
 #: docs/policies/migration-guide-template.md:block 11 (unordered list)
 msgid ""
 "Using the new (Add the Identity package name here in your language) library "
 "to share a single authentication approach between clients"
-msgstr ""
+msgstr "새(사용자 언어로 여기에 ID 패키지 이름 추가) 라이브러리를 사용하여 "
+"클라이언트 간에 단일 인증 접근 방식 공유"
 
 #: docs/policies/migration-guide-template.md:block 11 (unordered list)
 msgid ""
 "A unified logging and diagnostics pipeline offering a common view of the "
 "activities across each of the client libraries"
-msgstr ""
+msgstr "각 클라이언트 라이브러리의 활동에 대한 공통 보기를 제공하는 통합 로깅 및 "
+"진단 파이프라인"
 
 #: docs/policies/migration-guide-template.md:block 11 (unordered list)
 msgid ""
 "(Add this line only for JS) Use of promises rather than callbacks for a "
 "simplified programming experience"
-msgstr ""
+msgstr "(JS에 대해서만 이 줄 추가) 단순화된 프로그래밍 경험을 위한 콜백보다 약속 사용"
 
 #: docs/policies/migration-guide-template.md:block 11 (unordered list)
 msgid "(Add this line only for JS) Use of async iterators in paging APIs"
-msgstr ""
+msgstr "(JS에 대해서만 이 줄 추가) 호출 API에서 비동기 사용"
 
 #: docs/policies/migration-guide-template.md:block 11 (unordered list)
 msgid ""
 "(Add this line only for Java) A unified asynchronous programming model using"
 " [Project Reactor](https://projectreactor.io/)."
 msgstr ""
+"(Java에 대해서만 이 행 추가) [Project Reactor](https://projectreactor.io/)를 "
+"사용하는 통합 비동기 프로그래밍 모델입니다."
 
 #: docs/policies/migration-guide-template.md:block 11 (unordered list)
 msgid ""
 "(Add this line only for Java) A unified way of creating clients via "
 "builders."
-msgstr ""
+msgstr "(Java 전용으로 이 줄 추가) 빌더를 통해 클라이언트를 만드는 통합된 방법입니다."
 
 #: docs/policies/migration-guide-template.md:block 12 (header)
 msgid "Performance improvements"
