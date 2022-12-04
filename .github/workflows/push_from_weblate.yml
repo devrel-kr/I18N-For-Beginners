@@ -38,7 +38,7 @@ jobs:
           for i in ${{ env.settings_path_sum_mdpo }}; do v=`echo $i | sed 's/.md//g' | sed 's/\///g'`;
           v1=`python mdpo/push_from_weblate.py azure-sdk ${v,,} ko`; if [[ ${v1} -eq 1 ]]; then commit=1; fi; done
           if [[ ${commit} -eq 1 ]]; then 
-          content1=`echo $(git pull | sed 's/^.*Fast-forward//')`
+          content1=`echo $(git pull) | sed 's/^.*Fast-forward//'`
           sed -i '6i\'"  " mdpo/mdpo.md
           sed -i "6i\\$content1" mdpo/mdpo.md
           sed -i '6i\'"----------" mdpo/mdpo.md
