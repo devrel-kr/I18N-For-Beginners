@@ -10,14 +10,16 @@
 
 ## 기능 설명
 
-* 타깃으로 할 마크다운 파일들을 [settings.json](https://github.com/waroad/test1234/blob/main/settings.json)을 통해 특정합니다.
+* 타깃으로 할 마크다운 파일들을 [settings.json](https://github.com/devrel-kr/I18N-For-Beginners/blob/main/settings.json)을 통해 특정합니다.
 
 * 타깃으로 한 파일들이 [Azure-sdk](https://github.com/Azure/azure-sdk) 에서 업데이트 될 경우, 현재 레포에 있는 [sync_file](https://github.com/waroad/test1234/blob/main/.github/workflows/sync_file.yml) 깃허브 액션이 업데이트된 마크다운을 가져옵니다.
 
-* 마크다운 파일이 업데이트 되면, [make po](https://github.com/waroad/test1234/blob/main/.github/workflows/make_po.yml) 깃허브 액션이 mdpo를 활용하여 ko.po(portable object) 로 변환 후 [Weblate](https://weblate.org/ko/)에 업로드 시켜줍니다.
+* 마크다운 파일이 업데이트 되면, [make po](https://github.com/devrel-kr/I18N-For-Beginners/blob/main/.github/workflows/make_po.yml) 깃허브 액션이 mdpo를 활용하여 ko.po(portable object) 로 변환 후 [Weblate](https://weblate.org/ko/)에 업로드 시켜줍니다.
 
 * Weblate에서 일정 퍼센티지 이상 번역이 됐을 경우 [devrel-kr/azure-sdk-korea](https://github.com/devrel-kr/azure-sdk-korean) 에 번역된 마크다운을 po파일과 함께
 Pull request해 줍니다.
+
+[여기서](http://azuresdkweblate.eastus.cloudapp.azure.com/) 번역해, devrel-kr/azure-sdk-korea 번역에 기여해주세요.
 
 ## 사용한 Library
 <img src="https://mondeja.github.io/mdpo/latest/_static/mdpo.png" width= "100px" alt = "mdpo" />
