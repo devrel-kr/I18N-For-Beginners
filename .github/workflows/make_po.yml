@@ -46,6 +46,8 @@ jobs:
       - name: diff
         run: | 
          git pull
+         echo "log"
+         git diff --stat HEAD~0 HEAD~1 docs/
          content1=`echo $(git diff --stat HEAD~0 HEAD~3 docs/)`
          sed -i '6i\'"  " mdpo/mdpo.md
          sed -i "6i\\$content1" mdpo/mdpo.md
