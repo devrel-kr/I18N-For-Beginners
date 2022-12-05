@@ -44,8 +44,9 @@ jobs:
         with:
           fetch-depth: 3
       - name: diff
-        run: |
-         content1=`echo $(git pull) | sed 's/^.*Fast-forward//'`
+        run: | 
+         git pull
+         content1=`echo $(git diff --stat HEAD~1 HEAD~2 docs/)`
          sed -i '6i\'"  " mdpo/mdpo.md
          sed -i "6i\\$content1" mdpo/mdpo.md
          sed -i '6i\'"----------" mdpo/mdpo.md
