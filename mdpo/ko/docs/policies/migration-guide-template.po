@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2022-12-04 08:16+0000\n"
-"PO-Revision-Date: 2022-12-04 09:09+0000\n"
+"PO-Revision-Date: 2022-12-05 10:20+0000\n"
 "Last-Translator: Weblate Admin <weblate.admin@example.com>\n"
 "Language-Team: Korean <http://40.76.85.234/projects/azure-sdk/"
 "docspoliciesmigration-guide-template/ko/>\n"
@@ -151,7 +151,7 @@ msgstr "(자바에만 이 줄을 추가하시오) 빌드를 통해 고객을 창
 
 #: docs/policies/migration-guide-template.md:block 12 (header)
 msgid "Performance improvements"
-msgstr ""
+msgstr "기능 향상"
 
 #: docs/policies/migration-guide-template.md:block 13 (paragraph)
 msgid ""
