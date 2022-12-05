@@ -18,7 +18,7 @@ msgstr ""
 msgid ""
 "Guide for migrating to (name of new package here) from (name of old package "
 "here)"
-msgstr "이전 패키지에서 새 패키지로 이동하기 위한 안내서"
+msgstr ""
 
 #: docs/policies/migration-guide-template.md:block 2 (paragraph)
 msgid ""
