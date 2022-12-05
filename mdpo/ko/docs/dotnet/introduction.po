@@ -1,0 +1,2242 @@
+#
+msgid ""
+msgstr ""
+
+#: docs/dotnet/introduction.md:block 1 (header)
+msgid ""
+"title: \".NET Azure SDK Design Guidelines\"\n"
+"keywords: guidelines dotnet\n"
+"permalink: dotnet_introduction.html\n"
+"folder: dotnet\n"
+"sidebar: general_sidebar"
+msgstr ""
+
+#: docs/dotnet/introduction.md:block 2 (header)
+msgid "Introduction"
+msgstr ""
+
+#: docs/dotnet/introduction.md:block 3 (paragraph)
+msgid ""
+"The following document describes .NET specific guidelines for designing "
+"Azure SDK client libraries. These guidelines complement general [.NET "
+"Framework Design Guidelines](https://aka.ms/fxdg3) with design "
+"considerations specific to the Azure SDK. These guidelines also expand on "
+"and simplify language-independent [General Azure SDK Guidelines][general-"
+"guidelines]. More specific guidelines take precedence over more general "
+"guidelines."
+msgstr ""
+
+#: docs/dotnet/introduction.md:block 4 (paragraph)
+msgid ""
+"Throughout this document, we'll use the client library for the [Azure "
+"Application Configuration service](https://github.com/Azure/azure-sdk-for-"
+"net/tree/main/sdk/appconfiguration/Azure.Data.AppConfiguration) to "
+"illustrate various design concepts."
+msgstr ""
+
+#: docs/dotnet/introduction.md:block 5 (header)
+msgid "Design Principles {#dotnet-principles}"
+msgstr ""
+
+#: docs/dotnet/introduction.md:block 6 (paragraph)
+msgid ""
+"The main value of the Azure SDK is **productivity** building applications "
+"with Azure services. Other qualities, such as completeness, extensibility, "
+"and performance are important but secondary. We ensure our customers can be "
+"highly productive when using our libraries by ensuring these libraries are:"
+msgstr ""
+
+#: docs/dotnet/introduction.md:block 7 (paragraph)
+msgid "**Idiomatic**"
+msgstr ""
+
+#: docs/dotnet/introduction.md:block 8 (unordered list)
+msgid ""
+"Azure SDK libraries follow [.NET Framework Design "
+"Guidelines](https://aka.ms/fxdg3)."
+msgstr ""
+
+#: docs/dotnet/introduction.md:block 8 (unordered list)
+msgid ""
+"Azure SDK libraries feel like designed by the designers of the .NET Standard"
+" libraries."
+msgstr ""
+
+#: docs/dotnet/introduction.md:block 8 (unordered list)
+msgid "Azure SDK libraries version just like the .NET Standard libraries."
+msgstr ""
+
+#: docs/dotnet/introduction.md:block 9 (quote)
+msgid ""
+"We are not trying to fix bad parts of the language ecosystem; we embrace the"
+" ecosystem with its strengths and its flaws."
+msgstr ""
+
+#: docs/dotnet/introduction.md:block 10 (paragraph)
+msgid "**Consistent**"
+msgstr ""
+
+#: docs/dotnet/introduction.md:block 11 (unordered list)
+msgid ""
+"The Azure SDK feels like a single product of a single team, not a set of "
+"unrelated NuGet packages."
+msgstr ""
+
+#: docs/dotnet/introduction.md:block 11 (unordered list)
+msgid ""
+"Users learn common concepts once; apply the knowledge across all SDK "
+"components."
+msgstr ""
+
+#: docs/dotnet/introduction.md:block 11 (unordered list)
+msgid "All differences from the guidelines must have good reasons."
+msgstr ""
+
+#: docs/dotnet/introduction.md:block 12 (paragraph)
+msgid "**Approachable**"
+msgstr ""
+
+#: docs/dotnet/introduction.md:block 13 (unordered list)
+msgid "Small number of steps to get started; power knobs for advanced users"
+msgstr ""
+
+#: docs/dotnet/introduction.md:block 13 (unordered list)
+msgid ""
+"Small number of concepts; small number of types; small number of members"
+msgstr ""
+
+#: docs/dotnet/introduction.md:block 13 (unordered list)
+msgid ""
+"Approachable by our users, not only by engineers designing the SDK "
+"components"
+msgstr ""
+
+#: docs/dotnet/introduction.md:block 13 (unordered list)
+msgid "Easy to find great *getting started* guides and samples"
+msgstr ""
+
+#: docs/dotnet/introduction.md:block 13 (unordered list)
+msgid "Easy to acquire"
+msgstr ""
+
+#: docs/dotnet/introduction.md:block 14 (paragraph)
+msgid "**Dependable**"
+msgstr ""
+
+#: docs/dotnet/introduction.md:block 15 (unordered list)
+msgid "100% backward compatible"
+msgstr ""
+
+#: docs/dotnet/introduction.md:block 15 (unordered list)
+msgid "Great logging, tracing, and error messages"
+msgstr ""
+
+#: docs/dotnet/introduction.md:block 15 (unordered list)
+msgid "Predictable support lifecycle, feature coverage, and quality"
+msgstr ""
+
+#: docs/dotnet/introduction.md:block 16 (header)
+msgid "General Guidelines {#dotnet-general}"
+msgstr ""
+
+#: docs/dotnet/introduction.md:block 17 (paragraph)
+msgid ""
+"{% include requirement/MUST id=\"dotnet-general-follow-framework-"
+"guidelines\" %} follow the official [.NET Framework Design "
+"Guidelines](https://aka.ms/fxdg3)."
+msgstr ""
+
+#: docs/dotnet/introduction.md:block 18 (paragraph)
+msgid ""
+"At the end of this document, you can find a section with [the most commonly "
+"overlooked guidelines](#dotnet-appendix-overlookedguidelines) in existing "
+"Azure SDK libraries."
+msgstr ""
+
+#: docs/dotnet/introduction.md:block 19 (paragraph)
+msgid ""
+"{% include requirement/MUST id=\"dotnet-general-follow-general-guidelines\" "
+"%} follow the [General Azure SDK Guidelines][general-guidelines]."
+msgstr ""
+
+#: docs/dotnet/introduction.md:block 20 (paragraph)
+msgid ""
+"The guidelines provide a robust methodology for communicating with Azure "
+"services. The easiest way to ensure that your component meets these "
+"requirements is to use the [Azure.Core] package to call Azure services. "
+"Details of these helper APIs and their usage are described in the [Using "
+"HttpPipeline](implementation.md#dotnet-usage-httppipeline) section."
+msgstr ""
+
+#: docs/dotnet/introduction.md:block 21 (paragraph)
+msgid ""
+"{% include requirement/MUST id=\"dotnet-general-use-http-pipeline\" %} use "
+"`HttpPipeline` to implement all methods that call Azure REST services."
+msgstr ""
+
+#: docs/dotnet/introduction.md:block 22 (paragraph)
+msgid ""
+"The pipeline can be found in the [Azure.Core] package, and it takes care of "
+"many [General Azure SDK Guidelines][general-guidelines]. Details of the "
+"pipeline design and usage are described in section [Using "
+"HttpPipeline](implementation.md#dotnet-usage-httppipeline) below. If you "
+"can't use the pipeline, you must implement [all the general requirements of "
+"Azure SDK]({{ \"/general_azurecore.html\" | relative_url }}) manually."
+msgstr ""
+
+#: docs/dotnet/introduction.md:block 23 (header)
+msgid "Support for non-HTTP Protocols"
+msgstr ""
+
+#: docs/dotnet/introduction.md:block 24 (paragraph)
+msgid ""
+"This document contains guidelines developed primarily for typical Azure REST"
+" services, i.e. stateless services with request-response based interaction "
+"model. Many of the guidelines in this document are more broadly applicable, "
+"but some might be specific to such REST services."
+msgstr ""
+
+#: docs/dotnet/introduction.md:block 25 (header)
+msgid "Azure SDK API Design {#dotnet-api}"
+msgstr ""
+
+#: docs/dotnet/introduction.md:block 26 (paragraph)
+msgid ""
+"Azure services are exposed to .NET developers as one or more [service "
+"client](#dotnet-client) types and a set of [supporting types](#supporting-"
+"types). The supporting types may include various [subclients](#dotnet-"
+"subclients), which give structure to the API by organizing groups of related"
+" service operations, and [model types](#dotnet-model-types), which represent"
+" resources on the service."
+msgstr ""
+
+#: docs/dotnet/introduction.md:block 27 (header)
+msgid "The Service Client {#dotnet-client}"
+msgstr ""
+
+#: docs/dotnet/introduction.md:block 28 (paragraph)
+msgid ""
+"Service clients are the main starting points for developers calling Azure "
+"services with the Azure SDK. Each client library should have at least one "
+"client in its main namespace, so it's easy to discover. The guidelines in "
+"this section describe patterns for the design of a service client."
+msgstr ""
+
+#: docs/dotnet/introduction.md:block 29 (paragraph)
+msgid "A service client should have the same shape as this code snippet:"
+msgstr ""
+
+#: docs/dotnet/introduction.md:block 31 (paragraph)
+msgid ""
+"For example, the Application Configuration Service client looks like this "
+"code snippet:"
+msgstr ""
+
+#: docs/dotnet/introduction.md:block 33 (paragraph)
+msgid ""
+"You can find the full sources of [here](https://github.com/Azure/azure-sdk-"
+"for-"
+"net/blob/main/sdk/appconfiguration/Azure.Data.AppConfiguration/src/ConfigurationClient.cs)."
+msgstr ""
+
+#: docs/dotnet/introduction.md:block 34 (paragraph)
+msgid ""
+"{% include requirement/MUST id=\"dotnet-client-naming\" %} name service "
+"client types with the *Client* suffix."
+msgstr ""
+
+#: docs/dotnet/introduction.md:block 35 (paragraph)
+msgid ""
+"For example, the service client for the Application Configuration service is"
+" called `ConfigurationClient`."
+msgstr ""
+
+#: docs/dotnet/introduction.md:block 36 (paragraph)
+msgid ""
+"{% include requirement/MUST id=\"dotnet-client-location\" %} place at least "
+"one service client in the root namespace of their corresponding component."
+msgstr ""
+
+#: docs/dotnet/introduction.md:block 37 (paragraph)
+msgid ""
+"{% include requirement/MUST id=\"dotnet-client-type\" %} make service "
+"clients classes (reference types), not structs (value types)."
+msgstr ""
+
+#: docs/dotnet/introduction.md:block 38 (paragraph)
+msgid ""
+"{% include requirement/MUST id=\"dotnet-client-immutable\" %} make service "
+"clients immutable."
+msgstr ""
+
+#: docs/dotnet/introduction.md:block 39 (paragraph)
+msgid ""
+"Client instances are often shared between threads (stored in application "
+"statics) and it should be difficult, if not impossible, for one of these "
+"threads to affect others."
+msgstr ""
+
+#: docs/dotnet/introduction.md:block 40 (paragraph)
+msgid ""
+"{% include requirement/MUST id=\"dotnet-client-namespace\" %} see [Namespace"
+" Naming](#dotnet-namespace-naming) guidelines for how to choose the "
+"namespace for the client types."
+msgstr ""
+
+#: docs/dotnet/introduction.md:block 41 (header)
+msgid "Service Client Constructors {#dotnet-client-ctor}"
+msgstr ""
+
+#: docs/dotnet/introduction.md:block 42 (paragraph)
+msgid ""
+"{% include requirement/MUST id=\"dotnet-client-constructor-minimal\" %} "
+"provide a minimal constructor that takes only the parameters required to "
+"connect to the service."
+msgstr ""
+
+#: docs/dotnet/introduction.md:block 43 (paragraph)
+msgid ""
+"For example, you may use a connection string, or host name and "
+"authentication. It should be easy to start using the client without "
+"extensive customization."
+msgstr ""
+
+#: docs/dotnet/introduction.md:block 45 (paragraph)
+msgid ""
+"{% include requirement/MUSTNOT id=\"dotnet-client-constructor-no-default-"
+"params\" %} use default parameters in the simplest constructor."
+msgstr ""
+
+#: docs/dotnet/introduction.md:block 46 (paragraph)
+msgid ""
+"{% include requirement/MUST id=\"dotnet-client-constructor-overloads\" %} "
+"provide constructor overloads that allow specifying additional options such "
+"as credentials, a custom HTTP pipeline, or advanced configuration."
+msgstr ""
+
+#: docs/dotnet/introduction.md:block 47 (paragraph)
+msgid ""
+"Custom pipeline and client-specific configuration are represented by an "
+"`options` parameter. The type of the parameter is typically a subclass of "
+"`ClientOptions` type, shown below."
+msgstr ""
+
+#: docs/dotnet/introduction.md:block 48 (header)
+msgid "Using ClientOptions {#dotnet-usage-options}"
+msgstr ""
+
+#: docs/dotnet/introduction.md:block 49 (paragraph)
+msgid ""
+"{% include requirement/MUST id=\"dotnet-http-pipeline-options\" %} name "
+"subclasses of `ClientOptions` by adding *Options* suffix to the name of the "
+"client type the options subclass is configuring."
+msgstr ""
+
+#: docs/dotnet/introduction.md:block 51 (paragraph)
+msgid ""
+"If the options type can be shared by multiple client types, name it with a "
+"more general name, such as `<library_name>ClientOptions`. For example, the "
+"`BlobClientOptions` class can be used by `BlobClient`, "
+"`BlobContainerClient`, and `BlobAccountClient`."
+msgstr ""
+
+#: docs/dotnet/introduction.md:block 52 (paragraph)
+msgid ""
+"{% include requirement/MUSTNOT id=\"dotnet-options-no-default-constructor\" "
+"%} have a default constructor on the options type."
+msgstr ""
+
+#: docs/dotnet/introduction.md:block 53 (paragraph)
+msgid ""
+"Each overload constructor should take at least `version` parameter to "
+"specify the service version. See [Versioning](#dotnet-service-version-"
+"option) guidelines for details."
+msgstr ""
+
+#: docs/dotnet/introduction.md:block 54 (paragraph)
+msgid ""
+"For example, the `ConfigurationClient` type and its public constructors look"
+" as follows:"
+msgstr ""
+
+#: docs/dotnet/introduction.md:block 56 (header)
+msgid "Service Versions {#dotnet-service-version-option}"
+msgstr ""
+
+#: docs/dotnet/introduction.md:block 57 (paragraph)
+msgid ""
+"{% include requirement/MUST id=\"dotnet-versioning-highest-api\" %} call the"
+" highest supported service API version by default."
+msgstr ""
+
+#: docs/dotnet/introduction.md:block 58 (paragraph)
+msgid ""
+"{% include requirement/MUST id=\"dotnet-versioning-select-api-version\" %} "
+"allow the consumer to explicitly select a supported service API version when"
+" instantiating the service client."
+msgstr ""
+
+#: docs/dotnet/introduction.md:block 59 (paragraph)
+msgid ""
+"Use a constructor parameter called `version` on the client options type."
+msgstr ""
+
+#: docs/dotnet/introduction.md:block 60 (unordered list)
+msgid ""
+"The `version` parameter must be the first parameter to all constructor "
+"overloads."
+msgstr ""
+
+#: docs/dotnet/introduction.md:block 60 (unordered list)
+msgid ""
+"The `version` parameter must be required, and default to the latest "
+"supported service version."
+msgstr ""
+
+#: docs/dotnet/introduction.md:block 60 (unordered list)
+msgid ""
+"The type of the `version` parameter must be `ServiceVersion`; an enum nested"
+" in the options type."
+msgstr ""
+
+#: docs/dotnet/introduction.md:block 60 (unordered list)
+msgid "The `ServiceVersion` enum must use explicit values starting from 1."
+msgstr ""
+
+#: docs/dotnet/introduction.md:block 60 (unordered list)
+msgid ""
+"`ServiceVersion` enum value 0 is reserved. When 0 is passed into APIs, "
+"ArgumentException should be thrown."
+msgstr ""
+
+#: docs/dotnet/introduction.md:block 61 (paragraph)
+msgid ""
+"For example, the following is a code snippet from the "
+"`ConfigurationClientOptions`:"
+msgstr ""
+
+#: docs/dotnet/introduction.md:block 63 (paragraph)
+msgid ""
+"{% include note.html content=\"Third-party reusable libraries shouldn't "
+"change behavior without an explicit decision by the developer. When "
+"developing libraries that are based on the Azure SDK, lock the library to a "
+"specific service version to avoid changes in behavior.\" %}"
+msgstr ""
+
+#: docs/dotnet/introduction.md:block 64 (paragraph)
+msgid ""
+"{% include requirement/MUSTNOT id=\"dotnet-versioning-feature-flags\" %} "
+"force consumers to test service API versions to check support for a feature."
+" Use the *tester-doer* .NET pattern to implement feature flags, or use "
+"`Nullable<T>`."
+msgstr ""
+
+#: docs/dotnet/introduction.md:block 65 (paragraph)
+msgid ""
+"For example, if the client library supports two service versions, only one "
+"of which can return batches, the consumer might write the following code:"
+msgstr ""
+
+#: docs/dotnet/introduction.md:block 67 (header)
+msgid "Mocking"
+msgstr ""
+
+#: docs/dotnet/introduction.md:block 68 (paragraph)
+msgid ""
+"{% include requirement/MUST id=\"dotnet-client-constructor-for-mocking\" %} "
+"provide protected parameterless constructor for mocking."
+msgstr ""
+
+#: docs/dotnet/introduction.md:block 70 (paragraph)
+msgid ""
+"{% include requirement/MUSTNOT id=\"dotnet-client-constructor-use-params\" "
+"%} reference virtual properties of the client class as parameters to other "
+"methods or constructors within the client constructor. This violates the "
+"[.NET Framework Constructor Design] because a field to which a virtual "
+"property refers may not be initialized yet, or a mocked virtual property may"
+" not be set up yet. Use parameters or local variables instead:"
+msgstr ""
+
+#: docs/dotnet/introduction.md:block 72 (paragraph)
+msgid ""
+"In mocks, using the virtual property instead of the parameter requires the "
+"property to be mocked to return the value before the constructor is called "
+"when the mock is created. In [Moq] this requires using the delegate "
+"parameter to create the mock, which may not be an obvious workaround."
+msgstr ""
+
+#: docs/dotnet/introduction.md:block 73 (paragraph)
+msgid "See [Support for Mocking](#dotnet-mocking) for details."
+msgstr ""
+
+#: docs/dotnet/introduction.md:block 74 (header)
+msgid "Subclients {#dotnet-subclients}"
+msgstr ""
+
+#: docs/dotnet/introduction.md:block 75 (paragraph)
+msgid ""
+"There are two categories of clients: *service clients* and their "
+"*subclients*. Service clients can be instantiated and [have the `Client` "
+"suffix](#dotnet-client-naming). Subclients can only be created by calling "
+"factory methods on other clients (commonly on service clients) and do not "
+"have the client suffix."
+msgstr ""
+
+#: docs/dotnet/introduction.md:block 76 (paragraph)
+msgid ""
+"As discussed above, the [service client](#dotnet-client) is the entry point "
+"to the API for an Azure service -- from it, library users can invoke all "
+"operations the service provides and can easily implement the most common "
+"scenarios. Where it will simplify an API's design, groups of service calls "
+"can be organized around smaller subclient types."
+msgstr ""
+
+#: docs/dotnet/introduction.md:block 77 (paragraph)
+msgid ""
+"{% include requirement/MUST id=\"dotnet-service-client-entry-point\" %} use "
+"service clients to indicate the starting point(s) for the most common "
+"customer scenarios."
+msgstr ""
+
+#: docs/dotnet/introduction.md:block 78 (paragraph)
+msgid ""
+"{% include requirement/SHOULD id=\"dotnet-use-subclients\" %} use subclients"
+" to group operations related to a service resource or functional area to "
+"improve API usability."
+msgstr ""
+
+#: docs/dotnet/introduction.md:block 79 (paragraph)
+msgid "There are a variety of types of subclients. These include:"
+msgstr ""
+
+#: docs/dotnet/introduction.md:block 80 (unordered list)
+msgid ""
+"*Resource Clients*, which group methods bound to a specific resource, along "
+"with information about the resource."
+msgstr ""
+
+#: docs/dotnet/introduction.md:block 80 (unordered list)
+msgid ""
+"*Operation Group Clients*, which are not bound to a resource but group "
+"related operations. If referring to a specific resource, these would take a "
+"resource identifier as a parameter."
+msgstr ""
+
+#: docs/dotnet/introduction.md:block 80 (unordered list)
+msgid ""
+"Subclasses of `Operation<T>`, which manage service calls related to [long "
+"running operations](#dotnet-longrunning)."
+msgstr ""
+
+#: docs/dotnet/introduction.md:block 80 (unordered list)
+msgid ""
+"`Pageable<T>` types returned from [paging methods](#dotnet-paging), which "
+"manage service calls to retrieve pages of elements in a collection."
+msgstr ""
+
+#: docs/dotnet/introduction.md:block 81 (paragraph)
+msgid ""
+"For example, in the Azure Container Registry API, a "
+"`ContainerRegistryClient` service client provides an entry point for "
+"communicating with the service, and a `ContainerRepository` resource client "
+"organizes operations related to a specific repository resource:"
+msgstr ""
+
+#: docs/dotnet/introduction.md:block 83 (paragraph)
+msgid ""
+"`ServiceBusSender` groups operations for sending messages to a specific "
+"entity with properties that identify that entity."
+msgstr ""
+
+#: docs/dotnet/introduction.md:block 85 (paragraph)
+msgid ""
+"{% include requirement/MUST id=\"dotnet-subclient-factory-methods\" %} "
+"provide factory methods to create a subclient."
+msgstr ""
+
+#: docs/dotnet/introduction.md:block 86 (paragraph)
+msgid ""
+"{% include requirement/MAY id=\"dotnet-subclient-factory-methods-suffix\" %}"
+" include a suffix the method that creates a subclient, according to the "
+"table below:"
+msgstr ""
+
+#: docs/dotnet/introduction.md:block 87 (table)
+msgid "Client Type"
+msgstr ""
+
+#: docs/dotnet/introduction.md:block 87 (table)
+msgid "Naming Convention"
+msgstr ""
+
+#: docs/dotnet/introduction.md:block 87 (table)
+msgid "Factory Method Naming Convention"
+msgstr ""
+
+#: docs/dotnet/introduction.md:block 87 (table)
+msgid "Service Client"
+msgstr ""
+
+#: docs/dotnet/introduction.md:block 87 (table)
+msgid "`Client` Suffix"
+msgstr ""
+
+#: docs/dotnet/introduction.md:block 87 (table)
+msgid "Get<client>Client()"
+msgstr ""
+
+#: docs/dotnet/introduction.md:block 87 (table)
+msgid "Resource Client"
+msgstr ""
+
+#: docs/dotnet/introduction.md:block 87 (table)
+msgid "No Suffix"
+msgstr ""
+
+#: docs/dotnet/introduction.md:block 87 (table)
+msgid "Get<resource>()"
+msgstr ""
+
+#: docs/dotnet/introduction.md:block 87 (table)
+msgid "Operation Group Client"
+msgstr ""
+
+#: docs/dotnet/introduction.md:block 87 (table)
+msgid "Get<group>Client()"
+msgstr ""
+
+#: docs/dotnet/introduction.md:block 87 (table)
+msgid "[Long Running Operation](#dotnet-longrunning)"
+msgstr ""
+
+#: docs/dotnet/introduction.md:block 87 (table)
+msgid "`Operation` Suffix"
+msgstr ""
+
+#: docs/dotnet/introduction.md:block 87 (table)
+msgid "(long LRO) `Start` prefix; (short LRO) no prefix"
+msgstr ""
+
+#: docs/dotnet/introduction.md:block 87 (table)
+msgid "[Pageable](#dotnet-paging)"
+msgstr ""
+
+#: docs/dotnet/introduction.md:block 87 (table)
+msgid "`Pageable<T>`"
+msgstr ""
+
+#: docs/dotnet/introduction.md:block 87 (table)
+msgid "Get<resource>s"
+msgstr ""
+
+#: docs/dotnet/introduction.md:block 88 (paragraph)
+msgid ""
+"{% include requirement/SHOULD id=\"dotnet-subclient-factory-methods-"
+"parameters\" %} take a resource identifier as a parameter to the resource "
+"client factory method."
+msgstr ""
+
+#: docs/dotnet/introduction.md:block 89 (paragraph)
+msgid ""
+"{% include requirement/SHOULD id=\"dotnet-subclient-properties\" %} expose "
+"resource identifiers as properties on the resource client."
+msgstr ""
+
+#: docs/dotnet/introduction.md:block 90 (paragraph)
+msgid ""
+"{% include requirement/MAY id=\"dotnet-subclient-collections\" %} place "
+"operations on collections of resources a separate subclient to avoid "
+"cluttering the parent client with too many methods."
+msgstr ""
+
+#: docs/dotnet/introduction.md:block 91 (paragraph)
+msgid ""
+"While API usability is the primary reason for subclients, another motivating"
+" factor is resource efficiency. [Clients need to be "
+"cached](https://devblogs.microsoft.com/azure-sdk/lifetime-management-and-"
+"thread-safety-guarantees-of-azure-sdk-net-clients/), so if the set of client"
+" instances is large or unlimited (in case the client takes a scoping "
+"parameter, like a hub, or a container), using subclients allows an "
+"application to cache the top level client and create instances of subclients"
+" on demand. In addition, if there is an expensive shared resource (e.g. an "
+"AMQP connection), subclients are preferred, as they naturally lead to "
+"resource sharing."
+msgstr ""
+
+#: docs/dotnet/introduction.md:block 92 (paragraph)
+msgid ""
+"{% include requirement/SHOULD id=\"dotnet-service-client-entry-point\" %} "
+"use the `HttpPipeline` that belongs to the type providing the factory method"
+" to make network calls to the service from the subclient. An exception to "
+"this might be if subclient needs different pipeline policies than the parent"
+" client."
+msgstr ""
+
+#: docs/dotnet/introduction.md:block 93 (paragraph)
+msgid ""
+"{% include requirement/MUSTNOT id=\"dotnet-subclient-no-constructor\" %} "
+"provide a public constructor on a subclient. Subclients are non-instantiable"
+" by design."
+msgstr ""
+
+#: docs/dotnet/introduction.md:block 94 (paragraph)
+msgid ""
+"{% include requirement/MUST id=\"dotnet-subclient-mocking\" %} provide a "
+"protected parameterless constructor on subclients for mocking."
+msgstr ""
+
+#: docs/dotnet/introduction.md:block 95 (header)
+msgid ""
+"Choosing between Service Clients and Subclients {#dotnet-choosing-client-"
+"types}"
+msgstr ""
+
+#: docs/dotnet/introduction.md:block 96 (paragraph)
+msgid ""
+"In many cases, an Azure SDK API should contain one service client and zero "
+"or more subclients. Both service clients and subclients have [service "
+"methods](#dotnet-client-methods). Consider adding more than one service "
+"client to the API in the following cases:"
+msgstr ""
+
+#: docs/dotnet/introduction.md:block 97 (paragraph)
+msgid ""
+"{% include requirement/MAY id=\"dotnet-service-client-multiple-target-"
+"customers\" %} consider providing an additional service client in an API "
+"when the service has different common scenarios for multiple target users, "
+"such as a service administrator and an end-user of the entities the "
+"administrator creates."
+msgstr ""
+
+#: docs/dotnet/introduction.md:block 98 (paragraph)
+msgid ""
+"For example, the Azure Form Recognizer library provides a "
+"`FormRecognizerClient` for application developers to read form fields in "
+"their applications, and a `FormTrainingClient` for data scientist customers "
+"to train the form recognition models."
+msgstr ""
+
+#: docs/dotnet/introduction.md:block 99 (paragraph)
+msgid ""
+"{% include requirement/MAY id=\"dotnet-service-client-advanced-scenarios\" "
+"%} consider providing an additional service client when a service has "
+"advanced scenarios you want to keep separate from the types that support the"
+" most common scenarios. In this case, consider using a `.Specialized` "
+"namespace to contain the additional clients."
+msgstr ""
+
+#: docs/dotnet/introduction.md:block 100 (paragraph)
+msgid ""
+"For example, the Azure Storage Blobs library provides a `BlockBlobClient` in"
+" the `Azure.Storage.Blobs.Specialized` namespace that gives finer grained "
+"control of how blobs are uploaded. For further discussion of designing APIs "
+"for advanced scenarios, please see the [.NET Framework "
+"Guidelines](https://aka.ms/fxdg3) sections on progressive frameworks and the"
+" principle of layered architecture."
+msgstr ""
+
+#: docs/dotnet/introduction.md:block 101 (paragraph)
+msgid ""
+"{% include requirement/MAY id=\"dotnet-service-client-direct-resource-urls\""
+" %} consider providing an additional service client for a service resource "
+"that is commonly referenced with a URL that points to it directly. This will"
+" allow users to instantiate a client directly from the resource endpoint, "
+"without needing to parse the URL to obtain the root service endpoint."
+msgstr ""
+
+#: docs/dotnet/introduction.md:block 102 (paragraph)
+msgid ""
+"{% include requirement/MAY id=\"dotnet-service-client-resource-hierarchy\" "
+"%} consider providing additional service clients for each level in a "
+"resource hierarchy. For service clients representing resources in a "
+"hierarchy, you should also provide a `<parent>.Get<child>Client(...)` method"
+" to retrieve the client for the named child."
+msgstr ""
+
+#: docs/dotnet/introduction.md:block 103 (paragraph)
+msgid ""
+"For example, the Azure Storage service provides an account that contains "
+"zero or more containers, which in turn contain zero or more blobs. The Azure"
+" SDK storage library provides service clients for each level: "
+"`BlobServiceClient`, `BlobContainerClient`, and `BlobClient`."
+msgstr ""
+
+#: docs/dotnet/introduction.md:block 105 (header)
+msgid "Service Methods {#dotnet-client-methods}"
+msgstr ""
+
+#: docs/dotnet/introduction.md:block 106 (paragraph)
+msgid ""
+"*Service methods* are the methods on the client that invoke operations on "
+"the service."
+msgstr ""
+
+#: docs/dotnet/introduction.md:block 107 (paragraph)
+msgid ""
+"Here are the main service methods in the `ConfigurationClient`. They meet "
+"all the guidelines that are discussed below."
+msgstr ""
+
+#: docs/dotnet/introduction.md:block 109 (header)
+msgid "Sync and Async"
+msgstr ""
+
+#: docs/dotnet/introduction.md:block 110 (paragraph)
+msgid ""
+"{% include requirement/MUST id=\"dotnet-service-methods-sync-and-async\" %} "
+"provide both asynchronous and synchronous variants for all service methods."
+msgstr ""
+
+#: docs/dotnet/introduction.md:block 111 (paragraph)
+msgid ""
+"Many developers want to port existing applications to the Cloud. These "
+"applications are often synchronous, and the cost of rewriting them to be "
+"asynchronous is usually prohibitive. Calling asynchronous APIs from "
+"synchronous methods can only be done through a technique called [*sync-over-"
+"async*, which can cause "
+"deadlocks](https://devblogs.microsoft.com/pfxteam/should-i-expose-"
+"synchronous-wrappers-for-asynchronous-methods/). The Azure SDK provides "
+"synchronous APIs to minimize friction when porting existing application to "
+"Azure."
+msgstr ""
+
+#: docs/dotnet/introduction.md:block 112 (paragraph)
+msgid ""
+"{% include requirement/MUST id=\"dotnet-service-methods-naming\" %} ensure "
+"that the names of the asynchronous and the synchronous variants differ only "
+"by the *Async* suffix."
+msgstr ""
+
+#: docs/dotnet/introduction.md:block 113 (header)
+msgid "Naming"
+msgstr ""
+
+#: docs/dotnet/introduction.md:block 114 (paragraph)
+msgid ""
+"Most methods in Azure SDK libraries should be named following the typical "
+".NET method naming conventions. The Azure SDK Design Guidelines add special "
+"conventions for methods that access and manipulate server resources."
+msgstr ""
+
+#: docs/dotnet/introduction.md:block 115 (paragraph)
+msgid ""
+"{% include requirement/SHOULD id=\"general-client-standardize-verbs\" %} use"
+" standard verbs for methods that access or manipulate server resources."
+msgstr ""
+
+#: docs/dotnet/introduction.md:block 117 (paragraph)
+msgid ""
+"{% assign data = site.data.tables.net_standard_verbs.entries %} {% include "
+"tables/standard_verbs_template.html %}"
+msgstr ""
+
+#: docs/dotnet/introduction.md:block 118 (header)
+msgid "Cancellation"
+msgstr ""
+
+#: docs/dotnet/introduction.md:block 119 (paragraph)
+msgid ""
+"{% include requirement/MUST id=\"dotnet-service-methods-cancellation\" %} "
+"ensure all service methods, both asynchronous and synchronous, take an "
+"optional `CancellationToken` parameter called *cancellationToken*."
+msgstr ""
+
+#: docs/dotnet/introduction.md:block 120 (paragraph)
+msgid ""
+"The token should be further passed to all calls that take a cancellation "
+"token. DO NOT check the token manually, except when running a significant "
+"amount of CPU-bound work within the library, e.g. a loop that can take more "
+"than a typical network call."
+msgstr ""
+
+#: docs/dotnet/introduction.md:block 122 (paragraph)
+msgid ""
+"{% include requirement/MUST id=\"dotnet-service-methods-virtual\" %} make "
+"service methods virtual."
+msgstr ""
+
+#: docs/dotnet/introduction.md:block 123 (paragraph)
+msgid ""
+"Virtual methods are used to support mocking. See [Support for "
+"Mocking](#dotnet-mocking) for details."
+msgstr ""
+
+#: docs/dotnet/introduction.md:block 124 (header)
+msgid "Return Types"
+msgstr ""
+
+#: docs/dotnet/introduction.md:block 125 (paragraph)
+msgid ""
+"{% include requirement/MUST id=\"dotnet-service-methods-response-sync\" %} "
+"return `Response<T>` or `Response` from synchronous methods."
+msgstr ""
+
+#: docs/dotnet/introduction.md:block 126 (paragraph)
+msgid "`T` represents the content of the response, as described below."
+msgstr ""
+
+#: docs/dotnet/introduction.md:block 127 (paragraph)
+msgid ""
+"{% include requirement/MUST id=\"dotnet-service-methods-response-async\" %} "
+"return `Task<Response<T>>` or `Task<Response>` from asynchronous methods "
+"that make network requests."
+msgstr ""
+
+#: docs/dotnet/introduction.md:block 128 (paragraph)
+msgid ""
+"There are two possible return types from asynchronous methods: `Task` and "
+"`ValueTask`. Your code will be doing a network request in the majority of "
+"cases. The `Task` variant is more appropriate for this use case. For more "
+"information, see [this blog "
+"post](https://devblogs.microsoft.com/dotnet/understanding-the-whys-whats-"
+"and-whens-of-valuetask/#user-content-should-every-new-asynchronous-api-"
+"return-valuetask--valuetasktresult)."
+msgstr ""
+
+#: docs/dotnet/introduction.md:block 130 (paragraph)
+msgid ""
+"The `T` can be either an unstructured payload (e.g. bytes of a storage blob)"
+" or a *model type* representing deserialized response content."
+msgstr ""
+
+#: docs/dotnet/introduction.md:block 131 (paragraph)
+msgid ""
+"{% include requirement/MUST id=\"dotnet-service-return-unstructured-type\" "
+"%} use one of the following return types to represent an unstructured "
+"payload:"
+msgstr ""
+
+#: docs/dotnet/introduction.md:block 132 (unordered list)
+msgid "`System.IO.Stream` - for large payloads"
+msgstr ""
+
+#: docs/dotnet/introduction.md:block 132 (unordered list)
+msgid "`byte[]` - for small payloads"
+msgstr ""
+
+#: docs/dotnet/introduction.md:block 132 (unordered list)
+msgid "`ReadOnlyMemory<byte>` - for slices of small payloads"
+msgstr ""
+
+#: docs/dotnet/introduction.md:block 133 (paragraph)
+msgid ""
+"{% include requirement/MUST id=\"dotnet-service-return-model-type\" %} "
+"return a *model type* if the content has a schema and can be deserialized."
+msgstr ""
+
+#: docs/dotnet/introduction.md:block 134 (paragraph)
+msgid "For more information, see [Model Types](#dotnet-model-types)"
+msgstr ""
+
+#: docs/dotnet/introduction.md:block 135 (header)
+msgid "Thread Safety"
+msgstr ""
+
+#: docs/dotnet/introduction.md:block 136 (paragraph)
+msgid ""
+"{% include requirement/MUST id=\"dotnet-service-methods-thread-safety\" %} "
+"be thread-safe. All public members of the client type must be safe to call "
+"from multiple threads concurrently."
+msgstr ""
+
+#: docs/dotnet/introduction.md:block 137 (header)
+msgid "Service Method Parameters {#dotnet-parameters}"
+msgstr ""
+
+#: docs/dotnet/introduction.md:block 138 (paragraph)
+msgid ""
+"Service methods fall into two main groups when it comes to the number and "
+"complexity of parameters they accept:"
+msgstr ""
+
+#: docs/dotnet/introduction.md:block 139 (unordered list)
+msgid "Service Methods with Simple Inputs, *simple methods* for short"
+msgstr ""
+
+#: docs/dotnet/introduction.md:block 139 (unordered list)
+msgid "Service Methods with Complex Inputs, *complex methods* for short"
+msgstr ""
+
+#: docs/dotnet/introduction.md:block 140 (paragraph)
+msgid ""
+"*Simple methods* are methods that take up to six parameters, with most of "
+"the parameters being simple BCL primitives. *Complex methods* are methods "
+"that take large number of parameters and typically correspond to REST APIs "
+"with complex request payloads."
+msgstr ""
+
+#: docs/dotnet/introduction.md:block 141 (paragraph)
+msgid ""
+"*Simple methods* should follow standard [.NET Framework Design "
+"Guidelines](https://aka.ms/fxdg3) for parameter list and overload design."
+msgstr ""
+
+#: docs/dotnet/introduction.md:block 142 (paragraph)
+msgid ""
+"*Complex methods* should use *option parameter* to represent the request "
+"payload, and consider providing convenience simple overloads for most common"
+" scenarios."
+msgstr ""
+
+#: docs/dotnet/introduction.md:block 144 (paragraph)
+msgid ""
+"The *Options* class is designed similarly to .NET custom attributes, where "
+"required service method parameters are modeled as *Options* class "
+"constructor parameters and get-only properties, and optional parameters are "
+"get-set properties."
+msgstr ""
+
+#: docs/dotnet/introduction.md:block 145 (paragraph)
+msgid ""
+"{% include requirement/MUST id=\"dotnet-params-complex\" %} use the "
+"*options* parameter pattern for complex service methods."
+msgstr ""
+
+#: docs/dotnet/introduction.md:block 146 (paragraph)
+msgid ""
+"{% include requirement/MAY id=\"dotnet-params-complex\" %} use the *options*"
+" parameter pattern for simple service methods that you expect to `grow` in "
+"the future."
+msgstr ""
+
+#: docs/dotnet/introduction.md:block 147 (paragraph)
+msgid ""
+"{% include requirement/MAY id=\"dotnet-params-complex\" %} add simple "
+"overloads of methods using the *options* parameter pattern."
+msgstr ""
+
+#: docs/dotnet/introduction.md:block 148 (paragraph)
+msgid ""
+"If in common scenarios, users are likely to pass just a small subset of what"
+" the *options* parameter represents, consider adding an overload with a "
+"parameter list representing just this subset."
+msgstr ""
+
+#: docs/dotnet/introduction.md:block 150 (paragraph)
+msgid ""
+"{% include requirement/MAY id=\"dotnet-params-options\" %} name the *option "
+"parameter* type with the 'Options' suffix."
+msgstr ""
+
+#: docs/dotnet/introduction.md:block 151 (header)
+msgid "Parameter Validation"
+msgstr ""
+
+#: docs/dotnet/introduction.md:block 152 (paragraph)
+msgid ""
+"Service methods take two kinds of parameters: *service parameters* and "
+"*client parameters*. *Service parameters* are sent across the wire to the "
+"service as URL segments, query parameters, request header values, and "
+"request bodies (typically JSON or XML). *Client parameters* are used solely "
+"within the client library and are not sent to the service; examples are path"
+" parameters, CancellationTokens or file paths."
+msgstr ""
+
+#: docs/dotnet/introduction.md:block 153 (paragraph)
+msgid ""
+"{% include requirement/MUST id=\"dotnet-params-client-validation\" %} "
+"validate client parameters."
+msgstr ""
+
+#: docs/dotnet/introduction.md:block 154 (paragraph)
+msgid ""
+"{% include requirement/MUSTNOT id=\"dotnet-params-service-validation\" %} "
+"validate service parameters."
+msgstr ""
+
+#: docs/dotnet/introduction.md:block 155 (paragraph)
+msgid ""
+"Common parameter validations include null checks, empty string checks, and "
+"range checks. Let the service validate its parameters."
+msgstr ""
+
+#: docs/dotnet/introduction.md:block 156 (paragraph)
+msgid ""
+"{% include requirement/MUST id=\"dotnet-params-test-devex\" %} test the "
+"developer experience when invalid service parameters are passed in. Ensure "
+"clear error messages are generated by the client. If the developer "
+"experience is inadequate, work with the service team to correct the problem."
+msgstr ""
+
+#: docs/dotnet/introduction.md:block 157 (header)
+msgid "Methods Returning Collections (Paging) {#dotnet-paging}"
+msgstr ""
+
+#: docs/dotnet/introduction.md:block 158 (paragraph)
+msgid ""
+"Many Azure REST APIs return collections of data in batches or pages. A "
+"client library will expose such APIs as special enumerable types "
+"`Pageable<T>` or `AsyncPageable<T>`. These types are located in the "
+"`Azure.Core` package."
+msgstr ""
+
+#: docs/dotnet/introduction.md:block 159 (paragraph)
+msgid ""
+"For example, the configuration service returns collections of items as "
+"follows:"
+msgstr ""
+
+#: docs/dotnet/introduction.md:block 161 (paragraph)
+msgid ""
+"{% include requirement/MUST id=\"dotnet-pagination-ienumerable\" %} return "
+"`Pageable<T>` or `AsyncPageable<T>` from service methods that return a "
+"collection of items."
+msgstr ""
+
+#: docs/dotnet/introduction.md:block 162 (header)
+msgid "Methods Invoking Long Running Operations {#dotnet-longrunning}"
+msgstr ""
+
+#: docs/dotnet/introduction.md:block 163 (paragraph)
+msgid ""
+"Some service operations, known as *Long Running Operations* or *LROs* take a"
+" long time (up to hours or days). Such operations do not return their result"
+" immediately, but rather are started, their progress is polled, and finally "
+"the result of the operation is retrieved."
+msgstr ""
+
+#: docs/dotnet/introduction.md:block 164 (paragraph)
+msgid ""
+"Azure.Core library exposes an abstract type called `Operation<T>`, which "
+"represents such LROs and supports operations for polling and waiting for "
+"status changes, and retrieving the final operation result. A service method "
+"invoking a long running operation will return a subclass of `Operation<T>`, "
+"as shown below."
+msgstr ""
+
+#: docs/dotnet/introduction.md:block 165 (paragraph)
+msgid ""
+"Note that some older libraries use a slightly different, older LRO pattern. "
+"In the old pattern, LRO methods started with the prefix 'Start' and did not "
+"take the `WaitUntil` parameter. Such libraries are free to continue using "
+"this older pattern, or they can transition to the new pattern."
+msgstr ""
+
+#: docs/dotnet/introduction.md:block 167 (paragraph)
+msgid ""
+"Client libraries need to inherit from `Operation<T>` not only to implement "
+"all abstract members, but also to provide a constructor required to access "
+"an existing LRO (an LRO initiated by a different process)."
+msgstr ""
+
+#: docs/dotnet/introduction.md:block 169 (paragraph)
+msgid ""
+"The following code snippet shows how an SDK consumer would use the "
+"`Operation` to poll for a response."
+msgstr ""
+
+#: docs/dotnet/introduction.md:block 171 (paragraph)
+msgid ""
+"{% include requirement/MUST id=\"dotnet-lro-return\" %} return a subclass of"
+" `Operation<T>` from LRO methods."
+msgstr ""
+
+#: docs/dotnet/introduction.md:block 172 (paragraph)
+msgid ""
+"{% include requirement/MUST id=\"dotnet-lro-waituntil\" %} take `WaitUntil` "
+"as the first parameter to LRO methods."
+msgstr ""
+
+#: docs/dotnet/introduction.md:block 173 (paragraph)
+msgid ""
+"{% include requirement/MAY id=\"dotnet-lro-subclass\" %} add additional APIs"
+" to subclasses of `Operation<T>`. For example, some subclasses add a "
+"constructor allowing to create an operation instance from a previously saved"
+" operation ID. Also, some subclasses are more granular states besides the "
+"IsCompleted and HasValue states that are present on the base class."
+msgstr ""
+
+#: docs/dotnet/introduction.md:block 174 (paragraph)
+msgid ""
+"{% include requirement/MUST id=\"dotnet-lro-constructor\" %} provide a "
+"public constructor on subclasses of `Operation<T>` to allow users to access "
+"an existing LRO."
+msgstr ""
+
+#: docs/dotnet/introduction.md:block 175 (paragraph)
+msgid ""
+"{% include requirement/MUST id=\"dotnet-lro-constructor-for-mocking\" %} "
+"provide protected parameterless constructor for mocking in subclasses of "
+"`Operation<T>`."
+msgstr ""
+
+#: docs/dotnet/introduction.md:block 177 (paragraph)
+msgid ""
+"{% include requirement/MUST id=\"dotnet-lro-mocking-properties\" %} make all"
+" properties virtual to allow mocking."
+msgstr ""
+
+#: docs/dotnet/introduction.md:block 179 (header)
+msgid "Conditional Request Methods"
+msgstr ""
+
+#: docs/dotnet/introduction.md:block 180 (paragraph)
+msgid ""
+"Some services support conditional requests that are used to implement "
+"optimistic concurrency control. In Azure, optimistic concurency is typically"
+" implemented using If-Match headers and ETags. See [Managing Concurrency in "
+"Blob Storage](https://docs.microsoft.com/en-"
+"us/azure/storage/blobs/concurrency-manage?tabs=dotnet) as a good example."
+msgstr ""
+
+#: docs/dotnet/introduction.md:block 181 (paragraph)
+msgid ""
+"{% include requirement/MUST id=\"dotnet-conditional-etag\" %} use Azure.Core"
+" ETag to represent ETags."
+msgstr ""
+
+#: docs/dotnet/introduction.md:block 182 (paragraph)
+msgid ""
+"{% include requirement/MAY id=\"dotnet-conditional-matchcondition\" %} take "
+"[MatchConditions](https://docs.microsoft.com/en-"
+"us/dotnet/api/azure.matchconditions?view=azure-dotnet), "
+"[RequestConditions](https://docs.microsoft.com/en-"
+"us/dotnet/api/azure.requestconditions?view=azure-dotnet), (or a custom "
+"subclass) as a parameter to conditional service call methods."
+msgstr ""
+
+#: docs/dotnet/introduction.md:block 183 (paragraph)
+msgid ""
+"TODO: more guidelines comming. see https://github.com/Azure/azure-"
+"sdk/issues/2154"
+msgstr ""
+
+#: docs/dotnet/introduction.md:block 184 (header)
+msgid "Supporting Types"
+msgstr ""
+
+#: docs/dotnet/introduction.md:block 185 (paragraph)
+msgid ""
+"In addition to service client types, Azure SDK APIs provide and use other "
+"supporting types as well."
+msgstr ""
+
+#: docs/dotnet/introduction.md:block 186 (header)
+msgid "Model Types {#dotnet-model-types}"
+msgstr ""
+
+#: docs/dotnet/introduction.md:block 187 (paragraph)
+msgid ""
+"This section describes guidelines for the design *model types* and all their"
+" transitive closure of public dependencies (i.e. the *model graph*). A model"
+" type is a representation of a REST service's resource."
+msgstr ""
+
+#: docs/dotnet/introduction.md:block 188 (paragraph)
+msgid "For example, review the configuration service *model type* below:"
+msgstr ""
+
+#: docs/dotnet/introduction.md:block 190 (paragraph)
+msgid "This model is returned from service methods as follows:"
+msgstr ""
+
+#: docs/dotnet/introduction.md:block 192 (paragraph)
+msgid ""
+"{% include requirement/MUST id=\"dotnet-service-return-model-public-"
+"getters\" %} ensure model public properties are get-only if they aren't "
+"intended to be changed by the user."
+msgstr ""
+
+#: docs/dotnet/introduction.md:block 193 (paragraph)
+msgid ""
+"Most output-only models can be fully read-only. Models that are used as both"
+" outputs and inputs (i.e. received from and sent to the service) typically "
+"have a mixture of read-only and read-write properties."
+msgstr ""
+
+#: docs/dotnet/introduction.md:block 194 (paragraph)
+msgid ""
+"For example, the `Locked` property of `ConfigurationSetting` is controlled "
+"by the service. It shouldn't be changed by the user. The `ContentType` "
+"property, by contrast, can be modified by the user."
+msgstr ""
+
+#: docs/dotnet/introduction.md:block 196 (paragraph)
+msgid ""
+"Ensure you include an internal setter to allow for deserialization. For more"
+" information, see [JSON Serialization](implementation.md#dotnet-usage-json)."
+msgstr ""
+
+#: docs/dotnet/introduction.md:block 197 (paragraph)
+msgid ""
+"{% include requirement/MUST id=\"dotnet-service-models-prefer-structs\" %} "
+"ensure model types are structs, if they meet the criteria for being structs."
+msgstr ""
+
+#: docs/dotnet/introduction.md:block 198 (paragraph)
+msgid ""
+"Good candidates for struct are types that are small and immutable, "
+"especially if they are often stored in arrays. See [.NET Framework Design "
+"Guidelines](https://aka.ms/fxdg3) for details."
+msgstr ""
+
+#: docs/dotnet/introduction.md:block 199 (paragraph)
+msgid ""
+"{% include requirement/SHOULD id=\"dotnet-service-models-basic-data-"
+"interfaces\" %} implement basic data type interfaces on model types, per "
+"[.NET Framework Design Guidelines](https://aka.ms/fxdg3)."
+msgstr ""
+
+#: docs/dotnet/introduction.md:block 200 (paragraph)
+msgid ""
+"For example, implement `IEquatable<T>`, `IComparable<T>`, `IEnumerable<T>`, "
+"etc. if applicable."
+msgstr ""
+
+#: docs/dotnet/introduction.md:block 201 (paragraph)
+msgid ""
+"{% include requirement/SHOULD id=\"dotnet-service-return-model-collections\""
+" %} use the following collection types for properties of model types:"
+msgstr ""
+
+#: docs/dotnet/introduction.md:block 202 (unordered list)
+msgid "`IReadOnlyList<T>` and `IList<T>` for most collections"
+msgstr ""
+
+#: docs/dotnet/introduction.md:block 202 (unordered list)
+msgid "`IReadOnlyDictionary<T>` and `IDictionary<T>` for lookup tables"
+msgstr ""
+
+#: docs/dotnet/introduction.md:block 202 (unordered list)
+msgid ""
+"`T[]`, `Memory<T>`, and `ReadOnlyMemory<T>` when low allocations and "
+"performance are critical"
+msgstr ""
+
+#: docs/dotnet/introduction.md:block 203 (paragraph)
+msgid ""
+"Note that this guidance does not apply to input parameters. Input parameters"
+" representing collections should follow standard [.NET Framework Design "
+"Guidelines](https://aka.ms/fxdg3), e.g. use `IEnumerable<T>` is allowed. "
+"Also, this guidance does not apply to return types of service method calls. "
+"These should be using `Pageable<T>` and `AsyncPageable<T>` discussed in "
+"[Methods Returning Collections](#dotnet-paging)."
+msgstr ""
+
+#: docs/dotnet/introduction.md:block 204 (paragraph)
+msgid ""
+"{% include requirement/MAY id=\"dotnet-service-models-namespace\" %} place "
+"output model types in *.Models* subnamespace to avoid cluttering the main "
+"namespace with too many types."
+msgstr ""
+
+#: docs/dotnet/introduction.md:block 205 (paragraph)
+msgid ""
+"It is important for the main namespace of a client library to be clutter "
+"free. Some client libraries have a relatively small number of model types, "
+"and these should keep the model types in the main namespace. For example, "
+"model types of `Azure.Data.AppConfiguration` package are in the main "
+"namespace. On the other hand, model types of `Azure.Storage.Blobs` package "
+"are in *.Models* subnamespace."
+msgstr ""
+
+#: docs/dotnet/introduction.md:block 207 (paragraph)
+msgid ""
+"{% include requirement/SHOULD id=\"dotnet-service-editor-browsable-state\" "
+"%} apply the `[EditorBrowsable(EditorBrowsableState.Never)]` attribute to "
+"methods on the model type that the user isn't meant to call."
+msgstr ""
+
+#: docs/dotnet/introduction.md:block 208 (paragraph)
+msgid ""
+"Adding this attribute will hide the methods from being shown with "
+"IntelliSense. A user will almost never call `GetHashCode()` directly. "
+"`Equals(object)` is almost never called if the type implements "
+"`IEquatable<T>` (which is preferred). Hide the `ToString()` method if it "
+"isn't overridden."
+msgstr ""
+
+#: docs/dotnet/introduction.md:block 210 (paragraph)
+msgid ""
+"{% include note.html content=\"Unlike service clients, model types aren't "
+"required to be thread-safe, as they're rarely shared between threads.\" %}"
+msgstr ""
+
+#: docs/dotnet/introduction.md:block 211 (paragraph)
+msgid ""
+"{% include requirement/MUST id=\"dotnet-models-in-mocks\" %} ensure all "
+"model types can be used in mocks."
+msgstr ""
+
+#: docs/dotnet/introduction.md:block 212 (paragraph)
+msgid ""
+"In practice, you need to provide public APIs to construct *model graphs*. "
+"See [Support for Mocking](#dotnet-mocking) for details."
+msgstr ""
+
+#: docs/dotnet/introduction.md:block 213 (header)
+msgid "Model Type Naming"
+msgstr ""
+
+#: docs/dotnet/introduction.md:block 214 (paragraph)
+msgid "TODO: issue #2298"
+msgstr ""
+
+#: docs/dotnet/introduction.md:block 215 (header)
+msgid "Enumerations"
+msgstr ""
+
+#: docs/dotnet/introduction.md:block 216 (paragraph)
+msgid ""
+"{% include requirement/MUST id=\"dotnet-enums\" %} use an `enum` for "
+"parameters, properties, and return types when values are known."
+msgstr ""
+
+#: docs/dotnet/introduction.md:block 217 (paragraph)
+msgid ""
+"{% include requirement/MAY id=\"dotnet-enums-exception\" %} use a `readonly "
+"struct` in place of an `enum` that declares well-known fields but can "
+"contain unknown values returned from the service, or user-defined values "
+"passed to the service."
+msgstr ""
+
+#: docs/dotnet/introduction.md:block 218 (paragraph)
+msgid ""
+"See [enumeration-like structure documentation](implementation.md#dotnet-"
+"enums) for implementation details."
+msgstr ""
+
+#: docs/dotnet/introduction.md:block 219 (header)
+msgid "Using Azure Core Types {#dotnet-commontypes}"
+msgstr ""
+
+#: docs/dotnet/introduction.md:block 220 (paragraph)
+msgid ""
+"The `Azure.Core` package provides common functionality for client libraries."
+" Documentation and usage examples can be found in the [azure/azure-sdk-for-"
+"net](https://github.com/Azure/azure-sdk-for-"
+"net/tree/main/sdk/core/Azure.Core) repository."
+msgstr ""
+
+#: docs/dotnet/introduction.md:block 221 (header)
+msgid "Using Primitive Types"
+msgstr ""
+
+#: docs/dotnet/introduction.md:block 222 (paragraph)
+msgid ""
+"{% include requirement/MUST id=\"dotnet-primitives-etag\" %} use "
+"`Azure.ETag` to represent ETags."
+msgstr ""
+
+#: docs/dotnet/introduction.md:block 223 (paragraph)
+msgid "The `Azure.ETag` type is located in `Azure.Core` package."
+msgstr ""
+
+#: docs/dotnet/introduction.md:block 224 (paragraph)
+msgid ""
+"{% include requirement/MUST id=\"dotnet-primitives-uri\" %} use `System.Uri`"
+" to represent URIs."
+msgstr ""
+
+#: docs/dotnet/introduction.md:block 225 (header)
+msgid "Exceptions {#dotnet-errors}"
+msgstr ""
+
+#: docs/dotnet/introduction.md:block 226 (paragraph)
+msgid ""
+"In .NET, throwing exceptions is how we communicate to library consumers that"
+" the services returned an error."
+msgstr ""
+
+#: docs/dotnet/introduction.md:block 227 (paragraph)
+msgid ""
+"{% include requirement/MUST id=\"dotnet-errors-response-failed\" %} throw "
+"`RequestFailedException` or its subtype when a service method fails with "
+"non-success status code."
+msgstr ""
+
+#: docs/dotnet/introduction.md:block 228 (paragraph)
+msgid "The exception is available in `Azure.Core` package:"
+msgstr ""
+
+#: docs/dotnet/introduction.md:block 230 (paragraph)
+msgid ""
+"{% include requirement/SHOULD id=\"dotnet-errors-response-exception-"
+"extensions\" %} use `ResponseExceptionExtensions` to create "
+"`RequestFailedException` instances."
+msgstr ""
+
+#: docs/dotnet/introduction.md:block 231 (paragraph)
+msgid ""
+"The exception message should contain detailed response information. For "
+"example:"
+msgstr ""
+
+#: docs/dotnet/introduction.md:block 233 (paragraph)
+msgid ""
+"{% include requirement/MUST id=\"dotnet-errors-use-response-failed-when-"
+"possible\" %} use `RequestFailedException` or one of its subtypes where "
+"possible."
+msgstr ""
+
+#: docs/dotnet/introduction.md:block 234 (paragraph)
+msgid ""
+"Don't introduce new exception types unless there's a programmatic scenario "
+"for handling the new exception that's different than "
+"`RequestFailedException`"
+msgstr ""
+
+#: docs/dotnet/introduction.md:block 235 (header)
+msgid "Authentication {#dotnet-authentication}"
+msgstr ""
+
+#: docs/dotnet/introduction.md:block 236 (paragraph)
+msgid ""
+"The client library consumer should construct a service client using just the"
+" constructor. After construction, service methods can successfully invoke "
+"service operations. The constructor parameters must take all parameters "
+"required to create a functioning client, including all information needed to"
+" authenticate with the service."
+msgstr ""
+
+#: docs/dotnet/introduction.md:block 237 (paragraph)
+msgid "The general constructor pattern refers to *binding parameters*."
+msgstr ""
+
+#: docs/dotnet/introduction.md:block 239 (paragraph)
+msgid ""
+"Typically, *binding parameters* would include a URI to the service endpoint "
+"and authorization credentials. For example, the blob service client can be "
+"bound using any of:"
+msgstr ""
+
+#: docs/dotnet/introduction.md:block 240 (unordered list)
+msgid ""
+"a connection string (which contains both endpoint information and "
+"credentials),"
+msgstr ""
+
+#: docs/dotnet/introduction.md:block 240 (unordered list)
+msgid "an endpoint (for anonymous access),"
+msgstr ""
+
+#: docs/dotnet/introduction.md:block 240 (unordered list)
+msgid "an endpoint and credentials (for authenticated access)."
+msgstr ""
+
+#: docs/dotnet/introduction.md:block 242 (paragraph)
+msgid ""
+"{% include requirement/SHOULD id=\"dotnet-auth-azure-core\" %} use "
+"credential types provided in the `Azure.Core` package."
+msgstr ""
+
+#: docs/dotnet/introduction.md:block 243 (paragraph)
+msgid ""
+"Currently, `Azure.Core` provides `TokenCredential` for OAuth style tokens, "
+"including MSI credentials."
+msgstr ""
+
+#: docs/dotnet/introduction.md:block 244 (paragraph)
+msgid ""
+"{% include requirement/MUST id=\"dotnet-auth-rolling-credentials\" %} "
+"support changing credentials without having to create a new client instance."
+msgstr ""
+
+#: docs/dotnet/introduction.md:block 245 (paragraph)
+msgid ""
+"Credentials passed to the constructors must be read before every request "
+"(for example, by calling `TokenCredential.GetToken()`)."
+msgstr ""
+
+#: docs/dotnet/introduction.md:block 246 (paragraph)
+msgid ""
+"{% include requirement/MUST id=\"dotnet-auth-arch-review\" %} contact "
+"[adparch] if you want to add a new credential type."
+msgstr ""
+
+#: docs/dotnet/introduction.md:block 247 (paragraph)
+msgid ""
+"{% include requirement/MAY id=\"dotnet-auth-connection-strings\" %} offer a "
+"way to create credentials from a connection string only if the service "
+"offers a connection string via the Azure portal."
+msgstr ""
+
+#: docs/dotnet/introduction.md:block 248 (paragraph)
+msgid ""
+"Don't ask users to compose connection strings manually if they aren't "
+"available through the Azure portal. Connection strings are immutable. It's "
+"impossible for an application to roll over credentials when using connection"
+" strings."
+msgstr ""
+
+#: docs/dotnet/introduction.md:block 249 (header)
+msgid "Namespaces {#dotnet-namespace-naming}"
+msgstr ""
+
+#: docs/dotnet/introduction.md:block 250 (paragraph)
+msgid ""
+"{% include requirement/MUST id=\"dotnet-namespaces-naming\" %} adhere to the"
+" following scheme when choosing a namespace: "
+"`Azure.<group>.<service>[.<feature>]`"
+msgstr ""
+
+#: docs/dotnet/introduction.md:block 251 (paragraph)
+msgid "For example, `Azure.Storage.Blobs`."
+msgstr ""
+
+#: docs/dotnet/introduction.md:block 252 (paragraph)
+msgid ""
+"{% include requirement/MUST id=\"dotnet-namespaces-approved-list\" %} use "
+"one of the following pre-approved namespace groups:"
+msgstr ""
+
+#: docs/dotnet/introduction.md:block 253 (unordered list)
+msgid "`Azure.AI` for artificial intelligence, including machine learning"
+msgstr ""
+
+#: docs/dotnet/introduction.md:block 253 (unordered list)
+msgid ""
+"`Azure.Analytics` for client libraries that gather or process analytics data"
+msgstr ""
+
+#: docs/dotnet/introduction.md:block 253 (unordered list)
+msgid "`Azure.Communication` communication services"
+msgstr ""
+
+#: docs/dotnet/introduction.md:block 253 (unordered list)
+msgid "`Azure.Core` for libraries that aren't service specific"
+msgstr ""
+
+#: docs/dotnet/introduction.md:block 253 (unordered list)
+msgid "`Azure.Cosmos` for object database technologies"
+msgstr ""
+
+#: docs/dotnet/introduction.md:block 253 (unordered list)
+msgid ""
+"`Azure.Data` for client libraries that handle databases or structured data "
+"stores"
+msgstr ""
+
+#: docs/dotnet/introduction.md:block 253 (unordered list)
+msgid "`Azure.DigitalTwins` for DigitalTwins related technologies"
+msgstr ""
+
+#: docs/dotnet/introduction.md:block 253 (unordered list)
+msgid "`Azure.Identity` for authentication and authorization client libraries"
+msgstr ""
+
+#: docs/dotnet/introduction.md:block 253 (unordered list)
+msgid "`Azure.IoT` for client libraries dealing with the Internet of Things."
+msgstr ""
+
+#: docs/dotnet/introduction.md:block 253 (unordered list)
+msgid ""
+"Use `Iot` for Pascal cased compound words, such as `IotClient`, otherwise "
+"follow language conventions."
+msgstr ""
+
+#: docs/dotnet/introduction.md:block 253 (unordered list)
+msgid "Do not use `IoT` more than once in a namespace."
+msgstr ""
+
+#: docs/dotnet/introduction.md:block 253 (unordered list)
+msgid ""
+"`Azure.Media` for client libraries that deal with audio, video, or mixed "
+"reality"
+msgstr ""
+
+#: docs/dotnet/introduction.md:block 253 (unordered list)
+msgid ""
+"`Azure.Messaging` for client libraries that provide messaging services, such"
+" as push notifications or pub-sub."
+msgstr ""
+
+#: docs/dotnet/introduction.md:block 253 (unordered list)
+msgid "`Azure.Monitor` for observability and Azure Monitor client libraries."
+msgstr ""
+
+#: docs/dotnet/introduction.md:block 253 (unordered list)
+msgid ""
+"`Azure.ResourceManager.[ResourceProvider]` for management plane client "
+"libraries for a given resource provider."
+msgstr ""
+
+#: docs/dotnet/introduction.md:block 253 (unordered list)
+msgid ""
+"For example the compute management plane namespace would be "
+"Azure.ResourceManager.Compute."
+msgstr ""
+
+#: docs/dotnet/introduction.md:block 253 (unordered list)
+msgid "`Azure.Search` for search technologies"
+msgstr ""
+
+#: docs/dotnet/introduction.md:block 253 (unordered list)
+msgid "`Azure.Security` for client libraries dealing with security"
+msgstr ""
+
+#: docs/dotnet/introduction.md:block 253 (unordered list)
+msgid "`Azure.Storage` for client libraries that handle unstructured data"
+msgstr ""
+
+#: docs/dotnet/introduction.md:block 254 (paragraph)
+msgid ""
+"If you think a new group should be added to the list, contact [adparch]."
+msgstr ""
+
+#: docs/dotnet/introduction.md:block 255 (paragraph)
+msgid ""
+"{% include requirement/MUST id=\"dotnet-namespaces-registration\" %} "
+"register all namespaces with [adparch]."
+msgstr ""
+
+#: docs/dotnet/introduction.md:block 256 (paragraph)
+msgid ""
+"{% include requirement/MUSTNOT id=\"dotnet-namespaces-location\" %} place "
+"APIs in the second-level namespace (directly under the `Azure` namespace)."
+msgstr ""
+
+#: docs/dotnet/introduction.md:block 257 (paragraph)
+msgid ""
+"{% include requirement/SHOULD id=\"dotnet-namespaces-models\" %} consider "
+"placing model types in a `.Models` namespace if number of model types is or "
+"might become large."
+msgstr ""
+
+#: docs/dotnet/introduction.md:block 258 (paragraph)
+msgid ""
+"See [model type guidelines](#dotnet-service-models-namespace) for details."
+msgstr ""
+
+#: docs/dotnet/introduction.md:block 259 (header)
+msgid "Support for Mocking {#dotnet-mocking}"
+msgstr ""
+
+#: docs/dotnet/introduction.md:block 260 (paragraph)
+msgid ""
+"All client libraries must support mocking to enable non-live testing of "
+"service clients by customers."
+msgstr ""
+
+#: docs/dotnet/introduction.md:block 261 (paragraph)
+msgid ""
+"Here is an example of how the `ConfigurationClient` can be mocked using "
+"[Moq] (a popular .NET mocking library):"
+msgstr ""
+
+#: docs/dotnet/introduction.md:block 263 (paragraph)
+msgid ""
+"Review the [full sample](https://github.com/Azure/azure-sdk-for-"
+"net/blob/main/sdk/appconfiguration/Azure.Data.AppConfiguration/samples/Sample7_MockClient.md)"
+" in the GitHub repository."
+msgstr ""
+
+#: docs/dotnet/introduction.md:block 264 (paragraph)
+msgid ""
+"{% include requirement/MUST id=\"dotnet-mocking-constructor\" %} provide "
+"protected parameterless constructor for mocking."
+msgstr ""
+
+#: docs/dotnet/introduction.md:block 265 (paragraph)
+msgid ""
+"{% include requirement/MUST id=\"dotnet-mocking-virtual-method\" %} make all"
+" service methods virtual."
+msgstr ""
+
+#: docs/dotnet/introduction.md:block 266 (paragraph)
+msgid ""
+"{% include requirement/MUST id=\"dotnet-mocking-virtual-properties\" %} make"
+" all properties virtual."
+msgstr ""
+
+#: docs/dotnet/introduction.md:block 268 (paragraph)
+msgid ""
+"{% include requirement/MUST id=\"dotnet-mocking-virtual-getclient-method\" "
+"%} make methods returning other clients virtual."
+msgstr ""
+
+#: docs/dotnet/introduction.md:block 270 (paragraph)
+msgid ""
+"{% include requirement/MUST id=\"dotnet-mocking-extensions\" %} use instance"
+" methods instead of extension methods when defined in the same assembly. The"
+" instance methods are simpler to mock."
+msgstr ""
+
+#: docs/dotnet/introduction.md:block 272 (paragraph)
+msgid ""
+"{% include requirement/MUST id=\"dotnet-mocking-factory-builder\" %} provide"
+" factory or builder for constructing model graphs returned from virtual "
+"service methods."
+msgstr ""
+
+#: docs/dotnet/introduction.md:block 273 (paragraph)
+msgid ""
+"Model types shouldn't have public constructors. Instances of the model are "
+"typically returned from the client library, and are not constructed by the "
+"consumer of the library. Mock implementations need to create instances of "
+"model types. Implement a static class called `<service>ModelFactory` in the "
+"same namespace as the model types:"
+msgstr ""
+
+#: docs/dotnet/introduction.md:block 275 (paragraph)
+msgid ""
+"{% include requirement/MUST id=\"dotnet-mocking-factory-builder-methods\" %}"
+" hide older overloads and avoid ambiguity."
+msgstr ""
+
+#: docs/dotnet/introduction.md:block 276 (paragraph)
+msgid ""
+"When read-only properties are added to models and factory methods must be "
+"added to optionally set these properties, you must hide the previous method "
+"and remove all default parameter values to avoid ambiguity:"
+msgstr ""
+
+#: docs/dotnet/introduction.md:block 278 (header)
+msgid "Azure SDK Library Design"
+msgstr ""
+
+#: docs/dotnet/introduction.md:block 279 (header)
+msgid "Packaging {#dotnet-packaging}"
+msgstr ""
+
+#: docs/dotnet/introduction.md:block 280 (paragraph)
+msgid ""
+"{% include requirement/MUST id=\"dotnet-packaging-nuget\" %} package all "
+"components as NuGet packages."
+msgstr ""
+
+#: docs/dotnet/introduction.md:block 281 (paragraph)
+msgid ""
+"If your client library is built by the Azure SDK engineering systems, all "
+"packaging requirements will be met automatically. Follow the [.NET packaging"
+" guidelines](https://docs.microsoft.com/dotnet/standard/library-"
+"guidance/nuget) if you're self-publishing. For Microsoft owned packages we "
+"need to support both windows (for windows dump diagnostics) and portable "
+"(for x-platform debugging) pdb formats which means you need to publish them "
+"to the Microsoft symbol server and not the Nuget symbol server which only "
+"supports portable pdbs."
+msgstr ""
+
+#: docs/dotnet/introduction.md:block 282 (paragraph)
+msgid ""
+"{% include requirement/MUST id=\"dotnet-packaging-naming\" %} name the "
+"package based on the name of the main namespace of the component."
+msgstr ""
+
+#: docs/dotnet/introduction.md:block 283 (paragraph)
+msgid ""
+"For example, if the component is in the `Azure.Storage.Blobs` namespace, the"
+" component DLL will be `Azure.Storage.Blobs.dll` and the NuGet package will "
+"b`Azure.Storage.Blobs```."
+msgstr ""
+
+#: docs/dotnet/introduction.md:block 284 (paragraph)
+msgid ""
+"{% include requirement/SHOULD id=\"dotnet-packaging-granularity\" %} place "
+"small related components that evolve together in a single NuGet package."
+msgstr ""
+
+#: docs/dotnet/introduction.md:block 285 (paragraph)
+msgid ""
+"{% include requirement/MUST id=\"dotnet-build-net-standard\" %} build all "
+"libraries for [.NET Standard 2.0]."
+msgstr ""
+
+#: docs/dotnet/introduction.md:block 286 (paragraph)
+msgid "Use the following target setting in the `.csproj` file:"
+msgstr ""
+
+#: docs/dotnet/introduction.md:block 288 (header)
+msgid "Common Libraries"
+msgstr ""
+
+#: docs/dotnet/introduction.md:block 289 (paragraph)
+msgid ""
+"There are occasions when common code needs to be shared between several "
+"client libraries. For example, a set of cooperating client libraries may "
+"wish to share a set of exceptions or models."
+msgstr ""
+
+#: docs/dotnet/introduction.md:block 290 (paragraph)
+msgid ""
+"{% include requirement/MUST id=\"dotnet-commonlib-approval\" %} gain "
+"[Architecture Board] discuss how to design such common library."
+msgstr ""
+
+#: docs/dotnet/introduction.md:block 291 (header)
+msgid "Versioning {#dotnet-versioning}"
+msgstr ""
+
+#: docs/dotnet/introduction.md:block 292 (header)
+msgid "Client Versions"
+msgstr ""
+
+#: docs/dotnet/introduction.md:block 293 (paragraph)
+msgid ""
+"{% include requirement/MUST id=\"dotnet-versioning-backwards-compatibility\""
+" %} be 100% backwards compatible with older versions of the same package."
+msgstr ""
+
+#: docs/dotnet/introduction.md:block 294 (paragraph)
+msgid ""
+"For detailed rules, see [.NET Breaking "
+"Changes](https://github.com/dotnet/runtime/blob/master/docs/coding-"
+"guidelines/breaking-change-rules.md)."
+msgstr ""
+
+#: docs/dotnet/introduction.md:block 295 (paragraph)
+msgid ""
+"{% include requirement/MUST id=\"dotnet-versioning-new-package\" %} "
+"introduce a new package (with new assembly names, new namespace names, and "
+"new type names) if you must do an API breaking change."
+msgstr ""
+
+#: docs/dotnet/introduction.md:block 296 (paragraph)
+msgid ""
+"Breaking changes should happen rarely, if ever. Register your intent to do a"
+" breaking change with [adparch]. You'll need to have a discussion with the "
+"language architect before approval."
+msgstr ""
+
+#: docs/dotnet/introduction.md:block 297 (header)
+msgid "Package Version Numbers {#dotnet-versionnumbers}"
+msgstr ""
+
+#: docs/dotnet/introduction.md:block 298 (paragraph)
+msgid ""
+"Consistent version number scheme allows consumers to determine what to "
+"expect from a new version of the library."
+msgstr ""
+
+#: docs/dotnet/introduction.md:block 299 (paragraph)
+msgid ""
+"{% include requirement/MUST id=\"dotnet-version-semver\" %} use "
+"*MAJOR*.*MINOR*.*PATCH* format for the version of the library dll and the "
+"NuGet package."
+msgstr ""
+
+#: docs/dotnet/introduction.md:block 300 (paragraph)
+msgid ""
+"Use _-beta.*N* suffix for beta package versions. For example, "
+"*1.0.0-beta.2*."
+msgstr ""
+
+#: docs/dotnet/introduction.md:block 301 (paragraph)
+msgid ""
+"{% include requirement/MUST id=\"dotnet-version-change-on-release\" %} "
+"change the version number of the client library when **ANYTHING** changes in"
+" the client library."
+msgstr ""
+
+#: docs/dotnet/introduction.md:block 302 (paragraph)
+msgid ""
+"{% include requirement/MUST id=\"dotnet-version-patching\" %} increment the "
+"patch version when fixing a bug."
+msgstr ""
+
+#: docs/dotnet/introduction.md:block 303 (paragraph)
+msgid ""
+"{% include requirement/MUSTNOT id=\"dotnet-version-features-in-patch\" %} "
+"include new APIs in a patch release."
+msgstr ""
+
+#: docs/dotnet/introduction.md:block 304 (paragraph)
+msgid ""
+"{% include requirement/MUST id=\"dotnet-version-add-feature\" %} increment "
+"the major or minor version when adding support for a service API version."
+msgstr ""
+
+#: docs/dotnet/introduction.md:block 305 (paragraph)
+msgid ""
+"{% include requirement/MUST id=\"dotnet-version-add-api\" %} increment the "
+"major or minor version when adding a new method to the public API."
+msgstr ""
+
+#: docs/dotnet/introduction.md:block 306 (paragraph)
+msgid ""
+"{% include requirement/SHOULD id=\"dotnet-version-major-changes\" %} "
+"increment the major version when making large feature changes."
+msgstr ""
+
+#: docs/dotnet/introduction.md:block 307 (paragraph)
+msgid ""
+"{% include requirement/MUST id=\"dotnet-version-change-on-release\" %} "
+"select a version number greater than the highest version number of any other"
+" released Track 1 package for the service in any other scope or language."
+msgstr ""
+
+#: docs/dotnet/introduction.md:block 308 (header)
+msgid "Dependencies {#dotnet-dependencies}"
+msgstr ""
+
+#: docs/dotnet/introduction.md:block 309 (paragraph)
+msgid ""
+"{% include requirement/SHOULD id=\"dotnet-dependencies-minimize\" %} "
+"minimize dependencies outside of the .NET Standard and `Azure.Core` "
+"packages."
+msgstr ""
+
+#: docs/dotnet/introduction.md:block 310 (paragraph)
+msgid ""
+"{% include requirement/MUSTNOT id=\"dotnet-dependencies-list\" %} depend on "
+"any NuGet package except the following packages:"
+msgstr ""
+
+#: docs/dotnet/introduction.md:block 311 (unordered list)
+msgid "`Azure.*` packages from the [azure/azure-sdk-for-net] repository."
+msgstr ""
+
+#: docs/dotnet/introduction.md:block 311 (unordered list)
+msgid "`System.Text.Json`."
+msgstr ""
+
+#: docs/dotnet/introduction.md:block 311 (unordered list)
+msgid "`Microsoft.BCL.AsyncInterfaces`."
+msgstr ""
+
+#: docs/dotnet/introduction.md:block 311 (unordered list)
+msgid "packages produced by your own team."
+msgstr ""
+
+#: docs/dotnet/introduction.md:block 312 (paragraph)
+msgid ""
+"In the past, [JSON.NET] was commonly used for serialization and "
+"deserialization. Use the "
+"[System.Text.Json](https://www.nuget.org/packages/System.Text.Json/) package"
+" that is now a part of the .NET platform instead."
+msgstr ""
+
+#: docs/dotnet/introduction.md:block 313 (paragraph)
+msgid ""
+"{% include requirement/MUSTNOT id=\"dotnet-dependencies-exposing\" %} "
+"publicly expose types from dependencies unless the types follow these "
+"guidelines as well."
+msgstr ""
+
+#: docs/dotnet/introduction.md:block 314 (header)
+msgid "Native Code"
+msgstr ""
+
+#: docs/dotnet/introduction.md:block 315 (paragraph)
+msgid ""
+"Native dependencies introduce lots of complexities to .NET libraries and so "
+"they should be avoided."
+msgstr ""
+
+#: docs/dotnet/introduction.md:block 316 (paragraph)
+msgid ""
+"{% include requirement/SHOULDNOT id=\"dotnet-problems-too-many-types\" %} "
+"native dependencies."
+msgstr ""
+
+#: docs/dotnet/introduction.md:block 317 (header)
+msgid "Documentation Comments {#dotnet-documentation}"
+msgstr ""
+
+#: docs/dotnet/introduction.md:block 318 (paragraph)
+msgid ""
+"{% include requirement/MUST id=\"dotnet-docs-document-everything\" %} "
+"document every exposed (public or protected) type and member within your "
+"library's code."
+msgstr ""
+
+#: docs/dotnet/introduction.md:block 319 (paragraph)
+msgid ""
+"{% include requirement/MUST id=\"dotnet-docs-docstrings\" %} use [C# "
+"documentation comments](https://docs.microsoft.com/dotnet/csharp/language-"
+"reference/language-specification/documentation-comments) for reference "
+"documentation."
+msgstr ""
+
+#: docs/dotnet/introduction.md:block 320 (paragraph)
+msgid ""
+"See the [documentation guidelines]({{ site.baseurl "
+"}}/general_documentation.html) for language-independent guidelines for how "
+"to provide good documentation."
+msgstr ""
+
+#: docs/dotnet/introduction.md:block 321 (header)
+msgid "Repository Guidelines {#dotnet-repository}"
+msgstr ""
+
+#: docs/dotnet/introduction.md:block 322 (paragraph)
+msgid ""
+"{% include requirement/MUST id=\"dotnet-general-repository\" %} locate all "
+"source code and README in the [azure/azure-sdk-for-net] GitHub repository."
+msgstr ""
+
+#: docs/dotnet/introduction.md:block 323 (paragraph)
+msgid ""
+"{% include requirement/MUST id=\"dotnet-general-engsys\" %} follow Azure SDK"
+" engineering systems guidelines for working in the [azure/azure-sdk-for-net]"
+" GitHub repository."
+msgstr ""
+
+#: docs/dotnet/introduction.md:block 324 (header)
+msgid "Documentation Style"
+msgstr ""
+
+#: docs/dotnet/introduction.md:block 325 (paragraph)
+msgid "TODO: issue #2338"
+msgstr ""
+
+#: docs/dotnet/introduction.md:block 326 (header)
+msgid "README {#dotnet-repository-readme}"
+msgstr ""
+
+#: docs/dotnet/introduction.md:block 327 (paragraph)
+msgid ""
+"{% include requirement/MUST id=\"dotnet-docs-readme\" %} have a README.md "
+"file in the component root folder."
+msgstr ""
+
+#: docs/dotnet/introduction.md:block 328 (paragraph)
+msgid ""
+"An example of a good `README.md` file can be found "
+"[here](https://github.com/Azure/azure-sdk-for-"
+"net/blob/main/sdk/appconfiguration/Azure.Data.AppConfiguration/README.md)."
+msgstr ""
+
+#: docs/dotnet/introduction.md:block 329 (paragraph)
+msgid ""
+"{% include requirement/MUST id=\"dotnet-docs-readme-consumer\" %} optimize "
+"the `README.md` for the consumer of the client library."
+msgstr ""
+
+#: docs/dotnet/introduction.md:block 330 (paragraph)
+msgid ""
+"The contributor guide (`CONTRIBUTING.md`) should be a separate file linked "
+"to from the main component `README.md`."
+msgstr ""
+
+#: docs/dotnet/introduction.md:block 331 (header)
+msgid "Samples {#dotnet-samples}"
+msgstr ""
+
+#: docs/dotnet/introduction.md:block 332 (paragraph)
+msgid ""
+"Each client library should have a quickstart guide with code samples. "
+"Developers like to learn about a library by looking at sample code; not by "
+"reading in-depth technology papers."
+msgstr ""
+
+#: docs/dotnet/introduction.md:block 333 (paragraph)
+msgid ""
+"{% include requirement/MUST id=\"dotnet-samples-location\" %} have usage "
+"samples in `samples` subdirectory of main library directory."
+msgstr ""
+
+#: docs/dotnet/introduction.md:block 334 (paragraph)
+msgid ""
+"For a complete example, see the [Configuration Service "
+"samples](https://github.com/Azure/azure-sdk-for-"
+"net/tree/main/sdk/appconfiguration/Azure.Data.AppConfiguration/samples)."
+msgstr ""
+
+#: docs/dotnet/introduction.md:block 335 (paragraph)
+msgid ""
+"{% include requirement/MUST id=\"dotnet-samples-readme\" %} have a "
+"`README.md` file with the following front matter:"
+msgstr ""
+
+#: docs/dotnet/introduction.md:block 337 (paragraph)
+msgid ""
+"The `README.md` file should be written as a getting started guide. See [the "
+"ServiceBus README](https://github.com/Azure/azure-sdk-for-"
+"net/blob/main/sdk/servicebus/Azure.Messaging.ServiceBus/README.md) for a "
+"good example."
+msgstr ""
+
+#: docs/dotnet/introduction.md:block 338 (paragraph)
+msgid ""
+"{% include requirement/MUST id=\"dotnet-samples-readme-links\" %} link to "
+"each of the samples files using a brief description as the link text."
+msgstr ""
+
+#: docs/dotnet/introduction.md:block 339 (paragraph)
+msgid ""
+"{% include requirement/MUST id=\"dotnet-samples-naming\" %} have a sample "
+"file called `Sample1_HelloWorld.md`. All other samples are ordered from "
+"simplest to most complex using the `Sample<number>_` prefix."
+msgstr ""
+
+#: docs/dotnet/introduction.md:block 340 (paragraph)
+msgid ""
+"{% include requirement/MUST id=\"dotnet-sync-samples-naming\" %} use "
+"synchronous APIs in the `Sample1_HelloWorld.md` sample. Add a second sample "
+"named `Sample1_HelloWorldAsync.md` that does the same thing as "
+"`Sample1_HelloWorld.md` using asynchronous code."
+msgstr ""
+
+#: docs/dotnet/introduction.md:block 341 (paragraph)
+msgid ""
+"{% include requirement/MUST id=\"dotnet-samples-source-snippets\" %} use "
+"`#region`s in source with a unique identifier starting with \"Snippet:\" "
+"like `Snippet:AzConfigSample1_CreateConfigurationClient`. This must be "
+"unique within the entire repo."
+msgstr ""
+
+#: docs/dotnet/introduction.md:block 342 (paragraph)
+msgid ""
+"{% include requirement/MUST id=\"dotnet-samples-snippets\" %} C# code fences"
+" with the corresponding `#region` name like so:"
+msgstr ""
+
+#: docs/dotnet/introduction.md:block 344 (paragraph)
+msgid ""
+"{% include requirement/MUST id=\"dotnet-samples-build\" %} make sure all the"
+" samples build and run as part of the CI process."
+msgstr ""
+
+#: docs/dotnet/introduction.md:block 345 (paragraph)
+msgid "TODO: Update guidance on samples to reflect what we do in most places."
+msgstr ""
+
+#: docs/dotnet/introduction.md:block 346 (header)
+msgid ""
+"Commonly Overlooked .NET API Design Guidelines {#dotnet-appendix-"
+"overlookedguidelines}"
+msgstr ""
+
+#: docs/dotnet/introduction.md:block 347 (paragraph)
+msgid ""
+"Some [.NET Framework Design Guidelines](https://aka.ms/fxdg3) have been "
+"notoriously overlooked in earlier Azure SDKs. This section serves as a way "
+"to highlight these guidelines."
+msgstr ""
+
+#: docs/dotnet/introduction.md:block 348 (paragraph)
+msgid ""
+"{% include requirement/SHOULDNOT id=\"dotnet-problems-too-many-types\" %} "
+"have many types in the main namespace. Number of types is directly "
+"proportional to the perceived complexity of a library."
+msgstr ""
+
+#: docs/dotnet/introduction.md:block 349 (paragraph)
+msgid ""
+"{% include requirement/MUSTNOT id=\"dotnet-problems-abstractions\" %} use "
+"abstractions unless the Azure SDK both returns and consumes the abstraction."
+" An abstraction is either an interface or abstract class."
+msgstr ""
+
+#: docs/dotnet/introduction.md:block 350 (paragraph)
+msgid ""
+"{% include requirement/MUSTNOT id=\"dotnet-problems-interfaces\" %} use "
+"interfaces if you can use abstract classes. The only reasons to use an "
+"interface are: a) you need to \"multiple-inherit\", b) you want structs to "
+"implement an abstraction."
+msgstr ""
+
+#: docs/dotnet/introduction.md:block 351 (paragraph)
+msgid ""
+"{% include requirement/MUSTNOT id=\"dotnet-problems-generic-words\" %} use "
+"generic words and terms for type names. For example, do not use names like "
+"`OperationResponse` or `DataCollection`."
+msgstr ""
+
+#: docs/dotnet/introduction.md:block 352 (paragraph)
+msgid ""
+"{% include requirement/SHOULDNOT id=\"dotnet-problems-valid-values\" %} use "
+"parameter types where it's not clear what valid values are supported. For "
+"example, do not use strings but only accept certain values in the string."
+msgstr ""
+
+#: docs/dotnet/introduction.md:block 353 (paragraph)
+msgid ""
+"{% include requirement/MUSTNOT id=\"dotnet-problems-empty-types\" %} have "
+"empty types (types with no members)."
+msgstr ""
+
+#: docs/dotnet/introduction.md:block 355 (paragraph)
+msgid "{% include refs.md %} {% include_relative refs.md %}"
+msgstr ""
