@@ -4,6 +4,10 @@ title: azure-sdk-korean repo change log
 permalink: /mdpo/
 ---
   
+2022-12-05 09:09:41 (UTC)
+----------
+  
+  
 2022-12-04 12:23:46 (UTC)
 ----------
 mdpo/ko/docs/android/approved_dependencies.po | 4 ++-- mdpo/ko/docs/ios/approved_dependencies.po | 4 ++-- 2 files changed, 4 insertions(+), 4 deletions(-)
