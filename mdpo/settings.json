@@ -1,5 +1,5 @@
 {
-  "path": ["docs/ios/introduction.md","docs/dotnet/introduction.md","docs/policies/README-EXAMPLE.md", "docs/policies/support.md", "docs/android/approved_dependencies.md", "docs/ios/approved_dependencies.md", "docs/policies/migration-guide-template.md"],
+  "path": ["docs/policies/README-EXAMPLE.md", "docs/policies/support.md", "docs/android/approved_dependencies.md", "docs/ios/approved_dependencies.md", "docs/policies/migration-guide-template.md"],
   "sync-repo": "Azure/azure-sdk",
   "branch": "main"
 }
