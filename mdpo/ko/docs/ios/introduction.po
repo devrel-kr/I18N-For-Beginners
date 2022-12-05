@@ -1,0 +1,239 @@
+#
+msgid ""
+msgstr ""
+
+#: docs/ios/introduction.md:block 1 (header)
+msgid ""
+"title: \"iOS Guidelines: Introduction\"\n"
+"keywords: guidelines ios\n"
+"permalink: ios_introduction.html\n"
+"folder: ios\n"
+"sidebar: general_sidebar"
+msgstr ""
+
+#: docs/ios/introduction.md:block 2 (paragraph)
+msgid ""
+"{% include draft.html content=\"The iOS guidelines are in DRAFT status\" %}"
+msgstr ""
+
+#: docs/ios/introduction.md:block 3 (paragraph)
+msgid ""
+"The iOS guidelines are for the benefit of client library designers targeting"
+" service applications written for the native iOS ecosystem. You do not have "
+"to write a client library for iOS if your service is not normally accessed "
+"from mobile apps."
+msgstr ""
+
+#: docs/ios/introduction.md:block 4 (header)
+msgid "Design principles"
+msgstr ""
+
+#: docs/ios/introduction.md:block 5 (paragraph)
+msgid ""
+"The Azure SDK should be designed to enhance the productivity of developers "
+"connecting to Azure services. Other qualities (such as completeness, "
+"extensibility, and performance) are important but secondary. Productivity is"
+" achieved by adhering to the principles described below:"
+msgstr ""
+
+#: docs/ios/introduction.md:block 6 (header)
+msgid "Idiomatic"
+msgstr ""
+
+#: docs/ios/introduction.md:block 7 (unordered list)
+msgid ""
+"The SDK should follow the general design guidelines and conventions for the "
+"target language. It should feel natural to a developer in the target "
+"language."
+msgstr ""
+
+#: docs/ios/introduction.md:block 7 (unordered list)
+msgid "We embrace the ecosystem with its strengths and its flaws."
+msgstr ""
+
+#: docs/ios/introduction.md:block 7 (unordered list)
+msgid "We work with the ecosystem to improve it for all developers."
+msgstr ""
+
+#: docs/ios/introduction.md:block 8 (header)
+msgid "Consistent"
+msgstr ""
+
+#: docs/ios/introduction.md:block 9 (unordered list)
+msgid ""
+"Client libraries should be consistent within the language, consistent with "
+"the service and consistent between all target languages. In cases of "
+"conflict, consistency within the language is the highest priority and "
+"consistency between all target languages is the lowest priority."
+msgstr ""
+
+#: docs/ios/introduction.md:block 9 (unordered list)
+msgid ""
+"Service-agnostic concepts such as logging, HTTP communication, and error "
+"handling should be consistent. The developer should not have to relearn "
+"service-agnostic concepts as they move between client libraries."
+msgstr ""
+
+#: docs/ios/introduction.md:block 9 (unordered list)
+msgid ""
+"Consistency of terminology between the client library and the service is a "
+"good thing that aids in diagnosability."
+msgstr ""
+
+#: docs/ios/introduction.md:block 9 (unordered list)
+msgid ""
+"All differences between the service and client library must have a good "
+"(articulated) reason for existing, rooted in idiomatic usage rather than "
+"whim."
+msgstr ""
+
+#: docs/ios/introduction.md:block 9 (unordered list)
+msgid ""
+"The Azure SDK for each target language feels like a single product developed"
+" by a single team."
+msgstr ""
+
+#: docs/ios/introduction.md:block 9 (unordered list)
+msgid ""
+"There should be feature parity across target languages. This is more "
+"important than feature parity with the service."
+msgstr ""
+
+#: docs/ios/introduction.md:block 10 (header)
+msgid "Approachable"
+msgstr ""
+
+#: docs/ios/introduction.md:block 11 (unordered list)
+msgid ""
+"We are experts in the supported technologies so our customers, the "
+"developers, don't have to be."
+msgstr ""
+
+#: docs/ios/introduction.md:block 11 (unordered list)
+msgid ""
+"Developers should find great documentation (hero tutorial, how to articles, "
+"samples, and API documentation) that makes it easy to be successful with the"
+" Azure service."
+msgstr ""
+
+#: docs/ios/introduction.md:block 11 (unordered list)
+msgid ""
+"Getting off the ground should be easy through the use of predictable "
+"defaults that implement best practices. Think about progressive concept "
+"disclosure."
+msgstr ""
+
+#: docs/ios/introduction.md:block 11 (unordered list)
+msgid ""
+"The SDK should be easily acquired through the most normal mechanisms in the "
+"target language and ecosystem."
+msgstr ""
+
+#: docs/ios/introduction.md:block 11 (unordered list)
+msgid ""
+"Developers can be overwhelmed when learning new service concepts. The core "
+"use cases should be discoverable."
+msgstr ""
+
+#: docs/ios/introduction.md:block 12 (header)
+msgid "Diagnosable"
+msgstr ""
+
+#: docs/ios/introduction.md:block 13 (unordered list)
+msgid "The developer should be able to understand what is going on."
+msgstr ""
+
+#: docs/ios/introduction.md:block 13 (unordered list)
+msgid ""
+"It should be discoverable when and under what circumstances a network call "
+"is made."
+msgstr ""
+
+#: docs/ios/introduction.md:block 13 (unordered list)
+msgid "Defaults are discoverable and their intent is clear."
+msgstr ""
+
+#: docs/ios/introduction.md:block 13 (unordered list)
+msgid ""
+"Logging, tracing, and exception handling are fundamental and should be "
+"thoughtful."
+msgstr ""
+
+#: docs/ios/introduction.md:block 13 (unordered list)
+msgid ""
+"Error messages should be concise, correlated with the service, actionable, "
+"and human readable. Ideally, the error message should lead the consumer to a"
+" useful action that they can take."
+msgstr ""
+
+#: docs/ios/introduction.md:block 13 (unordered list)
+msgid ""
+"Integrating with the preferred debugger for the target language should be "
+"easy."
+msgstr ""
+
+#: docs/ios/introduction.md:block 14 (header)
+msgid "Dependable"
+msgstr ""
+
+#: docs/ios/introduction.md:block 15 (unordered list)
+msgid ""
+"Breaking changes are more harmful to a user's experience than most new "
+"features and improvements are beneficial."
+msgstr ""
+
+#: docs/ios/introduction.md:block 15 (unordered list)
+msgid ""
+"Incompatibilities should never be introduced deliberately without thorough "
+"review and very strong justification."
+msgstr ""
+
+#: docs/ios/introduction.md:block 15 (unordered list)
+msgid "Do not rely on dependencies that can force our hand on compatibility."
+msgstr ""
+
+#: docs/ios/introduction.md:block 16 (header)
+msgid "General Guidelines"
+msgstr ""
+
+#: docs/ios/introduction.md:block 17 (paragraph)
+msgid ""
+"{% include requirement/MUST id=\"ios-general-follow-general-guidelines\" %} "
+"follow the [General Azure SDK Guidelines]."
+msgstr ""
+
+#: docs/ios/introduction.md:block 18 (paragraph)
+msgid ""
+"{% include requirement/MUST id=\"ios-general-repository\" %} locate all "
+"source code in the [Azure/azure-sdk-for-ios] GitHub repository."
+msgstr ""
+
+#: docs/ios/introduction.md:block 19 (paragraph)
+msgid ""
+"{% include requirement/MUST id=\"ios-general-engsys\" %} follow Azure SDK "
+"engineering systems guidelines for working in the [Azure/azure-sdk-for-ios] "
+"GitHub repository."
+msgstr ""
+
+#: docs/ios/introduction.md:block 20 (paragraph)
+msgid ""
+"{% include requirement/SHOULD id=\"ios-language-swift\" %} write the client "
+"library in Swift 5."
+msgstr ""
+
+#: docs/ios/introduction.md:block 21 (paragraph)
+msgid ""
+"{% include requirement/MAY id=\"ios-language-objc\" %} write the client "
+"library in Objective-C."
+msgstr ""
+
+#: docs/ios/introduction.md:block 22 (paragraph)
+msgid ""
+"The intent is to ensure that the client library is idiomatic in Swift "
+"applications. The library should not make specific accommodations to support"
+" Objective-C applications."
+msgstr ""
+
+#: docs/ios/introduction.md:block 23 (paragraph)
+msgid "{% include refs.md %} {% include_relative refs.md %}"
+msgstr ""
