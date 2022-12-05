@@ -1,6 +1,20 @@
-#
 msgid ""
 msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2022-12-05 10:16+0000\n"
+"PO-Revision-Date: 2022-12-05 10:16+0000\n"
+"Last-Translator: Weblate Admin <weblate.admin@example.com>\n"
+"Language-Team: Korean <http://40.76.85.234/projects/azure-sdk/"
+"docsjavaintroduction/ko/>\n"
+"Language: ko\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+"X-Generator: Weblate 4.14.2\n"
+
+#
 
 #: docs/java/introduction.md:block 1 (header)
 msgid ""
@@ -13,7 +27,7 @@ msgstr ""
 
 #: docs/java/introduction.md:block 2 (header)
 msgid "Introduction"
-msgstr ""
+msgstr "소개"
 
 #: docs/java/introduction.md:block 3 (paragraph)
 msgid ""
