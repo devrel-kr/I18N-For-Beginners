@@ -4,6 +4,11 @@ title: azure-sdk-korean repo change log
 permalink: /mdpo/
 ---
   
+2022-12-05 09:23:18 (UTC)
+----------
+docs/dotnet/introduction.md | 1197 ------------------------------------------- 1 file changed, 1197 deletions(-)
+  
+  
 
 2022-12-04 12:23:46 (UTC)
 ----------
