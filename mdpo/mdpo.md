@@ -4,15 +4,12 @@ title: azure-sdk-korean repo change log
 permalink: /mdpo/
 ---
   
-2022-12-05 09:17:22 (UTC)
+2022-12-05 09:23:18 (UTC)
 ----------
- mdpo/ko/docs/dotnet/introduction.po | 2242 +++++++++++++++++++++ mdpo/ko/docs/policies/migration-guide-template.po | 89 +- 2 files changed, 2280 insertions(+), 51 deletions(-) create mode 100644 mdpo/ko/docs/dotnet/introduction.po
+docs/dotnet/introduction.md | 1197 ------------------------------------------- 1 file changed, 1197 deletions(-)
   
   
-2022-12-05 09:09:41 (UTC)
-----------
-  
-  
+
 2022-12-04 12:23:46 (UTC)
 ----------
 mdpo/ko/docs/android/approved_dependencies.po | 4 ++-- mdpo/ko/docs/ios/approved_dependencies.po | 4 ++-- 2 files changed, 4 insertions(+), 4 deletions(-)
