@@ -7,6 +7,8 @@
 
  [Weblate](https://weblate.org/ko/)를 통해 [Azure-sdk](https://github.com/Azure/azure-sdk) 에서 타깃한 마크다운 파일들을 지속적으로 현지화합니다.
 
+[여기서](http://azuresdkweblate.eastus.cloudapp.azure.com/) 번역해, devrel-kr/azure-sdk-korea 번역에 기여해주세요.
+
 
 ## 기능 설명
 
@@ -18,8 +20,6 @@
 
 * Weblate에서 일정 퍼센티지 이상 번역이 됐을 경우 [devrel-kr/azure-sdk-korea](https://github.com/devrel-kr/azure-sdk-korean) 에 번역된 마크다운을 po파일과 함께
 Pull request해 줍니다.
-
-[여기서](http://azuresdkweblate.eastus.cloudapp.azure.com/) 번역해, devrel-kr/azure-sdk-korea 번역에 기여해주세요.
 
 ## 사용한 Library
 <img src="https://mondeja.github.io/mdpo/latest/_static/mdpo.png" width= "100px" alt = "mdpo" />
