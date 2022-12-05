@@ -137,7 +137,7 @@ msgstr ""
 msgid ""
 "(Add this line only for Java) A unified way of creating clients via "
 "builders."
-msgstr "Java 전용으로 줄 추가한 빌더를 통해 클라이언트를 만드는 통합된 방법입니다."
+msgstr ""
 
 #: docs/policies/migration-guide-template.md:block 12 (header)
 msgid "Performance improvements"
