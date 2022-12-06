@@ -4,6 +4,11 @@ title: azure-sdk-korean repo change log
 permalink: /mdpo/
 ---
   
+2022-12-06 10:34:38 (UTC)
+----------
+docs/java/introduction.md | 1313 +++++++++++++++++++++++++++++++++++++++++++++ 1 file changed, 1313 insertions(+)
+  
+  
 2022-12-05 10:04:24 (UTC)
 ----------
 docs/java/introduction.md | 1313 +++++++++++++++++++++++++++++++++++++++++++++ 1 file changed, 1313 insertions(+)
