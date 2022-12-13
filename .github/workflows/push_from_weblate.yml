@@ -1,7 +1,7 @@
 name: push_from_weblate
 on:  
-
   workflow_dispatch:
+  
 jobs:
   job_1:
     name: push_from_weblate
